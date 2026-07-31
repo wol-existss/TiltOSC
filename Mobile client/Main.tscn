@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cvn6xub1nrjew"]
+
+[ext_resource type="Script" uid="uid://4pxluy461chw" path="res://Scripts/read_sensors.gd" id="1_glv2v"]
+
+[node name="Node2D" type="Node2D" unique_id=2093419794]
+
+[node name="ReadSensors" type="Node" parent="." unique_id=1923663784]
+script = ExtResource("1_glv2v")
