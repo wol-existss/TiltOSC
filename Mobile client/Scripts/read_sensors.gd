@@ -3,7 +3,8 @@ extends Node
 var frames = 0
 var wheel_angle = 0
 var pitch_angle = 0
-
+@onready var wheel_message = $"../WheelMessaage"
+@onready var pitch_message = $"../PitchMessaage"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -15,6 +16,7 @@ func _process(delta: float) -> void:
 	frames = frames + 1
 	wheel_angle = wrapf((atan2(g.y, g.x) / PI) + 0.5, -1.0, 1.0) # Severe crosstalk! needs fixing.
 	pitch_angle = wrapf((atan2(g.y, g.z) / PI) + 0.5, -1.0, 1.0)
+	
 	if frames >= 10 and debug_output:
 		print(g)
 		print(wheel_angle)
