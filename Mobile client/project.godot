@@ -26,7 +26,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/godOSC/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
 [input_devices]
 
