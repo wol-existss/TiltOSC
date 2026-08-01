@@ -1,8 +1,27 @@
 [gd_scene format=3 uid="uid://cvn6xub1nrjew"]
 
 [ext_resource type="Script" uid="uid://4pxluy461chw" path="res://Scripts/read_sensors.gd" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="2_r0du0"]
+[ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="3_cm0pq"]
 
 [node name="Node2D" type="Node2D" unique_id=2093419794]
 
 [node name="ReadSensors" type="Node" parent="." unique_id=1923663784]
 script = ExtResource("1_glv2v")
+
+[node name="OSCClient" type="Node" parent="." unique_id=316836686]
+script = ExtResource("2_r0du0")
+ip_address = "192.168.2.85"
+metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
+
+[node name="WheelMessaage" type="Node" parent="." unique_id=1446821819 node_paths=PackedStringArray("target_client")]
+script = ExtResource("3_cm0pq")
+target_client = NodePath("../OSCClient")
+osc_address = "/wheel"
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="PitchMessage" type="Node" parent="." unique_id=1472490812 node_paths=PackedStringArray("target_client")]
+script = ExtResource("3_cm0pq")
+target_client = NodePath("../OSCClient")
+osc_address = "/pitch"
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
