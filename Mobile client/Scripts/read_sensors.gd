@@ -15,7 +15,6 @@ func _process(delta: float) -> void:
 	frames = frames + 1
 	wheel_angle = wrapf((atan2(g.y, g.x) / PI) + 0.5, -1.0, 1.0) # Severe crosstalk! needs fixing.
 	pitch_angle = wrapf((atan2(g.y, g.z) / PI) + 0.5, -1.0, 1.0)
-
 	if frames >= 10 and debug_output:
 		print(g)
 		print(wheel_angle)
