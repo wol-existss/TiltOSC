@@ -91,11 +91,11 @@ func send_message(value):
 func get_parent_value():
 	
 	
-	if message_contents == 3:
+	#if message_contents == 3: # Disabled for testing purposes
 		
-		send_message(_custom_message_contents())
+		#send_message(_custom_message_contents()) 
 		
-		return
+		#return
 	
 	if parent is HSlider or parent is VSlider or parent is ProgressBar:
 		current_value = parent.value
