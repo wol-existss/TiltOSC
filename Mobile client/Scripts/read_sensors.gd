@@ -1,6 +1,6 @@
 extends Node
 @export var debug_output = true
-@export var debug_output_buffer = 60
+@export var debug_output_buffer = 100
 var frames = 0
 var wheel_angle = 0
 var pitch_angle = 0
