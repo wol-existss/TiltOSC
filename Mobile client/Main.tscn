@@ -14,14 +14,16 @@ script = ExtResource("2_r0du0")
 ip_address = "192.168.2.85"
 metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
 
-[node name="WheelMessaage" type="Node" parent="." unique_id=1446821819 node_paths=PackedStringArray("target_client")]
+[node name="WheelMessage" type="Node" parent="." unique_id=1446821819 node_paths=PackedStringArray("target_client")]
 script = ExtResource("3_cm0pq")
 target_client = NodePath("../OSCClient")
 osc_address = "/wheel"
+message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
 [node name="PitchMessage" type="Node" parent="." unique_id=1472490812 node_paths=PackedStringArray("target_client")]
 script = ExtResource("3_cm0pq")
 target_client = NodePath("../OSCClient")
 osc_address = "/pitch"
+message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
