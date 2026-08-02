@@ -11,7 +11,7 @@ script = ExtResource("1_glv2v")
 
 [node name="OSCClient" type="Node" parent="." unique_id=316836686]
 script = ExtResource("2_r0du0")
-ip_address = "192.168.2.85"
+ip_address = "192.168.2.95"
 metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
 
 [node name="WheelMessage" type="Node" parent="." unique_id=1446821819 node_paths=PackedStringArray("target_client")]
