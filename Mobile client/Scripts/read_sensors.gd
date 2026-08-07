@@ -14,8 +14,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var g = Input.get_gravity() # Gets graavity data
-
+	var g = Input.get_gravity() # Get graavity data
+	var gy = Input.get_gyroscope() # Get gyroscope data
+	
 	wheel_angle = wrapf((atan2(g.y, g.x) / PI) + 0.5, -1.0, 1.0) # Severe crosstalk! needs fixing.
 	pitch_angle = wrapf((atan2(g.y, g.z) / PI) + 0.5, -1.0, 1.0)
 	
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 	
 	frames = frames + 1 # Adds one frame for debug buffering
 	if frames >= debug_output_buffer and debug_output:
-		print(g)
+		print(gy)
 		print(wheel_angle)
 		print(pitch_angle)
 		frames = 0
