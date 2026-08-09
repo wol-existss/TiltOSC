@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://b7r7ku10y4yqo" path="res://Scripts/Buttons/30_hz.gd" id="1_o7se1"]
 [ext_resource type="Script" uid="uid://bwjvnexjdbmx2" path="res://Scripts/Buttons/60_hz.gd" id="2_60xxw"]
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_qyfth"]
+
 [node name="Control" type="Control" unique_id=875751159]
 layout_mode = 3
 anchors_preset = 15
@@ -29,40 +31,43 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 52
 text = "Polling rate"
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=527861801]
-layout_mode = 2
-
 [node name="BoxContainer" type="BoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1479487771]
 layout_mode = 2
 
 [node name="30 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1703215717]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qyfth")
 text = "30Hz"
 script = ExtResource("1_o7se1")
 
 [node name="60 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1233873317]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_qyfth")
 text = "60Hz"
 script = ExtResource("2_60xxw")
-
-[node name="30 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer/60 Hz" unique_id=1274091219]
-layout_mode = 0
-theme_override_font_sizes/font_size = 73
-text = "30Hz"
 
 [node name="90 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=363367331]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qyfth")
 text = "90Hz"
 
 [node name="120 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1301153331]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qyfth")
 text = "120Hz"
 
 [node name="Unlimited" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1851772544]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qyfth")
 text = "Unlimited"
