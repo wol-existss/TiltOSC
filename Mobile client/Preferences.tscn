@@ -31,11 +31,13 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 86
 text = "Settings"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1099617294]
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
 text = "Polling rate"
+horizontal_alignment = 1
 
 [node name="BoxContainer" type="BoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1479487771]
 layout_mode = 2
