@@ -28,6 +28,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/godOSC/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
+[gui]
+
+theme/custom="res://Themes/clean_dark.tres"
+
 [input_devices]
 
 sensors/enable_accelerometer=true
