@@ -3,20 +3,23 @@ extends Control
 # debug variables
 @export var debug = false
 @export var output_buffer_max = 100
+var output_buffer = 0
 
 # Onreadies for... all of the buttons I guess?
 
 # vsync button
 @onready var vsync_button = $MarginContainer/VBoxContainer/VSync
+
 # Polling rate configuration buttons
 @onready var button_30hz = $"MarginContainer/VBoxContainer/BoxContainer/30 Hz"
 @onready var button_60hz = $"MarginContainer/VBoxContainer/BoxContainer/60 Hz"
 @onready var button_90hz = $"MarginContainer/VBoxContainer/BoxContainer/90 Hz"
 @onready var button_120hz = $"MarginContainer/VBoxContainer/BoxContainer/120 Hz"
 @onready var button_unlimited = $MarginContainer/VBoxContainer/BoxContainer/Unlimited
-var output_buffer = 0
-var current_polling_rate: int = 60
+
+# Settings variables
 var current_vsync_mode = true
+var current_polling_rate: int = 60
 
 # Load the current configuration if it exists, or insert placeholders if otherwise.
 func _ready() -> void:
