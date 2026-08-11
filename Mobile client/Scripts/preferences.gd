@@ -1,11 +1,19 @@
 extends Control
 
+# debug variables
 @export var debug = false
 @export var output_buffer_max = 100
 
 # Onreadies for... all of the buttons I guess?
-@onready var vsync_button = $MarginContainer/VBoxContainer/VSync
 
+# vsync button
+@onready var vsync_button = $MarginContainer/VBoxContainer/VSync
+# Polling rate configuration buttons
+@onready var button_30hz = $"MarginContainer/VBoxContainer/BoxContainer/30 Hz"
+@onready var button_60hz = $"MarginContainer/VBoxContainer/BoxContainer/60 Hz"
+@onready var button_90hz = $"MarginContainer/VBoxContainer/BoxContainer/90 Hz"
+@onready var button_120hz = $"MarginContainer/VBoxContainer/BoxContainer/120 Hz"
+@onready var button_unlimited = $MarginContainer/VBoxContainer/BoxContainer/Unlimited
 var output_buffer = 0
 var current_polling_rate: int = 60
 var current_vsync_mode = true
@@ -16,6 +24,7 @@ func _ready() -> void:
 	config.load("user://settings.cfg")
 	var saved_rate = config.get_value("settings", "polling_rate", 60)
 	var saved_vsync = config.get_value("settings", "vsync", true)
+	# Updates V-Sync button status to reflect config
 	current_vsync_mode = saved_vsync
 	if saved_vsync:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
@@ -23,6 +32,12 @@ func _ready() -> void:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	vsync_button.button_pressed = saved_vsync
 	
+	# Updates polling rate buttons to reflect config
+	var polling_buttons = [button_30hz, button_60hz, button_90hz, button_120hz, button_unlimited]
+	current_polling_rate = saved_rate
+	for button in polling_buttons:
+		if button.get_meta("polling_rate") == saved_rate:
+			button.set_pressed(true)
 
 # Output logs if output buffer is ennabled.
 func _process(delta: float) -> void:
