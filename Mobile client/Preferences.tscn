@@ -1,29 +1,35 @@
 [gd_scene format=3 uid="uid://bx2g8ua8gaf1b"]
 
+[ext_resource type="Script" uid="uid://d26v7fhbbgik2" path="res://preferences.gd" id="1_60xxw"]
 [ext_resource type="Script" uid="uid://b7r7ku10y4yqo" path="res://Scripts/Buttons/30_hz.gd" id="1_o7se1"]
 [ext_resource type="Script" uid="uid://bwjvnexjdbmx2" path="res://Scripts/Buttons/60_hz.gd" id="2_60xxw"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qyfth"]
 
-[node name="Control" type="Control" unique_id=875751159]
+[node name="Preferences" type="Control" unique_id=875751159]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_60xxw")
+debug = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=711304213]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=571598352]
 layout_mode = 2
 
 [node name="Settings" type="Label" parent="MarginContainer/VBoxContainer" unique_id=528295935]
 layout_mode = 2
-theme_override_font_sizes/font_size = 140
+theme_override_font_sizes/font_size = 86
 text = "Settings"
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1099617294]
@@ -41,15 +47,16 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_qyfth")
 text = "30Hz"
 script = ExtResource("1_o7se1")
+metadata/polling_rate = 30
 
 [node name="60 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1233873317]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
-button_pressed = true
 button_group = SubResource("ButtonGroup_qyfth")
 text = "60Hz"
 script = ExtResource("2_60xxw")
+metadata/polling_rate = 60
 
 [node name="90 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=363367331]
 layout_mode = 2
@@ -57,6 +64,7 @@ theme_override_font_sizes/font_size = 50
 toggle_mode = true
 button_group = SubResource("ButtonGroup_qyfth")
 text = "90Hz"
+metadata/polling_rate = 90
 
 [node name="120 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1301153331]
 layout_mode = 2
@@ -64,6 +72,7 @@ theme_override_font_sizes/font_size = 50
 toggle_mode = true
 button_group = SubResource("ButtonGroup_qyfth")
 text = "120Hz"
+metadata/polling_rate = 120
 
 [node name="Unlimited" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1851772544]
 layout_mode = 2
@@ -71,3 +80,19 @@ theme_override_font_sizes/font_size = 50
 toggle_mode = true
 button_group = SubResource("ButtonGroup_qyfth")
 text = "Unlimited"
+metadata/polling_rate = 0
+
+[node name="VSync" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1426954480]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "Enable VSync"
+metadata/polling_rate = 0
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/BoxContainer/30 Hz" to="." method="_on_30Hz"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/BoxContainer/60 Hz" to="." method="_on_60Hz"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/BoxContainer/90 Hz" to="." method="_on_90Hz"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/BoxContainer/120 Hz" to="." method="_on_120Hz"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/BoxContainer/Unlimited" to="." method="_on_unlimited_hz"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
