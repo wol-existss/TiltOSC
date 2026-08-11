@@ -1,11 +1,57 @@
 extends Control
 
+@export var debug = false
+@export var output_buffer_max = 100
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var output_buffer = 0
+var current_polling_rate: int = 60
+var current_vsync_mode = true
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Output logs if output buffer is ennabled.
 func _process(delta: float) -> void:
-	pass
+	if debug:
+		output_buffer += 1
+		if output_buffer >= output_buffer_max:
+			print(current_polling_rate)
+			output_buffer = 0
+			print(Engine.get_frames_per_second())
+
+# Save the polling rrate
+func _save_polling_rate(rate: int) -> void:
+	var config = ConfigFile.new()
+	config.load("user://settings.cfg") 
+	config.set_value("settings", "polling_rate", rate) 
+	config.save("user://settings.cfg")
+	current_polling_rate = rate
+
+# Save V-Sync mode
+func _save_vsync_mode(vsync: bool) -> void:
+	if vsync:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	var config = ConfigFile.new()
+	config.load("user://settings.cfg") 
+	config.set_value("settings", "vsync", vsync) 
+	config.save("user://settings.cfg")
+	current_vsync_mode = vsync
+
+# Polling rate buttons
+func _on_30Hz() -> void:
+	_save_polling_rate(30)
+
+func _on_60Hz() -> void:
+	_save_polling_rate(60)
+
+func _on_90Hz() -> void:
+	_save_polling_rate(90)
+
+func _on_120Hz() -> void:
+	_save_polling_rate(120)
+
+func _on_unlimited_hz() -> void:
+	_save_polling_rate(0)
+
+# V-Sync toggle button
+func _on_v_sync_toggled(toggled_on: bool) -> void:
+	_save_vsync_mode(toggled_on)
