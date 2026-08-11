@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bx2g8ua8gaf1b"]
 
-[ext_resource type="Script" uid="uid://d26v7fhbbgik2" path="res://preferences.gd" id="1_60xxw"]
+[ext_resource type="Script" uid="uid://d26v7fhbbgik2" path="res://Scripts/preferences.gd" id="1_60xxw"]
 [ext_resource type="Script" uid="uid://b7r7ku10y4yqo" path="res://Scripts/Buttons/30_hz.gd" id="1_o7se1"]
 [ext_resource type="Script" uid="uid://bwjvnexjdbmx2" path="res://Scripts/Buttons/60_hz.gd" id="2_60xxw"]
 
