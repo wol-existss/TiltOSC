@@ -7,19 +7,20 @@ var output_buffer = 0
 
 # Onreadies for... all of the buttons I guess?
 
-# vsync button
-@onready var vsync_button = $MarginContainer/VBoxContainer/VSync
-
 # Polling rate configuration buttons
-@onready var button_30hz = $"MarginContainer/VBoxContainer/BoxContainer/30 Hz"
-@onready var button_60hz = $"MarginContainer/VBoxContainer/BoxContainer/60 Hz"
-@onready var button_90hz = $"MarginContainer/VBoxContainer/BoxContainer/90 Hz"
-@onready var button_120hz = $"MarginContainer/VBoxContainer/BoxContainer/120 Hz"
-@onready var button_unlimited = $MarginContainer/VBoxContainer/BoxContainer/Unlimited
+@onready var button_30hz = $"ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/30 Hz"
+@onready var button_60hz = $"ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/60 Hz"
+@onready var button_90hz = $"ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/90 Hz"
+@onready var button_120hz = $"ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/120 Hz"
+@onready var button_unlimited = $ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/Unlimited
+
+# vsync button
+@onready var vsync_button = $ScrollContainer/MarginContainer/VBoxContainer/VSync
 
 # Settings variables
 var current_vsync_mode = true
-var current_polling_rate: int = 60
+var current_polling_rate = 60
+var last_exit_clean = true
 
 # Load the current configuration if it exists, or insert placeholders if otherwise.
 func _ready() -> void:
@@ -41,6 +42,15 @@ func _ready() -> void:
 	for button in polling_buttons:
 		if button.get_meta("polling_rate") == saved_rate:
 			button.set_pressed(true)
+	
+	# Did the last session exit cleanly?
+	last_exit_clean = config.get_value("settings", "clean_exit", true)
+	if not last_exit_clean:
+		print("The previous session did not exit cleanly!")
+	
+	# updates configuration for last 
+	config.set_value("settings", "clean_exit", false)
+	config.save("user://settings.cfg")
 
 # Output logs if output buffer is ennabled.
 func _process(delta: float) -> void:
@@ -90,3 +100,6 @@ func _on_unlimited_hz() -> void:
 # V-Sync toggle button
 func _on_v_sync_toggled(toggled_on: bool) -> void:
 	_save_vsync_mode(toggled_on)
+
+func _on_kill() -> void:
+	get_tree().quit()

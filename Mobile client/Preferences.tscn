@@ -16,7 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_60xxw")
 debug = true
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=711304213]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=279366487]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,25 +24,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=571598352]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=711304213]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" unique_id=571598352]
 layout_mode = 2
 
-[node name="Settings" type="Label" parent="MarginContainer/VBoxContainer" unique_id=528295935]
+[node name="Settings" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=528295935]
 layout_mode = 2
 theme_override_font_sizes/font_size = 86
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1099617294]
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1099617294]
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
 text = "Polling rate"
 horizontal_alignment = 1
 
-[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1479487771]
+[node name="BoxContainer" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1479487771]
 layout_mode = 2
 
-[node name="30 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1703215717]
+[node name="30 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1703215717]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
@@ -51,7 +56,7 @@ text = "30Hz"
 script = ExtResource("1_o7se1")
 metadata/polling_rate = 30
 
-[node name="60 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1233873317]
+[node name="60 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1233873317]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
@@ -60,7 +65,7 @@ text = "60Hz"
 script = ExtResource("2_60xxw")
 metadata/polling_rate = 60
 
-[node name="90 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=363367331]
+[node name="90 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=363367331]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
@@ -68,7 +73,7 @@ button_group = SubResource("ButtonGroup_qyfth")
 text = "90Hz"
 metadata/polling_rate = 90
 
-[node name="120 Hz" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1301153331]
+[node name="120 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1301153331]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
@@ -76,7 +81,7 @@ button_group = SubResource("ButtonGroup_qyfth")
 text = "120Hz"
 metadata/polling_rate = 120
 
-[node name="Unlimited" type="Button" parent="MarginContainer/VBoxContainer/BoxContainer" unique_id=1851772544]
+[node name="Unlimited" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1851772544]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
@@ -84,7 +89,7 @@ button_group = SubResource("ButtonGroup_qyfth")
 text = "Unlimited"
 metadata/polling_rate = 0
 
-[node name="VSync" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1426954480]
+[node name="VSync" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1426954480]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 50
@@ -92,9 +97,38 @@ toggle_mode = true
 text = "Enable VSync"
 metadata/polling_rate = 0
 
-[connection signal="button_down" from="MarginContainer/VBoxContainer/BoxContainer/30 Hz" to="." method="_on_30Hz"]
-[connection signal="button_down" from="MarginContainer/VBoxContainer/BoxContainer/60 Hz" to="." method="_on_60Hz"]
-[connection signal="button_down" from="MarginContainer/VBoxContainer/BoxContainer/90 Hz" to="." method="_on_90Hz"]
-[connection signal="button_down" from="MarginContainer/VBoxContainer/BoxContainer/120 Hz" to="." method="_on_120Hz"]
-[connection signal="button_down" from="MarginContainer/VBoxContainer/BoxContainer/Unlimited" to="." method="_on_unlimited_hz"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
+[node name="kill" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=152403775]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Kill TiltOSC"
+metadata/polling_rate = 0
+
+[node name="HSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=847279194]
+layout_mode = 2
+
+[node name="HSlider2" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=878660533]
+layout_mode = 2
+
+[node name="HSlider3" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=128782969]
+layout_mode = 2
+
+[node name="HSlider4" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=376173551]
+layout_mode = 2
+
+[node name="HSlider5" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1235162424]
+layout_mode = 2
+
+[node name="HSlider6" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1329678234]
+layout_mode = 2
+
+[node name="HSlider7" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1699179085]
+layout_mode = 2
+
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/30 Hz" to="." method="_on_30Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/60 Hz" to="." method="_on_60Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/90 Hz" to="." method="_on_90Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/120 Hz" to="." method="_on_120Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/Unlimited" to="." method="_on_unlimited_hz"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/kill" to="." method="_on_kill"]
