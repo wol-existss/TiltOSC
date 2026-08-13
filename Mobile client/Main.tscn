@@ -6,24 +6,26 @@
 
 [node name="Node2D" type="Node2D" unique_id=2093419794]
 
-[node name="ReadSensors" type="Node" parent="." unique_id=1923663784]
+[node name="ReadSensors" type="Node" parent="." unique_id=1923663784 node_paths=PackedStringArray("gravity", "gyro")]
 script = ExtResource("1_glv2v")
+gravity = NodePath("../gravity")
+gyro = NodePath("../gyro")
 
 [node name="OSCClient" type="Node" parent="." unique_id=316836686]
 script = ExtResource("2_r0du0")
 ip_address = "192.168.2.95"
 metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
 
-[node name="WheelMessage" type="Node" parent="." unique_id=1446821819 node_paths=PackedStringArray("target_client")]
+[node name="gravity" type="Node" parent="." unique_id=1446821819 node_paths=PackedStringArray("target_client")]
 script = ExtResource("3_cm0pq")
 target_client = NodePath("../OSCClient")
-osc_address = "/wheel"
+osc_address = "/gravity"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
-[node name="PitchMessage" type="Node" parent="." unique_id=1472490812 node_paths=PackedStringArray("target_client")]
+[node name="gyro" type="Node" parent="." unique_id=1472490812 node_paths=PackedStringArray("target_client")]
 script = ExtResource("3_cm0pq")
 target_client = NodePath("../OSCClient")
-osc_address = "/pitch"
+osc_address = "/gyro"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
