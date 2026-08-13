@@ -104,27 +104,6 @@ theme_override_font_sizes/font_size = 50
 text = "Kill TiltOSC"
 metadata/polling_rate = 0
 
-[node name="HSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=847279194]
-layout_mode = 2
-
-[node name="HSlider2" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=878660533]
-layout_mode = 2
-
-[node name="HSlider3" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=128782969]
-layout_mode = 2
-
-[node name="HSlider4" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=376173551]
-layout_mode = 2
-
-[node name="HSlider5" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1235162424]
-layout_mode = 2
-
-[node name="HSlider6" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1329678234]
-layout_mode = 2
-
-[node name="HSlider7" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1699179085]
-layout_mode = 2
-
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/30 Hz" to="." method="_on_30Hz"]
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/60 Hz" to="." method="_on_60Hz"]
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/90 Hz" to="." method="_on_90Hz"]
