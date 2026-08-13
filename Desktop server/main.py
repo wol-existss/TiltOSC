@@ -22,8 +22,8 @@ def pitch_handler(address, *args):
 
 
 dispatcher = Dispatcher()
-dispatcher.map("/wheel", wheel_handler)
-dispatcher.map("/pitch", pitch_handler)
+dispatcher.map("/gravity", wheel_handler)
+dispatcher.map("/gyro", pitch_handler)
 
 server = BlockingOSCUDPServer(("0.0.0.0", 4646), dispatcher)
 server.serve_forever()
