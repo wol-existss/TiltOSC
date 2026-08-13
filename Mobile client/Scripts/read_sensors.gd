@@ -1,31 +1,24 @@
 extends Node
-@export var debug_output = true
+# Debug
+@export var debug_output = false
 @export var debug_output_buffer = 100
 var frames = 0
-var wheel_angle = 0
-var pitch_angle = 0
 
-@onready var wheel_message = $"../WheelMessage"
-@onready var pitch_message = $"../PitchMessage"
-# Called when the node enters the scene tree for the first time.
+# OSC sender nodes
+@export var gravity: Node
+@export var gyro: Node
 
-func _ready() -> void:
-	pass
+#func _ready() -> void:
+#	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var g = Input.get_gravity() # Get graavity data
-	var gy = Input.get_gyroscope() # Get gyroscope data
+	var g = Input.get_gravity()
+	var gy = Input.get_gyroscope()
 	
-	wheel_angle = wrapf((atan2(g.y, g.x) / PI) + 0.5, -1.0, 1.0) # Severe crosstalk! needs fixing.
-	pitch_angle = wrapf((atan2(g.y, g.z) / PI) + 0.5, -1.0, 1.0)
+	gravity.send_message([g.x, g.y, g.z])
+	gyro.send_message([gy.x, gy.y, gy.z])
 	
-	wheel_message.send_message(wheel_angle)
-	pitch_message.send_message(pitch_angle)
-	
-	frames = frames + 1 # Adds one frame for debug buffering
-	if frames >= debug_output_buffer and debug_output:
-		print(gy)
-		print(wheel_angle)
-		print(pitch_angle)
+	frames = frames + 1
+	if frames >= debug_output_buffer and debug_output:	
+		print(g, gy)
 		frames = 0
