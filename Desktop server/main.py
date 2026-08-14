@@ -1,29 +1,48 @@
+# PythonOSC
 import pythonosc
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
+# Numpy
+import numpy as np
 
-wheel_frames = 0
-pitch_frames = 0
+# Debug
+debug = False
+gravity_frames = 0
+gyro_frames = 0
 buffer_length = 100
 
-def wheel_handler(address, *args):
-    global wheel_frames
-    wheel_frames += 1
-    if wheel_frames >= buffer_length:
-        wheel_frames = 0
+# Latest sensor values
+latest_gravity = np.zeros(3)
+latest_gyro = np.zeros(3)
+
+def gravity_handler(address, *args):
+    global gravity_frames
+    global latest_gravity
+    latest_gravity = np.array(args)
+    gravity_frames += 1
+    if gravity_frames >= buffer_length and debug:
+        gravity_frames = 0
         print(f"{address}: {args}")
 
-def pitch_handler(address, *args):
-    global pitch_frames
-    pitch_frames += 1
-    if pitch_frames >= buffer_length:
-        pitch_frames = 0
+def gyro_handler(address, *args):
+    global gyro_frames
+    global latest_gyro
+    latest_gyro = np.array(args)
+    gyro_frames += 1
+    if gyro_frames >= buffer_length and debug:
+        gyro_frames = 0
         print(f"{address}: {args}")
 
 
+"""
+OSC handling
+"""
+
+# dispatcher
 dispatcher = Dispatcher()
-dispatcher.map("/gravity", wheel_handler)
-dispatcher.map("/gyro", pitch_handler)
+dispatcher.map("/gravity", gravity_handler)
+dispatcher.map("/gyro", gyro_handler)
 
+# OSC server
 server = BlockingOSCUDPServer(("0.0.0.0", 4646), dispatcher)
 server.serve_forever()
