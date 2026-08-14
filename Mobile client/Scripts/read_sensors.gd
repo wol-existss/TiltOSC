@@ -19,6 +19,6 @@ func _process(delta: float) -> void:
 	gyro.send_message([gy.x, gy.y, gy.z])
 	
 	frames = frames + 1
-	if frames >= debug_output_buffer and debug_output:	
+	if frames >= debug_output_buffer and debug_output:
 		print(g, gy)
 		frames = 0
