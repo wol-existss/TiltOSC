@@ -26,12 +26,11 @@ def gravity_handler(address, *args):
     global gravity_frames
     global latest_gravity
     latest_gravity = np.array(args)
-
-
-#    gravity_frames += 1
-#   if gravity_frames >= buffer_length and debug:
-#       gravity_frames = 0
-#       print(f"{address}: {args}")
+    gravity_frames += 1
+    if gravity_frames >= buffer_length and debug:
+       pass
+       gravity_frames = 0
+       print(f"{address}: {args}")
 
 #Gyro handler and wheel calculations
 def gyro_handler(address, *args):
@@ -57,8 +56,9 @@ def gyro_handler(address, *args):
     wheel_angle = 0.65 * (wheel_angle + (gyro_z * delta / math.pi)) + 0.35 * accel_wheel_angle
     wheel_angle = ((wheel_angle + 1.0) % 2.0) - 1.0
 
-    gyro_frames += 1
+    # wheel angle debug
     if gyro_frames >= buffer_length and debug:
+        gyro_frames += 1
         gyro_frames = 0
         print(f"wheel_angle: {wheel_angle}")
 
