@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://d26v7fhbbgik2" path="res://Scripts/preferences.gd" id="1_60xxw"]
 [ext_resource type="Script" uid="uid://b7r7ku10y4yqo" path="res://Scripts/Buttons/30_hz.gd" id="1_o7se1"]
 [ext_resource type="Script" uid="uid://bwjvnexjdbmx2" path="res://Scripts/Buttons/60_hz.gd" id="2_60xxw"]
+[ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="4_rlpae"]
+[ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="5_pm4ov"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qyfth"]
 
@@ -11,18 +13,22 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 323.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_60xxw")
-debug = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=279366487]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.66700006
+offset_left = -1.0
+offset_right = -1.0
+offset_bottom = 287.34296
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=711304213]
 layout_mode = 2
@@ -44,10 +50,11 @@ theme_override_font_sizes/font_size = 52
 text = "Polling rate"
 horizontal_alignment = 1
 
-[node name="BoxContainer" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1479487771]
+[node name="pollling rate" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1479487771]
 layout_mode = 2
+alignment = 1
 
-[node name="30 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1703215717]
+[node name="30 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=1703215717]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
@@ -56,7 +63,7 @@ text = "30Hz"
 script = ExtResource("1_o7se1")
 metadata/polling_rate = 30
 
-[node name="60 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1233873317]
+[node name="60 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=1233873317]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
@@ -65,7 +72,7 @@ text = "60Hz"
 script = ExtResource("2_60xxw")
 metadata/polling_rate = 60
 
-[node name="90 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=363367331]
+[node name="90 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=363367331]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
@@ -73,7 +80,7 @@ button_group = SubResource("ButtonGroup_qyfth")
 text = "90Hz"
 metadata/polling_rate = 90
 
-[node name="120 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1301153331]
+[node name="120 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=1301153331]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
@@ -81,7 +88,7 @@ button_group = SubResource("ButtonGroup_qyfth")
 text = "120Hz"
 metadata/polling_rate = 120
 
-[node name="Unlimited" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1851772544]
+[node name="Unlimited" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=1851772544]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
@@ -91,23 +98,83 @@ metadata/polling_rate = 0
 
 [node name="VSync" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1426954480]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 toggle_mode = true
 text = "Enable VSync"
 metadata/polling_rate = 0
 
-[node name="kill" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=152403775]
+[node name="Destination" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=2145216820]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Destination"
+horizontal_alignment = 1
+
+[node name="Calibration" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=572886054]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Calibration"
+horizontal_alignment = 1
+
+[node name="Calib note" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1017220538]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "Position your phone and click the 
+corresponding button."
+horizontal_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=372061268]
+layout_mode = 2
+alignment = 1
+
+[node name="landscape" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=926481223]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Landscape"
+metadata/polling_rate = 0
+
+[node name="cw" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1049175542]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "90° Clockwise"
+metadata/polling_rate = 0
+
+[node name="kill" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=152403775]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Kill TiltOSC"
 metadata/polling_rate = 0
 
-[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/30 Hz" to="." method="_on_30Hz"]
-[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/60 Hz" to="." method="_on_60Hz"]
-[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/90 Hz" to="." method="_on_90Hz"]
-[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/120 Hz" to="." method="_on_120Hz"]
-[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/Unlimited" to="." method="_on_unlimited_hz"]
+[node name="OSC" type="Node" parent="." unique_id=31411186]
+
+[node name="landscape" type="Node" parent="OSC" unique_id=1902480672 node_paths=PackedStringArray("target_client")]
+script = ExtResource("4_rlpae")
+target_client = NodePath("../OSCClient")
+osc_address = "/landscape"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="cw" type="Node" parent="OSC" unique_id=1513034022 node_paths=PackedStringArray("target_client")]
+script = ExtResource("4_rlpae")
+target_client = NodePath("../OSCClient")
+osc_address = "/cw"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="OSCClient" type="Node" parent="OSC" unique_id=1575887564]
+script = ExtResource("5_pm4ov")
+ip_address = "192.168.2.95"
+metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
+
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/30 Hz" to="." method="_on_30Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/60 Hz" to="." method="_on_60Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/90 Hz" to="." method="_on_90Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/120 Hz" to="." method="_on_120Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/Unlimited" to="." method="_on_unlimited_hz"]
 [connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/landscape" to="." method="_on_landscape_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/cw" to="." method="_on_clockwise_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/kill" to="." method="_on_kill"]
