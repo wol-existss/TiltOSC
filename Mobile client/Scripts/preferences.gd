@@ -5,7 +5,9 @@ extends Control
 @export var output_buffer_max = 100
 var output_buffer = 0
 
-# Onreadies for... all of the buttons I guess?
+"""
+Onreadies for all buttons and OSC outputs
+"""
 
 # Polling rate configuration buttons
 @onready var button_30hz = $"ScrollContainer/MarginContainer/VBoxContainer/pollling rate/30 Hz"
@@ -14,13 +16,13 @@ var output_buffer = 0
 @onready var button_120hz = $"ScrollContainer/MarginContainer/VBoxContainer/pollling rate/120 Hz"
 @onready var button_unlimited = $"ScrollContainer/MarginContainer/VBoxContainer/pollling rate/Unlimited"
 
-
-# vsync button
+# V-Sync button
 @onready var vsync_button = $ScrollContainer/MarginContainer/VBoxContainer/VSync
 
 # Calibration buttons
 @onready var landscape = $OSC/landscape
 @onready var cw = $OSC/cw
+@onready var osc_send = $OSC/osc_send
 
 # Settings variables
 var current_vsync_mode = true
@@ -29,10 +31,12 @@ var last_exit_clean = true
 
 # Load the current configuration if it exists, or insert placeholders if otherwise.
 func _ready() -> void:
+	# Configuration creation, loading, and saving.
 	var config = ConfigFile.new()
 	config.load("user://settings.cfg")
 	var saved_rate = config.get_value("settings", "polling_rate", 60)
 	var saved_vsync = config.get_value("settings", "vsync", true)
+	
 	# Updates V-Sync button status to reflect config
 	current_vsync_mode = saved_vsync
 	if saved_vsync:
@@ -41,7 +45,7 @@ func _ready() -> void:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	vsync_button.button_pressed = saved_vsync
 	
-	# Updates polling rate buttons to reflect config
+	# Updates polling rate buttons to reflect config systemically.
 	var polling_buttons = [button_30hz, button_60hz, button_90hz, button_120hz, button_unlimited]
 	current_polling_rate = saved_rate
 	for button in polling_buttons:
@@ -57,7 +61,7 @@ func _ready() -> void:
 	config.set_value("settings", "clean_exit", false)
 	config.save("user://settings.cfg")
 
-# Output logs if output buffer is ennabled.
+# Output logs if debug is enabled.
 func _process(delta: float) -> void:
 	if debug:
 		output_buffer += 1
@@ -66,7 +70,7 @@ func _process(delta: float) -> void:
 			output_buffer = 0
 			print(Engine.get_frames_per_second())
 
-# Save the polling rrate
+# Save the polling rate
 func _save_polling_rate(rate: int) -> void:
 	var config = ConfigFile.new()
 	config.load("user://settings.cfg") 
@@ -80,6 +84,8 @@ func _save_vsync_mode(vsync: bool) -> void:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	
+	# Save configuration
 	var config = ConfigFile.new()
 	config.load("user://settings.cfg") 
 	config.set_value("settings", "vsync", vsync) 
@@ -98,17 +104,20 @@ func _on_120Hz() -> void:
 func _on_unlimited_hz() -> void:
 	_save_polling_rate(0)
 
-# V-Sync toggle button
+# V-Sync toggle button.
 func _on_v_sync_toggled(toggled_on: bool) -> void:
 	_save_vsync_mode(toggled_on)
 
 # Calibration buttons
 func _on_landscape_pressed() -> void:
-	landscape.send_message("landscape")
+	osc_send.osc_address = "/landscape"
+	osc_send.send_message([])
+
 func _on_clockwise_pressed() -> void:
-	cw.send_message("cw")
+	osc_send.osc_address = "/cw"
+	osc_send.send_message([])
 
 
-# Kill button
+# Kill button. Triggers "did not exit cleanly!" boot flag.
 func _on_kill() -> void:
-	get_tree().quit()
+	get_tree().quit() 

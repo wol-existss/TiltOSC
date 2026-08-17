@@ -160,7 +160,7 @@ metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 [node name="cw" type="Node" parent="OSC" unique_id=1513034022 node_paths=PackedStringArray("target_client")]
 script = ExtResource("4_rlpae")
 target_client = NodePath("../OSCClient")
-osc_address = "/cw"
+osc_address = "/null"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
@@ -168,6 +168,13 @@ metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 script = ExtResource("5_pm4ov")
 ip_address = "192.168.2.95"
 metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
+
+[node name="osc_send" type="Node" parent="OSC" unique_id=2129207223 node_paths=PackedStringArray("target_client")]
+script = ExtResource("4_rlpae")
+target_client = NodePath("../OSCClient")
+osc_address = "/osc_send"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/30 Hz" to="." method="_on_30Hz"]
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/60 Hz" to="." method="_on_60Hz"]
