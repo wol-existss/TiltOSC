@@ -19,8 +19,8 @@ var output_buffer = 0
 @onready var vsync_button = $ScrollContainer/MarginContainer/VBoxContainer/VSync
 
 # Calibration buttons
-@onready var landscape = $ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/landscape
-@onready var cw = $ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/cw
+@onready var landscape = $OSC/landscape
+@onready var cw = $OSC/cw
 
 # Settings variables
 var current_vsync_mode = true
