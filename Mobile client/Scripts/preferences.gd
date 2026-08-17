@@ -8,14 +8,19 @@ var output_buffer = 0
 # Onreadies for... all of the buttons I guess?
 
 # Polling rate configuration buttons
-@onready var button_30hz = $"ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/30 Hz"
-@onready var button_60hz = $"ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/60 Hz"
-@onready var button_90hz = $"ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/90 Hz"
-@onready var button_120hz = $"ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/120 Hz"
-@onready var button_unlimited = $ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/Unlimited
+@onready var button_30hz = $"ScrollContainer/MarginContainer/VBoxContainer/pollling rate/30 Hz"
+@onready var button_60hz = $"ScrollContainer/MarginContainer/VBoxContainer/pollling rate/60 Hz"
+@onready var button_90hz = $"ScrollContainer/MarginContainer/VBoxContainer/pollling rate/90 Hz"
+@onready var button_120hz = $"ScrollContainer/MarginContainer/VBoxContainer/pollling rate/120 Hz"
+@onready var button_unlimited = $"ScrollContainer/MarginContainer/VBoxContainer/pollling rate/Unlimited"
+
 
 # vsync button
 @onready var vsync_button = $ScrollContainer/MarginContainer/VBoxContainer/VSync
+
+# Calibration buttons
+@onready var landscape = $ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/landscape
+@onready var cw = $ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/cw
 
 # Settings variables
 var current_vsync_mode = true
@@ -84,16 +89,12 @@ func _save_vsync_mode(vsync: bool) -> void:
 # Polling rate buttons
 func _on_30Hz() -> void:
 	_save_polling_rate(30)
-
 func _on_60Hz() -> void:
 	_save_polling_rate(60)
-
 func _on_90Hz() -> void:
 	_save_polling_rate(90)
-
 func _on_120Hz() -> void:
 	_save_polling_rate(120)
-
 func _on_unlimited_hz() -> void:
 	_save_polling_rate(0)
 
@@ -101,5 +102,13 @@ func _on_unlimited_hz() -> void:
 func _on_v_sync_toggled(toggled_on: bool) -> void:
 	_save_vsync_mode(toggled_on)
 
+# Calibration buttons
+func _on_landscape_pressed() -> void:
+	landscape.send_message("landscape")
+func _on_clockwise_pressed() -> void:
+	cw.send_message("cw")
+
+
+# Kill button
 func _on_kill() -> void:
 	get_tree().quit()
