@@ -15,8 +15,8 @@ func _process(delta: float) -> void:
 	var g = Input.get_gravity()
 	var gy = Input.get_gyroscope()
 	
-	gravity.send_message([g.x, g.y, g.z])
-	gyro.send_message([gy.x, gy.y, gy.z])
+	# gravity.send_message([g.x, g.y, g.z])
+	# gyro.send_message([gy.x, gy.y, gy.z])
 	
 	frames = frames + 1
 	if frames >= debug_output_buffer and debug_output:

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TiltOSC"
-run/main_scene="uid://bx2g8ua8gaf1b"
+run/main_scene="uid://cvn6xub1nrjew"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
