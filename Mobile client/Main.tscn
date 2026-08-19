@@ -1,31 +1,57 @@
 [gd_scene format=3 uid="uid://cvn6xub1nrjew"]
 
+[ext_resource type="Script" uid="uid://dtvbax5tyw4sa" path="res://Scripts/control.gd" id="1_cm0pq"]
 [ext_resource type="Script" uid="uid://4pxluy461chw" path="res://Scripts/read_sensors.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="2_r0du0"]
 [ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="3_cm0pq"]
 
 [node name="Node2D" type="Node2D" unique_id=2093419794]
 
-[node name="ReadSensors" type="Node" parent="." unique_id=1923663784 node_paths=PackedStringArray("gravity", "gyro")]
+[node name="Control" type="Control" parent="." unique_id=1542272757]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_cm0pq")
+
+[node name="Button" type="Button" parent="Control" unique_id=586112225]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 114.0
+offset_right = 336.0
+offset_bottom = 168.0
+
+[node name="osc" type="Node" parent="." unique_id=506865158]
+
+[node name="ReadSensors" type="Node" parent="osc" unique_id=1923663784 node_paths=PackedStringArray("gravity", "gyro")]
 script = ExtResource("1_glv2v")
 gravity = NodePath("../gravity")
 gyro = NodePath("../gyro")
 
-[node name="OSCClient" type="Node" parent="." unique_id=316836686]
+[node name="OSCClient" type="Node" parent="osc" unique_id=316836686]
 script = ExtResource("2_r0du0")
 ip_address = "192.168.2.95"
 metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
 
-[node name="gravity" type="Node" parent="." unique_id=1446821819 node_paths=PackedStringArray("target_client")]
+[node name="gravity" type="Node" parent="osc" unique_id=1446821819 node_paths=PackedStringArray("target_client")]
 script = ExtResource("3_cm0pq")
 target_client = NodePath("../OSCClient")
 osc_address = "/gravity"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
-[node name="gyro" type="Node" parent="." unique_id=1472490812 node_paths=PackedStringArray("target_client")]
+[node name="gyro" type="Node" parent="osc" unique_id=1472490812 node_paths=PackedStringArray("target_client")]
 script = ExtResource("3_cm0pq")
 target_client = NodePath("../OSCClient")
 osc_address = "/gyro"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="button_send" type="Node" parent="osc" unique_id=1701946737 node_paths=PackedStringArray("target_client")]
+script = ExtResource("3_cm0pq")
+target_client = NodePath("../OSCClient")
+osc_address = "/gyro"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[connection signal="pressed" from="Control/Button" to="Control" method="_on_button_pressed"]
