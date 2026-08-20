@@ -25,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 0.66700006
 offset_left = -1.0
 offset_right = -1.0
-offset_bottom = -0.65704346
+offset_bottom = 482.34296
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
@@ -123,36 +123,60 @@ text = "Position your phone and click the
 corresponding button."
 horizontal_alignment = 1
 
-[node name="BoxContainer" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=372061268]
+[node name="calib buttons" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=372061268]
 layout_mode = 2
 alignment = 1
 
-[node name="landscape" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=926481223]
+[node name="landscape" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/calib buttons" unique_id=926481223]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 50
 text = "Landscape"
 metadata/polling_rate = 0
 
-[node name="cw" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1049175542]
+[node name="cw" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/calib buttons" unique_id=1049175542]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 50
 text = "90° Clockwise"
 metadata/polling_rate = 0
 
-[node name="kill" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=152403775]
+[node name="cw2" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/calib buttons" unique_id=1173540256]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 50
-text = "Kill TiltOSC"
+text = "Reset"
 metadata/polling_rate = 0
 
 [node name="Main Menu" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1055759863]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
-text = "Back to main menu"
+text = "Back to Main Menu"
+metadata/polling_rate = 0
+
+[node name="force quit" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1063841553]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Force TiltOSC to stop"
+horizontal_alignment = 1
+
+[node name="Force quit" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1901936859]
+layout_mode = 2
+alignment = 1
+
+[node name="kill" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Force quit" unique_id=152403775]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Kill TiltOSC"
+metadata/polling_rate = 0
+
+[node name="kill desktop" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Force quit" unique_id=2066068336]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Kill Desktop Server"
 metadata/polling_rate = 0
 
 [node name="OSC" type="Node" parent="." unique_id=31411186]
@@ -189,7 +213,9 @@ metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/120 Hz" to="." method="_on_120Hz"]
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/Unlimited" to="." method="_on_unlimited_hz"]
 [connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
-[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/landscape" to="." method="_on_landscape_pressed"]
-[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/cw" to="." method="_on_clockwise_pressed"]
-[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/kill" to="." method="_on_kill"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/landscape" to="." method="_on_landscape_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/cw" to="." method="_on_clockwise_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/cw2" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Force quit/kill" to="." method="_on_kill"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Force quit/kill desktop" to="." method="_on_kill_desktop_pressed"]
