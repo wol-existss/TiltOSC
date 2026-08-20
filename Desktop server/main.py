@@ -9,22 +9,35 @@ import math
 import time
 
 # Debug
-debug = False
+master_debug = False
+debug_gravity = False
+debug_gyro = False
+debug_wheel = True
+debug_calibration = False
+# Debug buffer
 gravity_frames = 0
 gyro_frames = 0
 buffer_length = 100
-debug_wheel = True
 
-# Latest sensor values and angles
+# Latest sensor values and outputs
 latest_gravity = np.zeros(3)
 latest_gyro = np.zeros(3)
+wheel_angle = 0.0
 
 # Wheel calibration
 wheel_angle_offset = 0.0
 wheel_angle_scale = 1.0
 
-wheel_angle = 0.0
+kill_desktop = False
+
 last_update_time = time.time()
+
+# Master debug handler
+if master_debug:
+    debug_gravity = True
+    debug_gyro = True
+    debug_wheel = True
+    debug_calibration = True
 
 # Gravity handler
 def gravity_handler(address, *args):
@@ -32,7 +45,7 @@ def gravity_handler(address, *args):
     global latest_gravity
     latest_gravity = np.array(args)
     gravity_frames += 1
-    if gravity_frames >= buffer_length and debug:
+    if gravity_frames >= buffer_length and debug_gravity:
        pass
        gravity_frames = 0
        print(f"{address}: {args}")
@@ -68,21 +81,41 @@ def gyro_handler(address, *args):
 def landscape_handler(address, *args):
     global wheel_angle_offset
     wheel_angle_offset = wheel_angle
-    print(f"landscape_handler: {wheel_angle_offset}")
+
+    if debug_calibration:
+        print(f"landscape_handler: {wheel_angle_offset}")
 
 def cw_handler(address, *args):
     global wheel_angle_scale
     raw_at_90 = wheel_angle - wheel_angle_offset
     if raw_at_90 != 0:
         wheel_angle_scale = 0.5 / raw_at_90
-    print(f"cw_handler: {wheel_angle_scale}")
+
+    if debug_calibration:
+        print(f"cw_handler: {wheel_angle_scale}")
+
+def reset_calibration(address, *args):
+    global wheel_angle_offset
+    global wheel_angle_scale
+    wheel_angle_offset = 0.0
+    wheel_angle_scale = 1.0
+
+    if debug_calibration:
+        print("reset_calibration")
+
+def kill_desktop(address, *args):
+    print("killed OSC")
+    kill_desktop = True
+    server.shutdown()
 
 # OSC dispatcher mapping
 dispatcher = Dispatcher()
-dispatcher.map("/gravity", gravity_handler)
+dispatcher.map("/gravity", gravity_handler)     # Sensors
 dispatcher.map("/gyro", gyro_handler)
 dispatcher.map("/landscape", landscape_handler)
 dispatcher.map("/cw", cw_handler)
+dispatcher.map("/reset", reset_calibration)
+dispatcher.map("/kill_desktop", kill_desktop)
 
 # OSC server
 server = BlockingOSCUDPServer(("0.0.0.0", 4646), dispatcher)
