@@ -25,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 0.66700006
 offset_left = -1.0
 offset_right = -1.0
-offset_bottom = 0.34295654
+offset_bottom = -0.65704346
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
@@ -148,6 +148,13 @@ theme_override_font_sizes/font_size = 50
 text = "Kill TiltOSC"
 metadata/polling_rate = 0
 
+[node name="Main Menu" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1055759863]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Back to main menu"
+metadata/polling_rate = 0
+
 [node name="OSC" type="Node" parent="." unique_id=31411186]
 
 [node name="landscape" type="Node" parent="OSC" unique_id=1902480672 node_paths=PackedStringArray("target_client")]
@@ -185,3 +192,4 @@ metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/landscape" to="." method="_on_landscape_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/cw" to="." method="_on_clockwise_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/kill" to="." method="_on_kill"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
