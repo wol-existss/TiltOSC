@@ -121,3 +121,6 @@ func _on_clockwise_pressed() -> void:
 # Kill button. Triggers "did not exit cleanly!" boot flag.
 func _on_kill() -> void:
 	get_tree().quit() 
+
+func _on_main_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://Main.tscn")
