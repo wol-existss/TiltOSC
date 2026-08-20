@@ -117,6 +117,14 @@ func _on_clockwise_pressed() -> void:
 	osc_send.osc_address = "/cw"
 	osc_send.send_message([])
 
+func _on_reset_pressed() -> void:
+	osc_send.osc_address = "/reset"
+	osc_send.send_message([])
+
+# Kill desktop client
+func _on_kill_desktop_pressed() -> void:
+	osc_send.osc_address = "/kill_desktop"
+	osc_send.send_message([])
 
 # Kill button. Triggers "did not exit cleanly!" boot flag.
 func _on_kill() -> void:
