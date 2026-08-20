@@ -29,3 +29,44 @@ target_client = NodePath("../OSCClient")
 osc_address = "/gyro"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="calib" type="Node" parent="." unique_id=1897939278 node_paths=PackedStringArray("target_client")]
+script = ExtResource("3_cm0pq")
+target_client = NodePath("../OSCClient")
+osc_address = "/null"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="preferences" type="Button" parent="." unique_id=1443017459]
+offset_left = 362.0
+offset_top = 324.0
+offset_right = 666.0
+offset_bottom = 409.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Preferences"
+metadata/polling_rate = 0
+
+[node name="Landscape" type="Button" parent="." unique_id=1537034573]
+offset_left = 370.0
+offset_top = 230.0
+offset_right = 658.0
+offset_bottom = 315.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "CW"
+metadata/polling_rate = 0
+
+[node name="CW" type="Button" parent="." unique_id=39553932]
+offset_left = 371.0
+offset_top = 136.0
+offset_right = 659.0
+offset_bottom = 221.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Landscape"
+metadata/polling_rate = 0
+
+[connection signal="pressed" from="preferences" to="ReadSensors" method="_on_preferences_pressed"]
+[connection signal="pressed" from="Landscape" to="ReadSensors" method="_on_landscape_pressed"]
+[connection signal="pressed" from="CW" to="ReadSensors" method="_on_cw_pressed"]
