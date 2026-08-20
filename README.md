@@ -49,8 +49,8 @@ The mobile client sends OSC packets. The packets are not actually capable of per
 ### What is under the hood?
 The mobile client uses Godot to write and send OSC packets, while the desktop server uses Python. The mobile client sends OSC packets using GodOSC.
 
-#### Why does the mobile client use Godot, and why does the desktop server use python?
+#### Why Godot?
 The mobile client uses Godot because it features everything needed. It can send OSC packets, it has an expansive library of buttons, sliders, check-boxes, and more. Godot also facilitates easy porting to desktop, Android, iOS, and alternative Linux-based mobile operating systems.
 
-As for the desktop client being programmed in Python, Godot simply does not have the ability to control a computer, output joystick and wheel movements, etc. To use Godot, the desktop server would likely have to interact with a dedicated Python script anyway.
+The desktop client's backend is programmed using Python, yet the UI uses Godot. This is to ensure maximal stability, continuity between the UI's appearance, and because Godot alone is incapable of emulating wheel and joystick outputs.
 
