@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://bx2g8ua8gaf1b"]
 
-[ext_resource type="Script" uid="uid://d26v7fhbbgik2" path="res://Scripts/preferences.gd" id="1_60xxw"]
-[ext_resource type="Script" uid="uid://b7r7ku10y4yqo" path="res://Scripts/Buttons/30_hz.gd" id="1_o7se1"]
-[ext_resource type="Script" uid="uid://bwjvnexjdbmx2" path="res://Scripts/Buttons/60_hz.gd" id="2_60xxw"]
-[ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="4_rlpae"]
-[ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="5_pm4ov"]
+[ext_resource type="Script" uid="uid://d26v7fhbbgik2" path="res://Scripts/preferences.gd" id="1_0jjsc"]
+[ext_resource type="Theme" uid="uid://r7uqo0meoh4q" path="res://Themes/clean_dark.tres" id="2_f4r66"]
+[ext_resource type="Script" uid="uid://b7r7ku10y4yqo" path="res://Scripts/Buttons/30_hz.gd" id="3_o7q8o"]
+[ext_resource type="Script" uid="uid://bwjvnexjdbmx2" path="res://Scripts/Buttons/60_hz.gd" id="4_55rt3"]
+[ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="5_1s6nn"]
+[ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="6_iw1ap"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qyfth"]
 
@@ -16,7 +17,7 @@ anchor_bottom = 1.0
 offset_bottom = 323.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_60xxw")
+script = ExtResource("1_0jjsc")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=279366487]
 layout_mode = 1
@@ -25,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 0.66700006
 offset_left = -1.0
 offset_right = -1.0
-offset_bottom = 0.34295654
+offset_bottom = 424.34296
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
@@ -40,6 +41,8 @@ layout_mode = 2
 
 [node name="Settings" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=528295935]
 layout_mode = 2
+theme = ExtResource("2_f4r66")
+theme_type_variation = &"TitleLabel"
 theme_override_font_sizes/font_size = 86
 text = "Settings"
 horizontal_alignment = 1
@@ -60,7 +63,7 @@ theme_override_font_sizes/font_size = 50
 toggle_mode = true
 button_group = SubResource("ButtonGroup_qyfth")
 text = "30Hz"
-script = ExtResource("1_o7se1")
+script = ExtResource("3_o7q8o")
 metadata/polling_rate = 30
 
 [node name="60 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=1233873317]
@@ -69,7 +72,7 @@ theme_override_font_sizes/font_size = 50
 toggle_mode = true
 button_group = SubResource("ButtonGroup_qyfth")
 text = "60Hz"
-script = ExtResource("2_60xxw")
+script = ExtResource("4_55rt3")
 metadata/polling_rate = 60
 
 [node name="90 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=363367331]
@@ -144,6 +147,7 @@ metadata/polling_rate = 0
 [node name="cw2" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/calib buttons" unique_id=1173540256]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_type_variation = &"PrimaryButton"
 theme_override_font_sizes/font_size = 50
 text = "Reset"
 metadata/polling_rate = 0
@@ -168,6 +172,7 @@ alignment = 1
 [node name="kill" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Force quit" unique_id=152403775]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_type_variation = &"DangerButton"
 theme_override_font_sizes/font_size = 50
 text = "Kill TiltOSC"
 metadata/polling_rate = 0
@@ -175,6 +180,7 @@ metadata/polling_rate = 0
 [node name="kill desktop" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Force quit" unique_id=2066068336]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_type_variation = &"DangerButton"
 theme_override_font_sizes/font_size = 50
 text = "Kill Desktop Server"
 metadata/polling_rate = 0
@@ -182,26 +188,26 @@ metadata/polling_rate = 0
 [node name="OSC" type="Node" parent="." unique_id=31411186]
 
 [node name="landscape" type="Node" parent="OSC" unique_id=1902480672 node_paths=PackedStringArray("target_client")]
-script = ExtResource("4_rlpae")
+script = ExtResource("5_1s6nn")
 target_client = NodePath("../OSCClient")
 osc_address = "/landscape"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
 [node name="cw" type="Node" parent="OSC" unique_id=1513034022 node_paths=PackedStringArray("target_client")]
-script = ExtResource("4_rlpae")
+script = ExtResource("5_1s6nn")
 target_client = NodePath("../OSCClient")
 osc_address = "/null"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
 [node name="OSCClient" type="Node" parent="OSC" unique_id=1575887564]
-script = ExtResource("5_pm4ov")
+script = ExtResource("6_iw1ap")
 ip_address = "192.168.2.95"
 metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
 
 [node name="osc_send" type="Node" parent="OSC" unique_id=2129207223 node_paths=PackedStringArray("target_client")]
-script = ExtResource("4_rlpae")
+script = ExtResource("5_1s6nn")
 target_client = NodePath("../OSCClient")
 osc_address = "/osc_send"
 message_contents = 3
