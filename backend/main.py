@@ -6,7 +6,7 @@ from pythonosc.osc_server import BlockingOSCUDPServer
 import numpy as np
 # vgamepad
 import vgamepad as vg
-# misc libraries
+# Misc libraries
 import math
 import time
 
@@ -56,7 +56,7 @@ def gravity_handler(address, *args):
        gravity_frames = 0
        print(f"{address}: {args}")
 
-#Gyro handler and wheel calculations
+# Gyro handler and wheel calculations
 def gyro_handler(address, *args):
     global gyro_frames
     global latest_gyro
@@ -66,32 +66,38 @@ def gyro_handler(address, *args):
 
     latest_gyro = np.array(args)
 
+    # Timer
     now = time.time()
     delta = now - last_update_time
     last_update_time = now
 
+    # Latest sensor readdings
     gx, gy, gz = latest_gravity
     gyro_z = latest_gyro[2]
 
+    # Wheel angle calculation math
     accel_wheel_angle = (math.atan2(gy, gx) / math.pi + 0.5)
     accel_wheel_angle = ((accel_wheel_angle + 1.0) % 2.0) - 1.0
 
+    ## Wheel output filter
     wheel_angle = 0.65 * (wheel_angle + (gyro_z * delta / math.pi)) + 0.35 * accel_wheel_angle
     wheel_angle = ((wheel_angle + 1.0) % 2.0) - 1.0
 
+    # Debug
     gyro_frames += 1
     if gyro_frames >= buffer_length and debug_wheel:
         gyro_frames = 0
         print(f"wheel_angle: {wheel_angle}")
 
-    #Offset logic
+    # Offset logic
     calibrated_angle = (wheel_angle - wheel_angle_offset) * wheel_angle_scale
-    calibrated_angle = max(-1.0, min(1.0, calibrated_angle))  # Clamped due to scale's ability to exceed ±1.0
+    calibrated_angle = max(-1.0, min(1.0, calibrated_angle))  # Clamped due to scale functionality potentially resulting in exceedence of ±1.0
 
+    # Gamepad output
     gamepad.left_joystick_float(x_value_float=calibrated_angle, y_value_float=0.0)
     gamepad.update()
 
-## Calibration handlers
+# Calibration handlers
 def landscape_handler(address, *args):
     global wheel_angle_offset
     wheel_angle_offset = wheel_angle
