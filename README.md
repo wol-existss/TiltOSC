@@ -1,4 +1,5 @@
-# TiltOSC
+<img width="3090" height="838" alt="Untitled" src="https://github.com/user-attachments/assets/d6f2648e-76ba-47a7-a06e-5c2c71d43826" />
+
 TiltOSC is a two part application that converts your phone's motion sensors into usable controller output.
 
 ## How does it work?
