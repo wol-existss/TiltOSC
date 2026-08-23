@@ -1,5 +1,7 @@
-# TiltOSC
-TiltOSC is a two part application that converts your phone's motion sensors into usable controller output.
+<img width="3090" height="838" alt="Untitled" src="https://github.com/user-attachments/assets/d6f2648e-76ba-47a7-a06e-5c2c71d43826" />
+
+## TiltOSC
+TiltOSC is an efficient and streamlined OSC pipeline that converts your phone's motion sensor data into usable controller output.
 
 ## How does it work?
 TiltOSC uses your phone's accelerometer and gyroscope to determine the orientation of the device. From there, the data is sent via OSC to the desktop server, where it is converted into mouse movements, joystick inputs, wheel rotations, and more!
