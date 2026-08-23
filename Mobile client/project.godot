@@ -30,7 +30,8 @@ enabled=PackedStringArray("res://addons/godOSC/plugin.cfg", "res://addons/godot_
 
 [gui]
 
-theme/custom="res://Themes/clean_dark.tres"
+theme/custom="res://Resources/Themes/clean_dark.tres"
+theme/custom_font="uid://bb8aacsydnhmd"
 
 [input_devices]
 
