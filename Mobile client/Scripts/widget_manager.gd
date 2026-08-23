@@ -1,5 +1,7 @@
 extends Node
 
+@export var button_scene: PackedScene
+
 var widgets = [] # Widget array
 
 func _ready() -> void:
@@ -17,6 +19,11 @@ func add_widget(type: String) -> int:
 	var new_id = widgets.size() ## Creates new ID based off of the number of entries in the array
 	var widget = {"id": new_id, "type": type, "value": 0.0} ## Forms dictionary
 	widgets.append(widget) ## Adds entry to end of array
+	
+	if type == "button":
+		var new_button = button_scene.instantiate()
+		add_child(new_button)
+	
 	return new_id
 
 # Widget remove function
