@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 		frames = 0
 
 func _on_preferences_pressed() -> void:
-	get_tree().change_scene_to_file("res://Preferences.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Preferences.tscn")
 
 func _on_landscape_pressed() -> void:
 	osc_send.osc_address = "/landscape"
