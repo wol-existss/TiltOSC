@@ -1,15 +1,21 @@
 extends Node
+@onready var widget_canvas = $"../WidgetCanvas"
 
+# Widget scenes
 @export var button_scene: PackedScene
+
+# Debug
+@export var master_debug = false
+@export var widget_debug = true
 
 var widgets = [] # Widget array
 
 func _ready() -> void:
 	var new_id = add_widget("button")
-	print("Addded widget with ID:", new_id)
-	print("Current widgets: ", widgets)
-	remove_widget(new_id)
-	print("After removal: ", widgets)
+	if widget_debug:
+		print("Addded widget with ID:", new_id)
+		print("Current widgets: ", widgets)
+		print("After removal: ", widgets)
 
 func _process(delta: float) -> void:
 	pass
@@ -20,9 +26,13 @@ func add_widget(type: String) -> int:
 	var widget = {"id": new_id, "type": type, "value": 0.0} ## Forms dictionary
 	widgets.append(widget) ## Adds entry to end of array
 	
+	
+	
+	# Add button
 	if type == "button":
 		var new_button = button_scene.instantiate()
-		add_child(new_button)
+		widget_canvas.add_child(new_button)
+		new_button.position = Vector2(50, 50)
 	
 	return new_id
 
