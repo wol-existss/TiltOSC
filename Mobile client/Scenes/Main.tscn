@@ -65,19 +65,11 @@ metadata/polling_rate = 0
 script = ExtResource("4_jw32o")
 button_scene = ExtResource("5_pbw6q")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=272408940]
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1970685849]
-layout_mode = 2
-
-[node name="preferences" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1443017459]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-metadata/polling_rate = 0
+[node name="Control" type="Control" parent="." unique_id=1422813430]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="Landscape" to="ReadSensors" method="_on_landscape_pressed"]
 [connection signal="pressed" from="CW" to="ReadSensors" method="_on_cw_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/preferences" to="ReadSensors" method="_on_preferences_pressed"]
