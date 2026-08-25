@@ -18,6 +18,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0jjsc")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1903861548]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16862746, 0.20784314, 0.27058825, 1)
+
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=279366487]
 layout_mode = 1
 anchors_preset = -1
@@ -40,11 +49,24 @@ layout_mode = 2
 
 [node name="Settings" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=528295935]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("2_f4r66")
 theme_type_variation = &"TitleLabel"
 theme_override_font_sizes/font_size = 86
 text = "Settings"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main Menu" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Settings" unique_id=1055759863]
+custom_maximum_size = Vector2(-1, 46.935)
+layout_mode = 0
+offset_left = -345.0
+offset_right = -298.0
+offset_bottom = 46.935
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "←"
+metadata/polling_rate = 0
 
 [node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1099617294]
 layout_mode = 2
@@ -151,13 +173,6 @@ theme_override_font_sizes/font_size = 50
 text = "Reset"
 metadata/polling_rate = 0
 
-[node name="Main Menu" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1055759863]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 50
-text = "Back to Main Menu"
-metadata/polling_rate = 0
-
 [node name="force quit" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1063841553]
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
@@ -212,6 +227,7 @@ osc_address = "/osc_send"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Settings/Main Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/30 Hz" to="." method="_on_30Hz"]
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/60 Hz" to="." method="_on_60Hz"]
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/90 Hz" to="." method="_on_90Hz"]
@@ -221,6 +237,5 @@ metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/landscape" to="." method="_on_landscape_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/cw" to="." method="_on_clockwise_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/cw2" to="." method="_on_reset_pressed"]
-[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Force quit/kill" to="." method="_on_kill"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Force quit/kill desktop" to="." method="_on_kill_desktop_pressed"]
