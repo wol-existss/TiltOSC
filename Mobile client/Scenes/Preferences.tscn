@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bwjvnexjdbmx2" path="res://Scripts/Buttons/60_hz.gd" id="4_55rt3"]
 [ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="5_1s6nn"]
 [ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="6_iw1ap"]
+[ext_resource type="Script" uid="uid://4pxluy461chw" path="res://Scripts/read_sensors.gd" id="7_tbbex"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qyfth"]
 
@@ -131,7 +132,7 @@ metadata/polling_rate = 0
 [node name="Destination" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=2145216820]
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
-text = "Destination"
+text = "Pairing"
 horizontal_alignment = 1
 
 [node name="Calibration" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=572886054]
@@ -226,6 +227,21 @@ target_client = NodePath("../OSCClient")
 osc_address = "/osc_send"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="gravity" type="Node" parent="OSC" unique_id=302288263 node_paths=PackedStringArray("target_client")]
+script = ExtResource("5_1s6nn")
+target_client = NodePath("../OSCClient")
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="gyro" type="Node" parent="OSC" unique_id=280098400 node_paths=PackedStringArray("target_client")]
+script = ExtResource("5_1s6nn")
+target_client = NodePath("../OSCClient")
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="ReadSensors" type="Node" parent="." unique_id=1715519010 node_paths=PackedStringArray("gravity", "gyro")]
+script = ExtResource("7_tbbex")
+gravity = NodePath("../OSC/gravity")
+gyro = NodePath("../OSC/gyro")
 
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Settings/Main Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/30 Hz" to="." method="_on_30Hz"]

@@ -5,7 +5,7 @@ extends Node
 var frames = 0
 
 # Temporary
-@onready var osc_send = $"../OSC/calib"
+@onready var osc_send = $"../OSC/Sensors"
 
 # OSC sender nodes
 @export var gravity: Node
@@ -26,14 +26,3 @@ func _process(delta: float) -> void:
 	if frames >= debug_output_buffer and debug_output:
 		print(g, gy)
 		frames = 0
-
-func _on_preferences_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Preferences.tscn")
-
-func _on_landscape_pressed() -> void:
-	osc_send.osc_address = "/landscape"
-	osc_send.send_message([])
-	
-func _on_cw_pressed() -> void:
-	osc_send.osc_address = "/cw"
-	osc_send.send_message([])
