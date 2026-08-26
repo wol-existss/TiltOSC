@@ -16,21 +16,19 @@ A feature checklist for TiltOSC is as follows:
 - [X] Add a V-sync toggle to settings menu
 - [x] Add different polling rates - 30, 60, 120, unmetered...
 - [x] Enable button numbering - Somewhat complete
-- [ ] Add menu restructuring system
+- [ ] Add menu restructuring system - limited
 - [ ] Add a popup system for certain settings, i.e., "The polling rate will be limited to your display's current refresh rate unless V-sync is disabled."
 - [ ] Add a "don't show again" button to warnings
 - [ ] Add a configuration reset button
-- [ ] Depend on gyroscope for orientation
-- [ ] Flip wheel wraparound
-- [ ] Flip pitch wraparound
-- [ ] Add a button to pause tracking to prevent soft locking the python program
+- [x] Add a calibration system
+- [x] Add a broadcast-kill functionality
 #### Warnings
 - [ ] V-sync: **Disabling** V-sync may cause performance issues on certain devices. Proceed at your own risk. **Enabling** V-sync will limit the polling rate to your display's refresh rate.
 - [ ] Enabling gyroscope dependence causes cross-talk, resulting in random escalations in pitch when reaching extreme rotations when rotating wheel-wise.
 #### Control scheme
-- [ ] Each button, slider, etc. is assigned a number. From the desktop, each input will have a value and intractable number, allowing easy configuration
+- [ ] Button configuration - limited
 ##### Buttons
-- [ ] Basic button
+- [x] Basic button
 - [ ] Persistent slider
 - [ ] Temporary slider
 - [ ] Toggle switch
@@ -49,7 +47,7 @@ A feature checklist for TiltOSC is as follows:
 The mobile client sends OSC packets. The packets are not actually capable of performing actions on their own. Thus, the desktop client reads the incoming packets and converts them into mouse movement, joystick output, etc.
 
 ### What is under the hood?
-The mobile client uses Godot to write and send OSC packets, while the desktop server uses Python. The mobile client sends OSC packets using GodOSC.
+The mobile client uses Godot to write and send OSC packets, while the desktop server uses Python. The mobile client sends OSC packets using GodOSC. Joystick movements are emulated using ViGEm Bus.
 
 #### Why Godot?
 The mobile client uses Godot because it features everything needed. It can send OSC packets, it has an expansive library of buttons, sliders, check-boxes, and more. Godot also facilitates easy porting to desktop, Android, iOS, and alternative Linux-based mobile operating systems.
