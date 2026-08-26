@@ -1,69 +1,70 @@
 [gd_scene format=3 uid="uid://cvn6xub1nrjew"]
 
-[ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="1_rgh2o"]
-[ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="2_pbw6q"]
-[ext_resource type="Script" uid="uid://4pxluy461chw" path="res://Scripts/read_sensors.gd" id="3_v1gob"]
-[ext_resource type="Script" uid="uid://btx0xj0kwupd3" path="res://Scripts/widget_manager.gd" id="4_jw32o"]
-[ext_resource type="PackedScene" uid="uid://ckwyh0ky5lr8l" path="res://Scenes/buttons/button.tscn" id="5_pbw6q"]
+[ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="1_8s4a0"]
+[ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="2_kmebr"]
+[ext_resource type="Script" uid="uid://4pxluy461chw" path="res://Scripts/read_sensors.gd" id="3_j41yd"]
+[ext_resource type="Script" uid="uid://btx0xj0kwupd3" path="res://Scripts/widget_manager.gd" id="4_8hhri"]
+[ext_resource type="PackedScene" uid="uid://ckwyh0ky5lr8l" path="res://Scenes/buttons/button.tscn" id="5_v8b8w"]
 
 [node name="Main" type="Node2D" unique_id=2093419794]
 
 [node name="OSC" type="Node" parent="." unique_id=1198522469]
 
 [node name="OSCClient" type="Node" parent="OSC" unique_id=316836686]
-script = ExtResource("1_rgh2o")
+script = ExtResource("1_8s4a0")
 ip_address = "192.168.2.95"
 metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
 
 [node name="gravity" type="Node" parent="OSC" unique_id=1446821819 node_paths=PackedStringArray("target_client")]
-script = ExtResource("2_pbw6q")
+script = ExtResource("2_kmebr")
 target_client = NodePath("../OSCClient")
 osc_address = "/gravity"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
 [node name="gyro" type="Node" parent="OSC" unique_id=1472490812 node_paths=PackedStringArray("target_client")]
-script = ExtResource("2_pbw6q")
+script = ExtResource("2_kmebr")
 target_client = NodePath("../OSCClient")
 osc_address = "/gyro"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
 [node name="calib" type="Node" parent="OSC" unique_id=1897939278 node_paths=PackedStringArray("target_client")]
-script = ExtResource("2_pbw6q")
+script = ExtResource("2_kmebr")
 target_client = NodePath("../OSCClient")
 osc_address = "/null"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
 [node name="ReadSensors" type="Node" parent="." unique_id=1923663784 node_paths=PackedStringArray("gravity", "gyro")]
-script = ExtResource("3_v1gob")
+script = ExtResource("3_j41yd")
 gravity = NodePath("../OSC/gravity")
 gyro = NodePath("../OSC/gyro")
 
-[node name="Landscape" type="Button" parent="." unique_id=1537034573]
-offset_left = 370.0
-offset_top = 230.0
-offset_right = 658.0
-offset_bottom = 315.0
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 50
-text = "CW"
-metadata/polling_rate = 0
-
-[node name="CW" type="Button" parent="." unique_id=39553932]
-offset_left = 371.0
-offset_top = 136.0
-offset_right = 659.0
-offset_bottom = 221.0
+[node name="Landscape" type="Button" parent="." unique_id=39553932]
+visible = false
+offset_left = -318.0
+offset_top = 9.0
+offset_right = -27.0
+offset_bottom = 100.0
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "Landscape"
 metadata/polling_rate = 0
 
+[node name="CW" type="Button" parent="." unique_id=1537034573]
+visible = false
+offset_left = -38.5
+offset_top = -91.0
+offset_right = 38.5
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "CW"
+metadata/polling_rate = 0
+
 [node name="Buttons" type="Node" parent="." unique_id=2122713441]
-script = ExtResource("4_jw32o")
-button_scene = ExtResource("5_pbw6q")
+script = ExtResource("4_8hhri")
+button_scene = ExtResource("5_v8b8w")
 
 [node name="Control" type="Control" parent="." unique_id=1422813430]
 layout_mode = 3
@@ -71,5 +72,27 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[connection signal="pressed" from="Landscape" to="ReadSensors" method="_on_landscape_pressed"]
-[connection signal="pressed" from="CW" to="ReadSensors" method="_on_cw_pressed"]
+[node name="Widgets" type="Control" parent="." unique_id=658894656]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Widgets" unique_id=389279419]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="Widgets/HBoxContainer" unique_id=1479449736]
+layout_mode = 2
+text = "Button, for pressing"
+
+[connection signal="pressed" from="Landscape" to="ReadSensors" method="_on_cw_pressed"]
+[connection signal="pressed" from="CW" to="ReadSensors" method="_on_landscape_pressed"]
