@@ -5,7 +5,7 @@ extends Node
 var frames = 0
 
 # Temporary
-@onready var osc_send = $"../OSC/Sensors"
+# @onready var osc_send = $"../OSC/Sensors"
 
 # OSC sender nodes
 @export var gravity: Node
