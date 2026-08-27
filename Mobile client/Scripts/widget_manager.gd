@@ -1,6 +1,6 @@
 extends Node
-@onready var widget_canvas = $"../WidgetCanvas"
-
+#@onready var widget_canvas = $"../WidgetCanvas"
+'''
 # Widget scenes
 @export var button_scene: PackedScene
 
@@ -26,7 +26,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
+'''
 
+'''
 # Widget add function
 func add_widget(type: String) -> int:
 	var new_id = widgets.size() ## Creates new ID based off of the number of entries in the array
@@ -35,19 +37,23 @@ func add_widget(type: String) -> int:
 	
 	# Add button
 	if type == "button":
+		pass
 		var new_button = button_scene.instantiate()
 		widget_canvas.add_child(new_button)
 		new_button.position = Vector2(widget["x"], widget["y"])
 	
 	return new_id
+'''
 
+'''
 # Widget remove function
 func remove_widget(id: int) -> void:
 	for i in range(widgets.size()):
 		if widgets[i]["id"] == id:
 			widgets.remove_at(i)
 			return
-
+'''
+'''
 # Save widgets
 func save_widgets() -> void:
 	var json_string = JSON.stringify(widgets) # Converts array into JSON
@@ -55,7 +61,8 @@ func save_widgets() -> void:
 	file.store_string(json_string) # Push modifications
 	if save_load_debug:
 		print("Widgets saved")
-
+'''
+'''
 # Load widgets
 func load_widgets() -> void:
 	var file = FileAccess.open("user://widgets.json", FileAccess.READ) # Open saved file for reading
@@ -63,3 +70,16 @@ func load_widgets() -> void:
 	widgets = JSON.parse_string(json_string) # Converts the raw text back into array of dictionaries
 	if save_load_debug:
 		print("Widgets loaded")
+'''
+# Temporary
+func _on_b_button_down() -> void:
+	print("b button down")
+
+func _on_b_button_up() -> void:
+	print("b button up")
+
+func _on_a_button_down() -> void:
+	print("a button down")
+
+func _on_a_button_up() -> void:
+	print("a button up")
