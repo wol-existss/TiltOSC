@@ -171,6 +171,20 @@ osc_address = "/null"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
+[node name="LeftStick" type="Node" parent="OSC/Widgets/Central" unique_id=1816670689 node_paths=PackedStringArray("target_client")]
+script = ExtResource("2_pbw6q")
+target_client = NodePath("../../../OSCClient")
+osc_address = "/lstick"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="RightStick" type="Node" parent="OSC/Widgets/Central" unique_id=318838499 node_paths=PackedStringArray("target_client")]
+script = ExtResource("2_pbw6q")
+target_client = NodePath("../../../OSCClient")
+osc_address = "/rstick"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
 [node name="ReadSensors" type="Node" parent="." unique_id=961260413 node_paths=PackedStringArray("gravity", "gyro")]
 script = ExtResource("3_v1gob")
 gravity = NodePath("../OSC/gravity")
@@ -320,7 +334,7 @@ offset_top = 10.0
 offset_right = 170.0
 offset_bottom = 85.0
 theme_type_variation = &"PrimaryButton"
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 39
 text = "LB"
 
 [node name="RB" type="Button" parent="Widgets/MarginContainer/RootLayout/Shoulders" unique_id=1520444525]
@@ -334,7 +348,7 @@ offset_right = -19.999512
 offset_bottom = 83.0
 grow_horizontal = 0
 theme_type_variation = &"PrimaryButton"
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 39
 text = "RB"
 
 [node name="Triggers" type="Control" parent="Widgets/MarginContainer/RootLayout" unique_id=878866764]
@@ -350,7 +364,7 @@ offset_top = 10.0
 offset_right = 170.0
 offset_bottom = 85.0
 theme_type_variation = &"PrimaryButton"
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 39
 text = "LT
 "
 
@@ -365,7 +379,7 @@ offset_right = -19.999512
 offset_bottom = 83.0
 grow_horizontal = 0
 theme_type_variation = &"PrimaryButton"
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 39
 text = "RT"
 
 [node name="CenterButtons" type="Control" parent="Widgets/MarginContainer/RootLayout" unique_id=922409571]
