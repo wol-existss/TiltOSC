@@ -11,14 +11,13 @@ config_version=5
 [application]
 
 config/name="TiltOSC"
-run/main_scene="uid://bx2g8ua8gaf1b"
+run/main_scene="uid://bj0w58qnvrmt"
 config/features=PackedStringArray("4.7", "Mobile")
 boot_splash/stretch_mode=5
 boot_splash/image="uid://d3qxmhvfuiglb"
 config/icon="uid://b11p7bk031rbb"
 config/macos_native_icon="uid://gdtutnj2b34t"
 config/windows_native_icon="uid://gdtutnj2b34t"
-boot_splash/minimum_display_time=1000
 
 [autoload]
 
