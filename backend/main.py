@@ -46,6 +46,28 @@ if master_debug:
     debug_wheel = True
     debug_calibration = True
 
+## Settings
+# Enable left stick, overwriting the tilt output
+use_digital_lstick = False
+use_digital_rstick = True
+
+# Button address table for XUSB_BUTTON
+button_map = {
+    "/y_button": vg.XUSB_BUTTON.XUSB_GAMEPAD_Y,
+    "/x_button": vg.XUSB_BUTTON.XUSB_GAMEPAD_X,
+    "/b_button": vg.XUSB_BUTTON.XUSB_GAMEPAD_B,
+    "/a_button": vg.XUSB_BUTTON.XUSB_GAMEPAD_A,
+    "/lb": vg.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_SHOULDER,
+    "/rb": vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER,
+    "/up_button": vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_UP,
+    "/down_button": vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_DOWN,
+    "/left_button": vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_LEFT,
+    "/right_button": vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_RIGHT,
+    "/back": vg.XUSB_BUTTON.XUSB_GAMEPAD_BACK,
+    "/guide": vg.XUSB_BUTTON.XUSB_GAMEPAD_GUIDE,
+    "/start": vg.XUSB_BUTTON.XUSB_GAMEPAD_START,
+}
+
 # Gravity handler
 def gravity_handler(address, *args):
     global gravity_frames
@@ -95,8 +117,9 @@ def gyro_handler(address, *args):
     calibrated_angle = max(-1.0, min(1.0, calibrated_angle))  # Clamped due to scale functionality potentially resulting in exceedence of ±1.0
 
     # Gamepad output
-    gamepad.left_joystick_float(x_value_float=calibrated_angle, y_value_float=0.0)
-    gamepad.update()
+    if not use_digital_lstick:
+        gamepad.left_joystick_float(x_value_float=calibrated_angle, y_value_float=0.0)
+        gamepad.update()
 
 # Calibration handlers
 def landscape_handler(address, *args):
@@ -130,11 +153,44 @@ def kill_desktop_handler(address, *args):
     os._exit(0)
 
 # Controller button handler
+# Shared handler for all digital buttons (press/release)
 def controller_button_handler(address, *args):
-    value = args[0]
-    if debug_controller:
+    value = args[0] # Get float from OSC message, where 1.0 is pressed and 0.0 is released.
+    xusb_button = button_map[address] # Look up the XUSB_BUTTON value in the table
+    # Rounds to nearest 0.5
+    if value >= 0.5:
+        gamepad.press_button(button=xusb_button)
+    else:
+        gamepad.release_button(button=xusb_button)
+    gamepad.update()
+    # Output if debug calib is on
+    if debug_calibration:
         print(f"{address}: {value}")
 
+# Trigger handlers, convert digital input to analogue output
+def lt_handler(address, *args):
+    value = args[0]  # Get float from OSC message
+    gamepad.left_trigger_float(value_float=value)  # Set left trigger position on the virtual gamepad
+    gamepad.update()  #  Push the updated trigger state
+
+def rt_handler(address, *args):
+    value = args[0] # Same as last function
+    gamepad.right_trigger_float(value_float=value)
+    gamepad.update()
+
+# Joystick handlers
+def lstick_handler(address, *args):
+    # Only used as left stick stand-in if digital_lstick is enabled
+    if use_digital_lstick:
+        x, y = args[0], args[1]  # Extract X and Y axis values (-1.0 to 1.0) from the OSC message
+        gamepad.left_joystick_float(x_value_float=x, y_value_float=y)  # Set left stick position on the virtual gamepad
+        gamepad.update()  # Push the updated stick position to the OS
+
+def rstick_handler(address, *args):
+    if use_digital_rstick # The variable is solely for the settings menu.
+        x, y = args[0], args[1]
+        gamepad.right_joystick_float(x_value_float=x, y_value_float=y)
+        gamepad.update()
 
 # OSC dispatcher mapping
 dispatcher = Dispatcher()
@@ -146,9 +202,12 @@ dispatcher.map("/reset", reset_calibration)
 dispatcher.map("/kill_desktop", kill_desktop_handler)   # Force quit
 
 ## Dispatcher mapping for controller packets
-# Shoulder and trigger buttons
-dispatcher.map("/lt", controller_button_handler)
-dispatcher.map("/rt", controller_button_handler)
+
+# Handlers for each trigger
+dispatcher.map("/lt", lt_handler)
+dispatcher.map("/rt", rt_handler)
+
+# Shoulder buttons
 dispatcher.map("/lb", controller_button_handler)
 dispatcher.map("/rb", controller_button_handler)
 
@@ -163,6 +222,11 @@ dispatcher.map("/up_button", controller_button_handler)
 dispatcher.map("/down_button", controller_button_handler)
 dispatcher.map("/left_button", controller_button_handler)
 dispatcher.map("/right_button", controller_button_handler)
+
+# Auxiliary buttons
+dispatcher.map("/back", controller_button_handler)
+dispatcher.map("/guide", controller_button_handler)
+dispatcher.map("/start", controller_button_handler)
 
 # OSC server
 server = BlockingOSCUDPServer(("0.0.0.0", 4646), dispatcher)
