@@ -22,6 +22,7 @@ config/windows_native_icon="uid://gdtutnj2b34t"
 [autoload]
 
 IdManager="*uid://cdptd13csw2gv"
+LoadNetworkConfig="*uid://defxwdt72hkgb"
 
 [display]
 
