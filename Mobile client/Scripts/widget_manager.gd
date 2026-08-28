@@ -1,5 +1,8 @@
 extends Node
 #@onready var widget_canvas = $"../WidgetCanvas"
+# The following is a framework for saving aand deleting widgets.
+# Due to bugs amongst other skill-related issues, it has beem temporarily disabled.
+# The system will return in a future release!
 '''
 # Widget scenes
 @export var button_scene: PackedScene
@@ -71,15 +74,3 @@ func load_widgets() -> void:
 	if save_load_debug:
 		print("Widgets loaded")
 '''
-# Temporary
-func _on_b_button_down() -> void:
-	print("b button down")
-
-func _on_b_button_up() -> void:
-	print("b button up")
-
-func _on_a_button_down() -> void:
-	print("a button down")
-
-func _on_a_button_up() -> void:
-	print("a button up")
