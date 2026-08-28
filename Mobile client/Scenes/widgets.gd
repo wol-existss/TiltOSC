@@ -11,7 +11,7 @@ var up = [0.0]
 var down = [1.0]
 
 func _ready() -> void:
-	pass
+	LoadNetworkConfig.load_network_conf($"../OSC/OSCClient")
 
 func _process(delta: float) -> void:
 	pass

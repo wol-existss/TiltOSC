@@ -10,7 +10,7 @@ extends Node
 var frames = 0
 
 func _ready() -> void:
-	LoadNetworkConfig.load_network_conf($OSC/OSCClient) 
+	LoadNetworkConfig.load_network_conf($"../OSC/OSCClient") 
 
 func _process(delta: float) -> void:
 	var g = Input.get_gravity()
