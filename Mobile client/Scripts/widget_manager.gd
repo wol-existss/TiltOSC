@@ -1,5 +1,4 @@
 extends Node
-#@onready var widget_canvas = $"../WidgetCanvas"
 # The following is a framework for saving aand deleting widgets.
 # Due to bugs amongst other skill-related issues, it has beem temporarily disabled.
 # The system will return in a future release!
