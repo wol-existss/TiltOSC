@@ -2,24 +2,24 @@ extends Node
 # Debug
 @export var debug_output = false
 @export var debug_output_buffer = 100
-var frames = 0
-
-# Temporary
-# @onready var osc_send = $"../OSC/Sensors"
+@export var no_sensor_send = false
 
 # OSC sender nodes
 @export var gravity: Node
 @export var gyro: Node
+var frames = 0
 
 #func _ready() -> void:
 #	pass
 
 func _process(delta: float) -> void:
+	
 	var g = Input.get_gravity()
 	var gy = Input.get_gyroscope()
 	
-	gravity.send_message([g.x, g.y, g.z])
-	gyro.send_message([gy.x, gy.y, gy.z])
+	if not no_sensor_send:
+		gravity.send_message([g.x, g.y, g.z])
+		gyro.send_message([gy.x, gy.y, gy.z])
 	
 	# Debug output
 	frames = frames + 1
