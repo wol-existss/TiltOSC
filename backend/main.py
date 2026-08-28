@@ -16,6 +16,7 @@ debug_gravity = False
 debug_gyro = False
 debug_wheel = False
 debug_calibration = False
+debug_controller = False
 # Debug buffer
 gravity_frames = 0
 gyro_frames = 0
@@ -111,7 +112,7 @@ def cw_handler(address, *args):
     if raw_at_90 != 0:
         wheel_angle_scale = 0.5 / raw_at_90
         if debug_calibration:
-        print(f"cw_handler: {wheel_angle_scale}")
+            print(f"cw_handler: {wheel_angle_scale}")
 
 def reset_calibration(address, *args):
     global wheel_angle_offset
@@ -128,6 +129,13 @@ def kill_desktop_handler(address, *args):
     import os
     os._exit(0)
 
+# Controller button handler
+def controller_button_handler(address, *args):
+    value = args[0]
+    if debug_controller:
+        print(f"{address}: {value}")
+
+
 # OSC dispatcher mapping
 dispatcher = Dispatcher()
 dispatcher.map("/gravity", gravity_handler)             # Sensors
@@ -136,6 +144,25 @@ dispatcher.map("/landscape", landscape_handler)         # Calibration
 dispatcher.map("/cw", cw_handler)
 dispatcher.map("/reset", reset_calibration)
 dispatcher.map("/kill_desktop", kill_desktop_handler)   # Force quit
+
+## Dispatcher mapping for controller packets
+# Shoulder and trigger buttons
+dispatcher.map("/lt", controller_button_handler)
+dispatcher.map("/rt", controller_button_handler)
+dispatcher.map("/lb", controller_button_handler)
+dispatcher.map("/rb", controller_button_handler)
+
+# Cluster buttons
+dispatcher.map("/y_button", controller_button_handler)
+dispatcher.map("/x_button", controller_button_handler)
+dispatcher.map("/b_button", controller_button_handler)
+dispatcher.map("/a_button", controller_button_handler)
+
+# Directional buttons
+dispatcher.map("/up_button", controller_button_handler)
+dispatcher.map("/down_button", controller_button_handler)
+dispatcher.map("/left_button", controller_button_handler)
+dispatcher.map("/right_button", controller_button_handler)
 
 # OSC server
 server = BlockingOSCUDPServer(("0.0.0.0", 4646), dispatcher)
