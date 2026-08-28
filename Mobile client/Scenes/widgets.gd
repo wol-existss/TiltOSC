@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 
 # Settings menu
 func _on_settings_pressed() -> void:
-	get_tree().change_scene_to_file("uid://bx2g8ua8gaf1")
+	get_tree().change_scene_to_file("res://Scenes/Preferences.tscn")
 
 
 '''
