@@ -57,7 +57,7 @@ func _ready() -> void:
 	if not last_exit_clean:
 		print("The previous session did not exit cleanly!")
 	
-	# updates configuration for last 
+	# updates configuration
 	config.set_value("settings", "clean_exit", false)
 	config.save("user://settings.cfg")
 
