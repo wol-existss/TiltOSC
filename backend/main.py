@@ -1,5 +1,4 @@
 # PythonOSC
-import pythonosc
 from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
 # Numpy
@@ -94,7 +93,7 @@ def gyro_handler(address, *args):
     delta = now - last_update_time
     last_update_time = now
 
-    # Latest sensor readdings
+    # Latest sensor readings
     gx, gy, gz = latest_gravity
     gyro_z = latest_gyro[2]
 
@@ -114,7 +113,7 @@ def gyro_handler(address, *args):
 
     # Offset logic
     calibrated_angle = (wheel_angle - wheel_angle_offset) * wheel_angle_scale
-    calibrated_angle = max(-1.0, min(1.0, calibrated_angle))  # Clamped due to scale functionality potentially resulting in exceedence of ±1.0
+    calibrated_angle = max(-1.0, min(1.0, calibrated_angle))  # Clamped due to scale functionality potentially resulting in exceedance of ±1.0
 
     # Gamepad output
     if not use_digital_lstick:
@@ -187,7 +186,7 @@ def lstick_handler(address, *args):
         gamepad.update()  # Push the updated stick position to the OS
 
 def rstick_handler(address, *args):
-    if use_digital_rstick # The variable is solely for the settings menu.
+    if use_digital_rstick: # The variable is solely for the settings menu.
         x, y = args[0], args[1]
         gamepad.right_joystick_float(x_value_float=x, y_value_float=y)
         gamepad.update()
@@ -199,7 +198,7 @@ dispatcher.map("/gyro", gyro_handler)
 dispatcher.map("/landscape", landscape_handler)         # Calibration
 dispatcher.map("/cw", cw_handler)
 dispatcher.map("/reset", reset_calibration)
-dispatcher.map("/kill_desktop", kill_desktop_handler)   # Force quit
+dispatcher.map("/kill_desktop", kill_desktop_handler)   # Forced termination
 
 ## Dispatcher mapping for controller packets
 
