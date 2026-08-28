@@ -6,9 +6,10 @@ extends Control
 var output_buffer = 0
 
 """
-Onreadies for all buttons and OSC outputs
+Onreadies for all buttons and OSC outputs. 
 """
 
+## The buttons with saved states must be onreadied so their appearance reflects the preferences file
 # Polling rate configuration buttons
 @onready var button_30hz = $"ScrollContainer/MarginContainer/VBoxContainer/pollling rate/30 Hz"
 @onready var button_60hz = $"ScrollContainer/MarginContainer/VBoxContainer/pollling rate/60 Hz"
@@ -19,10 +20,17 @@ Onreadies for all buttons and OSC outputs
 # V-Sync button
 @onready var vsync_button = $ScrollContainer/MarginContainer/VBoxContainer/VSync
 
+# Destination IP and port fields
+@onready var ip_field = $ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/IP
+@onready var port_field = $ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/Port
+
 # Calibration buttons
 @onready var landscape = $OSC/landscape
 @onready var cw = $OSC/cw
 @onready var osc_send = $OSC/osc_send
+
+@export var gravity: Node
+@export var gyro: Node
 
 # Settings variables
 var current_vsync_mode = true
@@ -36,6 +44,8 @@ func _ready() -> void:
 	config.load("user://settings.cfg")
 	var saved_rate = config.get_value("settings", "polling_rate", 60)
 	var saved_vsync = config.get_value("settings", "vsync", true)
+	# Load the current network configuration
+	LoadNetworkConfig.load_network_conf($OSC/OSCClient) 
 	
 	# Updates V-Sync button status to reflect config
 	current_vsync_mode = saved_vsync
@@ -51,6 +61,12 @@ func _ready() -> void:
 	for button in polling_buttons:
 		if button.get_meta("polling_rate") == saved_rate:
 			button.set_pressed(true)
+	
+	# Load saved IP and port
+	var saved_ip = config.get_value("network", "ip", "")
+	var saved_port = config.get_value("network", "port", "4646")
+	ip_field.text = saved_ip
+	port_field.text = str(saved_port)
 	
 	# Did the last session exit cleanly?
 	last_exit_clean = config.get_value("settings", "clean_exit", true)
@@ -108,12 +124,30 @@ func _on_unlimited_hz() -> void:
 func _on_v_sync_toggled(toggled_on: bool) -> void:
 	_save_vsync_mode(toggled_on)
 
+# Destination buttons
+func _save_network_address(ip: String, port: String) -> void:
+	var config = ConfigFile.new()
+	config.load("user://settings.cfg")
+	config.set_value("network", "ip", ip)
+	config.set_value("network", "port", port)
+	config.save("user://settings.cfg")
+
 # Calibration buttons
 func _on_landscape_pressed() -> void:
+	var g = Input.get_gravity()
+	var gy = Input.get_gyroscope()
+	gravity.send_message([g.x, g.y, g.z])
+	gyro.send_message([gy.x, gy.y, gy.z])
+
 	osc_send.osc_address = "/landscape"
 	osc_send.send_message([])
 
 func _on_clockwise_pressed() -> void:
+	var g = Input.get_gravity()
+	var gy = Input.get_gyroscope()
+	gravity.send_message([g.x, g.y, g.z])
+	gyro.send_message([gy.x, gy.y, gy.z])
+	
 	osc_send.osc_address = "/cw"
 	osc_send.send_message([])
 
@@ -132,3 +166,6 @@ func _on_kill() -> void:
 
 func _on_main_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+
+func _on_save_address_pressed() -> void:
+	_save_network_address(ip_field.text, port_field.text)

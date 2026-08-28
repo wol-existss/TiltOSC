@@ -5,12 +5,12 @@
 [ext_resource type="Script" uid="uid://b7r7ku10y4yqo" path="res://Scripts/Buttons/30_hz.gd" id="3_o7q8o"]
 [ext_resource type="Script" uid="uid://bwjvnexjdbmx2" path="res://Scripts/Buttons/60_hz.gd" id="4_55rt3"]
 [ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="5_1s6nn"]
+[ext_resource type="Texture2D" uid="uid://fnijn3p5875x" path="res://Resources/Icons/save_24dp.svg" id="5_tbbex"]
 [ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="6_iw1ap"]
-[ext_resource type="Script" uid="uid://4pxluy461chw" path="res://Scripts/read_sensors.gd" id="7_tbbex"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qyfth"]
 
-[node name="Preferences" type="Control" unique_id=875751159]
+[node name="Preferences" type="Control" unique_id=875751159 node_paths=PackedStringArray("gravity", "gyro")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +18,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0jjsc")
+gravity = NodePath("OSC/gravity")
+gyro = NodePath("OSC/gyro")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1903861548]
 layout_mode = 1
@@ -132,8 +134,45 @@ metadata/polling_rate = 0
 [node name="Destination" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=2145216820]
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
-text = "Pairing"
+text = "Destination"
 horizontal_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=131606613]
+layout_mode = 2
+alignment = 1
+
+[node name="IP" type="TextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=472250906]
+custom_minimum_size = Vector2(381.965, 100)
+custom_maximum_size = Vector2(900, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 53
+placeholder_text = "123.456.7.8"
+
+[node name="colon" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=191304151]
+custom_maximum_size = Vector2(8.065, -1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = ":"
+horizontal_alignment = 1
+
+[node name="Port" type="TextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1699495097]
+custom_minimum_size = Vector2(200, 100)
+custom_maximum_size = Vector2(900, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 53
+placeholder_text = "4646"
+
+[node name="SaveAddress" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1793058159]
+custom_minimum_size = Vector2(75, 75)
+custom_maximum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 15
+icon = ExtResource("5_tbbex")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Calibration" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=572886054]
 layout_mode = 2
@@ -166,12 +205,12 @@ theme_override_font_sizes/font_size = 50
 text = "90° Clockwise"
 metadata/polling_rate = 0
 
-[node name="cw2" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/calib buttons" unique_id=1173540256]
+[node name="cw2" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1173540256]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 theme_type_variation = &"PrimaryButton"
 theme_override_font_sizes/font_size = 50
-text = "Reset"
+text = "⚠Reset Calibration"
 metadata/polling_rate = 0
 
 [node name="force quit" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1063841553]
@@ -202,6 +241,10 @@ metadata/polling_rate = 0
 
 [node name="OSC" type="Node" parent="." unique_id=31411186]
 
+[node name="OSCClient" type="Node" parent="OSC" unique_id=1575887564]
+script = ExtResource("6_iw1ap")
+metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
+
 [node name="landscape" type="Node" parent="OSC" unique_id=1902480672 node_paths=PackedStringArray("target_client")]
 script = ExtResource("5_1s6nn")
 target_client = NodePath("../OSCClient")
@@ -212,14 +255,9 @@ metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 [node name="cw" type="Node" parent="OSC" unique_id=1513034022 node_paths=PackedStringArray("target_client")]
 script = ExtResource("5_1s6nn")
 target_client = NodePath("../OSCClient")
-osc_address = "/null"
+osc_address = "/cw"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
-
-[node name="OSCClient" type="Node" parent="OSC" unique_id=1575887564]
-script = ExtResource("6_iw1ap")
-ip_address = "192.168.2.95"
-metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
 
 [node name="osc_send" type="Node" parent="OSC" unique_id=2129207223 node_paths=PackedStringArray("target_client")]
 script = ExtResource("5_1s6nn")
@@ -231,17 +269,14 @@ metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 [node name="gravity" type="Node" parent="OSC" unique_id=302288263 node_paths=PackedStringArray("target_client")]
 script = ExtResource("5_1s6nn")
 target_client = NodePath("../OSCClient")
+osc_address = "/gravity"
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
 [node name="gyro" type="Node" parent="OSC" unique_id=280098400 node_paths=PackedStringArray("target_client")]
 script = ExtResource("5_1s6nn")
 target_client = NodePath("../OSCClient")
+osc_address = "/gyro"
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
-
-[node name="ReadSensors" type="Node" parent="." unique_id=1715519010 node_paths=PackedStringArray("gravity", "gyro")]
-script = ExtResource("7_tbbex")
-gravity = NodePath("../OSC/gravity")
-gyro = NodePath("../OSC/gyro")
 
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Settings/Main Menu" to="." method="_on_main_menu_pressed"]
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/30 Hz" to="." method="_on_30Hz"]
@@ -250,8 +285,9 @@ gyro = NodePath("../OSC/gyro")
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/120 Hz" to="." method="_on_120Hz"]
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/Unlimited" to="." method="_on_unlimited_hz"]
 [connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/SaveAddress" to="." method="_on_save_address_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/landscape" to="." method="_on_landscape_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/cw" to="." method="_on_clockwise_pressed"]
-[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/cw2" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/cw2" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Force quit/kill" to="." method="_on_kill"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Force quit/kill desktop" to="." method="_on_kill_desktop_pressed"]

@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="1_rgh2o"]
 [ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="2_pbw6q"]
 [ext_resource type="Script" uid="uid://4pxluy461chw" path="res://Scripts/read_sensors.gd" id="3_v1gob"]
-[ext_resource type="Script" uid="uid://btx0xj0kwupd3" path="res://Scripts/widget_manager.gd" id="4_jw32o"]
 [ext_resource type="Texture2D" uid="uid://b2elgcqcxq33b" path="res://Resources/Icons/apps_24dp.svg" id="5_50glp"]
 [ext_resource type="Script" uid="uid://uokligel1led" path="res://Scenes/widgets.gd" id="5_bmxlf"]
 [ext_resource type="Texture2D" uid="uid://bmeycbw8s8aim" path="res://Resources/Icons/select_window_2_24dp.svg" id="6_vy5pj"]
@@ -18,6 +17,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="hi santi and notaroomba" type="Control" parent="." unique_id=1889921100]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=148375688]
 z_index = -1
@@ -195,24 +199,8 @@ metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
 [node name="ReadSensors" type="Node" parent="." unique_id=961260413 node_paths=PackedStringArray("gravity", "gyro")]
 script = ExtResource("3_v1gob")
-sensor_send = true
 gravity = NodePath("../OSC/gravity")
 gyro = NodePath("../OSC/gyro")
-
-[node name="CW" type="Button" parent="." unique_id=1724275821]
-visible = false
-layout_mode = 0
-offset_left = 498.0
-offset_top = 122.0
-offset_right = 575.0
-offset_bottom = 213.0
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 50
-text = "CW"
-metadata/polling_rate = 0
-
-[node name="ButtonMaster" type="Node" parent="." unique_id=742277242]
-script = ExtResource("4_jw32o")
 
 [node name="Widgets" type="Control" parent="." unique_id=918875026 node_paths=PackedStringArray("trigger", "cluster", "auxiliary", "leftstick", "rightstick")]
 layout_mode = 1
@@ -462,21 +450,22 @@ icon = ExtResource("8_4kpch")
 icon_alignment = 1
 expand_icon = true
 
-[node name="VirtualJoystick" type="VirtualJoystick" parent="Widgets/MarginContainer/RootLayout" unique_id=660719367]
+[node name="RightStick" type="VirtualJoystick" parent="Widgets/MarginContainer/RootLayout" unique_id=660719367]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.512
 anchor_top = 0.659
 anchor_right = 0.643
 anchor_bottom = 0.891
+offset_top = 1.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 41.0
 joystick_mode = 1
 joystick_size = 161.0
 tip_size = 65.0
 deadzone_ratio = 0.01
 
-[node name="VirtualJoystick2" type="VirtualJoystick" parent="Widgets/MarginContainer/RootLayout" unique_id=2132833710]
+[node name="LeftStick" type="VirtualJoystick" parent="Widgets/MarginContainer/RootLayout" unique_id=2132833710]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.152
