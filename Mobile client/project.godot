@@ -38,6 +38,41 @@ enabled=PackedStringArray("res://addons/godOSC/plugin.cfg", "res://addons/godot_
 theme/custom="res://Resources/Themes/clean_dark.tres"
 theme/custom_font="uid://bb8aacsydnhmd"
 
+[input]
+
+lstick_up={
+"deadzone": 0.2,
+"events": []
+}
+lstick_down={
+"deadzone": 0.2,
+"events": []
+}
+lstick_left={
+"deadzone": 0.2,
+"events": []
+}
+lstick_right={
+"deadzone": 0.2,
+"events": []
+}
+rstick_up={
+"deadzone": 0.2,
+"events": []
+}
+rstick_down={
+"deadzone": 0.2,
+"events": []
+}
+rstick_left={
+"deadzone": 0.2,
+"events": []
+}
+rstick_right={
+"deadzone": 0.2,
+"events": []
+}
+
 [input_devices]
 
 sensors/enable_accelerometer=true

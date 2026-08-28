@@ -14,7 +14,13 @@ func _ready() -> void:
 	LoadNetworkConfig.load_network_conf($"../OSC/OSCClient")
 
 func _process(delta: float) -> void:
-	pass
+	# Left stick inputs
+	var left_input = Input.get_vector("lstick_left", "lstick_right", "lstick_up", "lstick_down") # Reads left stick analogue outputs clamped to +-1.0
+	leftstick.send_message([left_input.x, left_input.y]) # Sends X and Y values for left stick
+	
+	# Right stick
+	var right_input = Input.get_vector("rstick_left", "rstick_right", "rstick_up", "rstick_down") # Reads left stick analogue outputs clamped to +-1.0
+	rightstick.send_message([right_input.x, right_input.y]) # Sends X and Y values for rright stick
 
 
 # Settings menu

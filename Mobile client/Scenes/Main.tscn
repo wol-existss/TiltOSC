@@ -463,6 +463,10 @@ joystick_mode = 1
 joystick_size = 161.0
 tip_size = 65.0
 deadzone_ratio = 0.01
+action_left = &"rstick_left"
+action_right = &"rstick_right"
+action_up = &"rstick_up"
+action_down = &"rstick_down"
 
 [node name="LeftStick" type="VirtualJoystick" parent="Widgets/MarginContainer/RootLayout" unique_id=2132833710]
 layout_mode = 1
@@ -478,6 +482,10 @@ joystick_mode = 1
 joystick_size = 150.0
 tip_size = 65.0
 deadzone_ratio = 0.01
+action_left = &"lstick_left"
+action_right = &"lstick_right"
+action_up = &"lstick_up"
+action_down = &"lstick_down"
 
 [connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Triggers/LT" to="Widgets" method="_on_lt_button_down"]
 [connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Triggers/LT" to="Widgets" method="_on_lt_button_up"]

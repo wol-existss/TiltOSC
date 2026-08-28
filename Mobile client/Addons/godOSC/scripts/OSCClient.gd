@@ -8,9 +8,7 @@ extends Node
 ## The port to send to.
 @export var port = 4646
 
-
 var client = PacketPeerUDP.new()
-
 
 func _ready():
 	connect_socket(ip_address, port)
