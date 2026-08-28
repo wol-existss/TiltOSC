@@ -147,7 +147,7 @@ custom_maximum_size = Vector2(900, -1)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 53
-placeholder_text = "123.456.7.8"
+placeholder_text = "18.15.15.16"
 
 [node name="colon" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=191304151]
 custom_maximum_size = Vector2(8.065, -1)
@@ -169,6 +169,7 @@ custom_minimum_size = Vector2(75, 75)
 custom_maximum_size = Vector2(75, 75)
 layout_mode = 2
 size_flags_vertical = 4
+theme_type_variation = &"FlatButton"
 theme_override_font_sizes/font_size = 15
 icon = ExtResource("5_tbbex")
 icon_alignment = 1

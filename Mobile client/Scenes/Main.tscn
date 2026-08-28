@@ -37,7 +37,6 @@ color = Color(0.16862746, 0.20784314, 0.27058825, 1)
 
 [node name="OSCClient" type="Node" parent="OSC" unique_id=2058731799]
 script = ExtResource("1_rgh2o")
-ip_address = "192.168.2.95"
 metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
 
 [node name="gravity" type="Node" parent="OSC" unique_id=188858764 node_paths=PackedStringArray("target_client")]
