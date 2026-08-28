@@ -26,7 +26,7 @@ A feature checklist for TiltOSC is as follows:
 - [ ] V-sync: **Disabling** V-sync may cause performance issues on certain devices. Proceed at your own risk. **Enabling** V-sync will limit the polling rate to your display's refresh rate.
 - [ ] Enabling gyroscope dependence causes cross-talk, resulting in random escalations in pitch when reaching extreme rotations when rotating wheel-wise.
 #### Control scheme
-- [ ] Button configuration - limited
+- [x] Full controller layout
 ##### Buttons
 - [x] Basic button
 - [ ] Persistent slider
