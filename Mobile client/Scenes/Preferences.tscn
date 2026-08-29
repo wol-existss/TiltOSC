@@ -142,7 +142,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="IP" type="TextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=472250906]
-custom_minimum_size = Vector2(381.965, 100)
+custom_minimum_size = Vector2(450, 100)
 custom_maximum_size = Vector2(900, -1)
 layout_mode = 2
 size_flags_horizontal = 4

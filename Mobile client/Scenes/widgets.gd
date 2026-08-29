@@ -58,10 +58,12 @@ func _on_lt_button_up() -> void:
 func _on_rt_button_down() -> void:
 	trigger.osc_address = "/rt"
 	trigger.send_message(down)
+	print("RT down")
 
 func _on_rt_button_up() -> void:
 	trigger.osc_address = "/rt"
 	trigger.send_message(up)
+	print("RT up")
 
 
 # LB up/down

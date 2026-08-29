@@ -286,6 +286,52 @@ theme_type_variation = &"PrimaryButton"
 theme_override_font_sizes/font_size = 39
 text = "RB"
 
+[node name="Auxiliary" type="Control" parent="Widgets/MarginContainer/RootLayout" unique_id=922409571]
+layout_mode = 1
+anchor_left = 0.387
+anchor_top = 0.206
+anchor_right = 0.581
+anchor_bottom = 0.245
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Back" type="Button" parent="Widgets/MarginContainer/RootLayout/Auxiliary" unique_id=1527297195]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 60.0
+icon = ExtResource("5_50glp")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Guide" type="Button" parent="Widgets/MarginContainer/RootLayout/Auxiliary" unique_id=1735390762]
+layout_mode = 0
+offset_left = 90.0
+offset_right = 170.00003
+offset_bottom = 60.0
+icon = ExtResource("6_vy5pj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Start" type="Button" parent="Widgets/MarginContainer/RootLayout/Auxiliary" unique_id=1050751568]
+layout_mode = 0
+offset_left = 180.0
+offset_right = 260.0
+offset_bottom = 60.0
+icon = ExtResource("7_bmxlf")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Quick Calib" type="Button" parent="Widgets/MarginContainer/RootLayout/Auxiliary" unique_id=730002257]
+layout_mode = 0
+offset_left = 90.0
+offset_top = -107.17
+offset_right = 170.0
+offset_bottom = -47.17
+icon = ExtResource("8_vy5pj")
+icon_alignment = 1
+expand_icon = true
+
 [node name="Cluster" type="Control" parent="Widgets/MarginContainer/RootLayout" unique_id=26976219]
 layout_mode = 1
 anchor_left = 0.712
@@ -384,52 +430,6 @@ offset_bottom = 160.0
 theme_type_variation = &"PrimaryButton"
 theme_override_font_sizes/font_size = 56
 
-[node name="Auxiliary" type="Control" parent="Widgets/MarginContainer/RootLayout" unique_id=922409571]
-layout_mode = 1
-anchor_left = 0.387
-anchor_top = 0.206
-anchor_right = 0.581
-anchor_bottom = 0.245
-offset_right = 40.0
-offset_bottom = 40.0
-grow_horizontal = 2
-
-[node name="Back" type="Button" parent="Widgets/MarginContainer/RootLayout/Auxiliary" unique_id=1527297195]
-layout_mode = 0
-offset_right = 80.0
-offset_bottom = 60.0
-icon = ExtResource("5_50glp")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Guide" type="Button" parent="Widgets/MarginContainer/RootLayout/Auxiliary" unique_id=1735390762]
-layout_mode = 0
-offset_left = 90.0
-offset_right = 170.00003
-offset_bottom = 60.0
-icon = ExtResource("6_vy5pj")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Start" type="Button" parent="Widgets/MarginContainer/RootLayout/Auxiliary" unique_id=1050751568]
-layout_mode = 0
-offset_left = 180.0
-offset_right = 260.0
-offset_bottom = 60.0
-icon = ExtResource("7_bmxlf")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Quick Calib" type="Button" parent="Widgets/MarginContainer/RootLayout/Auxiliary" unique_id=730002257]
-layout_mode = 0
-offset_left = 90.0
-offset_top = -107.17
-offset_right = 170.0
-offset_bottom = -47.17
-icon = ExtResource("8_vy5pj")
-icon_alignment = 1
-expand_icon = true
-
 [node name="Settings" type="Control" parent="Widgets/MarginContainer/RootLayout" unique_id=500479033]
 layout_mode = 1
 anchor_left = 0.961
@@ -490,11 +490,18 @@ action_down = &"lstick_down"
 [connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Triggers/LT" to="Widgets" method="_on_lt_button_down"]
 [connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Triggers/LT" to="Widgets" method="_on_lt_button_up"]
 [connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Triggers/RT" to="Widgets" method="_on_rt_button_down"]
-[connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Triggers/RT" to="OSC/OSCClient" method="_on_rt_button_up"]
+[connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Triggers/RT" to="Widgets" method="_on_rt_button_up"]
 [connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Shoulders/LB" to="Widgets" method="_on_lb_button_down"]
 [connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Shoulders/LB" to="Widgets" method="_on_lb_button_up"]
 [connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Shoulders/RB" to="Widgets" method="_on_rb_button_down"]
 [connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Shoulders/RB" to="Widgets" method="_on_rb_button_up"]
+[connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Auxiliary/Back" to="Widgets" method="_on_back_button_down"]
+[connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Auxiliary/Back" to="Widgets" method="_on_back_button_up"]
+[connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Auxiliary/Guide" to="Widgets" method="_on_guide_button_down"]
+[connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Auxiliary/Guide" to="Widgets" method="_on_guide_button_up"]
+[connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Auxiliary/Start" to="Widgets" method="_on_start_button_down"]
+[connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Auxiliary/Start" to="Widgets" method="_on_start_button_up"]
+[connection signal="pressed" from="Widgets/MarginContainer/RootLayout/Auxiliary/Quick Calib" to="Widgets" method="_on_quick_calib_pressed"]
 [connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Cluster/Y" to="Widgets" method="_on_y_button_down"]
 [connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Cluster/Y" to="Widgets" method="_on_y_button_up"]
 [connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Cluster/X" to="Widgets" method="_on_x_button_down"]
@@ -511,11 +518,4 @@ action_down = &"lstick_down"
 [connection signal="button_up" from="Widgets/MarginContainer/RootLayout/DPad/left" to="Widgets" method="_on_left_button_up"]
 [connection signal="button_down" from="Widgets/MarginContainer/RootLayout/DPad/right" to="Widgets" method="_on_right_button_down"]
 [connection signal="button_up" from="Widgets/MarginContainer/RootLayout/DPad/right" to="Widgets" method="_on_right_button_up"]
-[connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Auxiliary/Back" to="Widgets" method="_on_back_button_down"]
-[connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Auxiliary/Back" to="Widgets" method="_on_back_button_up"]
-[connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Auxiliary/Guide" to="Widgets" method="_on_guide_button_down"]
-[connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Auxiliary/Guide" to="Widgets" method="_on_guide_button_up"]
-[connection signal="button_down" from="Widgets/MarginContainer/RootLayout/Auxiliary/Start" to="Widgets" method="_on_start_button_down"]
-[connection signal="button_up" from="Widgets/MarginContainer/RootLayout/Auxiliary/Start" to="Widgets" method="_on_start_button_up"]
-[connection signal="pressed" from="Widgets/MarginContainer/RootLayout/Auxiliary/Quick Calib" to="Widgets" method="_on_quick_calib_pressed"]
 [connection signal="pressed" from="Widgets/MarginContainer/RootLayout/Settings/Settings" to="Widgets" method="_on_settings_pressed"]
