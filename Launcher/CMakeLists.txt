@@ -20,7 +20,9 @@ find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui Widgets Qml Quick QuickTimelin
 qt_standard_project_setup()
 
 
-qt_add_executable(${CMAKE_PROJECT_NAME})
+qt_add_executable(${CMAKE_PROJECT_NAME}
+        App/backendmanager.cpp
+        App/backendmanager.h)
 qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
     PREFIX "/"
     FILES
