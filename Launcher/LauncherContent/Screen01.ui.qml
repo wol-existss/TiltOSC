@@ -191,6 +191,8 @@ Rectangle {
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                         font.family: "Space Mono"
+                        maximumLength: 5
+                        validator: IntValidator { bottom: 0; top: 99999 }
                     }
                 }
             }
@@ -273,6 +275,16 @@ Rectangle {
                 }
                 antialiasing: true
             }
+
+            Text {
+                id: network_indicator
+                color: "#ffffff"
+                text: qsTr("999.999.9.9:4646")
+                font.pixelSize: 25
+                font.family: "Space Mono"
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
         }
     }
+
 }
