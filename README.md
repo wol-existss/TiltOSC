@@ -16,30 +16,22 @@ A feature checklist for TiltOSC is as follows:
 - [X] Add a V-sync toggle to settings menu
 - [x] Add different polling rates - 30, 60, 120, unmetered...
 - [x] Enable button numbering - Somewhat complete
-- [ ] Add menu restructuring system - limited
-- [ ] Add a popup system for certain settings, i.e., "The polling rate will be limited to your display's current refresh rate unless V-sync is disabled."
-- [ ] Add a "don't show again" button to warnings
-- [ ] Add a configuration reset button
 - [x] Add a calibration system
 - [x] Add a broadcast-kill functionality
-#### Warnings
-- [ ] V-sync: **Disabling** V-sync may cause performance issues on certain devices. Proceed at your own risk. **Enabling** V-sync will limit the polling rate to your display's refresh rate.
-- [ ] Enabling gyroscope dependence causes cross-talk, resulting in random escalations in pitch when reaching extreme rotations when rotating wheel-wise.
 #### Control scheme
 - [x] Full controller layout
 ##### Buttons
 - [x] Basic button
-- [ ] Persistent slider
-- [ ] Temporary slider
-- [ ] Toggle switch
-- [ ] Toggle button
+- [x] Button cluster
+- [x] DPad
+- [x] Left/right triggers and shoulder buttons
+- [x] Joystick
 ### Desktop client
-- [ ] Add modes for interpretation of data (i.e., wheel turn, pitch only, all axis)
-- [ ] Add refresh limiter
-- [ ] Add configuration menu to assign a key bind or action to each axis or intractable button
-- [ ] Add joystick and wheel emulation as options for wheel tilt
-- [ ] Add joystick emulation as option for all axis 
-- [ ] Add a kill and/or pause key bind to prevent the app from soft locking the device
+- [x] Full desktop UI
+- [ ] Bridge between desktop UI and backend
+- [x] Configurable back end controller emulator
+- [x] Translation for all inputs
+- [x] Emulation pause system
 
 ## Other information
 
