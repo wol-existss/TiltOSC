@@ -1,0 +1,17 @@
+<RCC>
+    <qresource>
+        <file>Launcher.qmlproject</file>
+        <file>Launcher/Constants.qml</file>
+        <file>Launcher/EventListModel.qml</file>
+        <file>Launcher/EventListSimulator.qml</file>
+        <file>Launcher/qmldir</file>
+        <file>LauncherContent/App.qml</file>
+        <file>LauncherContent/fonts/SpaceMono-Bold.ttf</file>
+        <file>LauncherContent/fonts/SpaceMono-BoldItalic.ttf</file>
+        <file>LauncherContent/fonts/SpaceMono-Italic.ttf</file>
+        <file>LauncherContent/fonts/SpaceMono-Regular.ttf</file>
+        <file>LauncherContent/images/logo_deskktop.png</file>
+        <file>LauncherContent/Screen01.ui.qml</file>
+        <file>qtquickcontrols2.conf</file>
+    </qresource>
+</RCC>
