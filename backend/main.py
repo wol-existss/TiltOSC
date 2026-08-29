@@ -179,7 +179,7 @@ def lt_handler(address, *args):
     value = args[0]  # Get float from OSC message
     gamepad.left_trigger_float(value_float=value)  # Set left trigger position on the virtual gamepad
     if controller_enabled:
-        gamepad.update()  #  Push the updated trigger state
+        gamepad.update()  # Push the updated trigger state
 
 def rt_handler(address, *args):
     value = args[0] # Same as last function
