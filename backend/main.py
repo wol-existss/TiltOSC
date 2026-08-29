@@ -8,7 +8,8 @@ import vgamepad as vg
 # Misc libraries
 import math
 import time
-
+import json
+import os
 # Debug
 master_debug = False
 debug_gravity = False
@@ -16,6 +17,12 @@ debug_gyro = False
 debug_wheel = False
 debug_calibration = False
 debug_controller = False
+# Master debug handling statement
+if master_debug:
+    debug_gravity = True
+    debug_gyro = True
+    debug_wheel = True
+    debug_calibration = True
 # Debug buffer
 gravity_frames = 0
 gyro_frames = 0
@@ -33,28 +40,46 @@ calibrated_angle = 0.0
 # Gamepad
 gamepad = vg.VX360Gamepad()
 
+# Configuration
+CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_PATH = os.path.join(CONFIG_DIR, "config.json")
+
+DEFAULT_CONFIG = {
+    "receive_port": 4646,
+    "use_digital_lstick": False,
+    "use_digital_rstick": True,
+    "invert_y_axis": True,
+    "controller_enabled": True,
+}
+
 # Miscellaneous
 kill_flag = False
 
 last_update_time = time.time()
 
-# Master debug handler
-if master_debug:
-    debug_gravity = True
-    debug_gyro = True
-    debug_wheel = True
-    debug_calibration = True
+def load_config():
+    try:
+        with open(CONFIG_PATH, "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print("Config file not found. Creating default settings.")
+        with open(CONFIG_PATH, "w") as file:
+            json.dump(DEFAULT_CONFIG, file, indent=4)
+        return DEFAULT_CONFIG
+    except json.JSONDecodeError:
+        print("Error decoding JSON config file. Resetting to default settings.")
+        with open(CONFIG_PATH, "w") as file:
+            json.dump(DEFAULT_CONFIG, file, indent=4)
+        return DEFAULT_CONFIG
 
-## Settings
-# Enable left stick, overwriting the tilt output
-use_digital_lstick = True
-use_digital_rstick = True
+config = load_config()
 
-invert_y_axis = True
-
-receive_port = 4646 # OSC packet recieving port
-
-controller_enabled = True
+# Settings loaded from config.json
+receive_port = config["receive_port"]
+use_digital_lstick = config["use_digital_lstick"]
+use_digital_rstick = config["use_digital_rstick"]
+invert_y_axis = config["invert_y_axis"]
+controller_enabled = config["controller_enabled"]
 
 # Button address table for XUSB_BUTTON
 button_map = {
