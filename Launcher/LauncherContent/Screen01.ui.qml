@@ -4,10 +4,10 @@ import Launcher
 import QtQuick.Studio.DesignEffects
 import QtQuick.Studio.Components
 
-
-
 Rectangle {
     id: rectangle
+    property alias start_backend: start_backend
+    property alias kill_backend: kill_backend
     width: Constants.width
     height: Constants.height
     color: "#2b3545"
@@ -32,8 +32,7 @@ Rectangle {
         font.family: "Space Mono"
         DesignEffect {
             effects: [
-                DesignDropShadow {
-                }
+                DesignDropShadow {}
             ]
         }
     }
@@ -43,12 +42,11 @@ Rectangle {
         x: 8
         y: 43
         width: 624
-        height: 429
+        height: 437
         data: [
             DesignEffect {
                 effects: [
-                    DesignDropShadow {
-                    },
+                    DesignDropShadow {},
                     DesignInnerShadow {
                         offsetY: 4
                         offsetX: 1
@@ -72,7 +70,6 @@ Rectangle {
             width: 624
             height: 435
             spacing: 10
-
 
             Text {
                 id: joystick_options
@@ -170,8 +167,7 @@ Rectangle {
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignVCenter
                     font.family: "Space Mono"
-                    DesignEffect {
-                    }
+                    DesignEffect {}
                 }
 
                 Rectangle {
@@ -192,7 +188,10 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         font.family: "Space Mono"
                         maximumLength: 5
-                        validator: IntValidator { bottom: 0; top: 99999 }
+                        validator: IntValidator {
+                            bottom: 0
+                            top: 99999
+                        }
                     }
                 }
             }
@@ -226,23 +225,6 @@ Rectangle {
             }
 
             RoundButton {
-                id: save_settings
-                width: 140
-                height: 37
-                radius: 9
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: "Save settings"
-                icon.color: "#171d26"
-                font.family: "Space Mono"
-                checkable: false
-                background: Rectangle {
-                    color: save_settings.checked ? "#4e8de7" : "#171d26"
-                    radius: save_settings.radius
-                }
-                antialiasing: true
-            }
-
-            RoundButton {
                 id: start_backend
                 width: 140
                 height: 37
@@ -255,6 +237,23 @@ Rectangle {
                 background: Rectangle {
                     color: start_backend.checked ? "#4e8de7" : "#171d26"
                     radius: start_backend.radius
+                }
+                antialiasing: true
+            }
+
+            RoundButton {
+                id: save_settings
+                width: 182
+                height: 37
+                radius: 9
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: "Save Configuration"
+                icon.color: "#171d26"
+                font.family: "Space Mono"
+                checkable: false
+                background: Rectangle {
+                    color: save_settings.checked ? "#4e8de7" : "#171d26"
+                    radius: save_settings.radius
                 }
                 antialiasing: true
             }
@@ -286,5 +285,4 @@ Rectangle {
             }
         }
     }
-
 }

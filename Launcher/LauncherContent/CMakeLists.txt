@@ -12,12 +12,12 @@ qt6_add_qml_module(LauncherContent
         "App.qml"
         "Screen01.ui.qml"
     RESOURCES
-        "fonts/SpaceMono-BoldItalic.ttf"
         "fonts/SpaceMono-Bold.ttf"
+        "fonts/SpaceMono-BoldItalic.ttf"
         "fonts/SpaceMono-Italic.ttf"
         "fonts/SpaceMono-Regular.ttf"
-        "images/logo_deskktop.png"
         "images/icon.ico"
+        "images/logo_deskktop.png"
 )
 
 

@@ -3,7 +3,8 @@
 
 #include <QApplication>
 #include <QQmlApplicationEngine>
-
+#include <QQmlContext>
+#include "BackendManager.h"
 #include "autogen/environment.h"
 
 int main(int argc, char *argv[])
@@ -11,7 +12,12 @@ int main(int argc, char *argv[])
     set_qt_environment();
     QApplication app(argc, argv);
 
+    BackendManager backendManager; // Create instance
+
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("backendManager", &backendManager); // Register class within QML engine
+                                                                                    // so it can be pointed to via a function
+
     const QUrl url(mainQmlFile);
     QObject::connect(
                 &engine, &QQmlApplicationEngine::objectCreated, &app,
@@ -19,13 +25,10 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-
     engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
     engine.addImportPath(":/");
     engine.load(url);
-
     if (engine.rootObjects().isEmpty())
         return -1;
-
     return app.exec();
 }
