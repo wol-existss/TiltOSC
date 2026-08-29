@@ -47,8 +47,14 @@ if master_debug:
 
 ## Settings
 # Enable left stick, overwriting the tilt output
-use_digital_lstick = False
+use_digital_lstick = True
 use_digital_rstick = True
+
+invert_y_axis = True
+
+receive_port = 4646 # OSC packet recieving port
+
+controller_enabled = True
 
 # Button address table for XUSB_BUTTON
 button_map = {
@@ -118,7 +124,8 @@ def gyro_handler(address, *args):
     # Gamepad output
     if not use_digital_lstick:
         gamepad.left_joystick_float(x_value_float=calibrated_angle, y_value_float=0.0)
-        gamepad.update()
+        if controller_enabled:
+            gamepad.update()
 
 # Calibration handlers
 def landscape_handler(address, *args):
@@ -161,7 +168,8 @@ def controller_button_handler(address, *args):
         gamepad.press_button(button=xusb_button)
     else:
         gamepad.release_button(button=xusb_button)
-    gamepad.update()
+    if controller_enabled:
+        gamepad.update()
     # Output if debug calib is on
     if debug_calibration:
         print(f"{address}: {value}")
@@ -170,26 +178,32 @@ def controller_button_handler(address, *args):
 def lt_handler(address, *args):
     value = args[0]  # Get float from OSC message
     gamepad.left_trigger_float(value_float=value)  # Set left trigger position on the virtual gamepad
-    gamepad.update()  #  Push the updated trigger state
+    if controller_enabled:
+        gamepad.update()  #  Push the updated trigger state
 
 def rt_handler(address, *args):
     value = args[0] # Same as last function
     gamepad.right_trigger_float(value_float=value)
-    gamepad.update()
+    if controller_enabled:
+        gamepad.update()
 
 # Joystick handlers
 def lstick_handler(address, *args):
     # Only used as left stick stand-in if digital_lstick is enabled
     if use_digital_lstick:
-        x, y = args[0], args[1]  # Extract X and Y axis values (-1.0 to 1.0) from the OSC message
+        x = args[0] # Extract X and Y axis values (-1.0 to 1.0) from the OSC message
+        y = -args[1] if invert_y_axis else args[1]  # Invert Y axis if invert_y_axis is enabled
         gamepad.left_joystick_float(x_value_float=x, y_value_float=y)  # Set left stick position on the virtual gamepad
-        gamepad.update()  # Push the updated stick position to the OS
+        if controller_enabled:
+            gamepad.update()  # Push the updated stick position to the OS
 
 def rstick_handler(address, *args):
     if use_digital_rstick: # The variable is solely for the settings menu.
-        x, y = args[0], args[1]
+        x = args[0]
+        y = -args[1] if invert_y_axis else args[1]
         gamepad.right_joystick_float(x_value_float=x, y_value_float=y)
-        gamepad.update()
+        if controller_enabled:
+            gamepad.update()
 
 # OSC dispatcher mapping
 dispatcher = Dispatcher()
@@ -222,11 +236,15 @@ dispatcher.map("/down_button", controller_button_handler)
 dispatcher.map("/left_button", controller_button_handler)
 dispatcher.map("/right_button", controller_button_handler)
 
+# Joysticks
+dispatcher.map("/lstick", lstick_handler)
+dispatcher.map("/rstick", rstick_handler)
+
 # Auxiliary buttons
 dispatcher.map("/back", controller_button_handler)
 dispatcher.map("/guide", controller_button_handler)
 dispatcher.map("/start", controller_button_handler)
 
 # OSC server
-server = BlockingOSCUDPServer(("0.0.0.0", 4646), dispatcher)
+server = BlockingOSCUDPServer(("0.0.0.0", receive_port), dispatcher)
 server.serve_forever()
