@@ -10,6 +10,7 @@
         <file>LauncherContent/fonts/SpaceMono-BoldItalic.ttf</file>
         <file>LauncherContent/fonts/SpaceMono-Italic.ttf</file>
         <file>LauncherContent/fonts/SpaceMono-Regular.ttf</file>
+        <file>LauncherContent/images/icon.ico</file>
         <file>LauncherContent/images/logo_deskktop.png</file>
         <file>LauncherContent/Screen01.ui.qml</file>
         <file>qtquickcontrols2.conf</file>

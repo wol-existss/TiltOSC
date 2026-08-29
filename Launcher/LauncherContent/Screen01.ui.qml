@@ -27,6 +27,7 @@ Rectangle {
         font.pixelSize: 35
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
+        font.styleName: "Regular"
         anchors.horizontalCenterOffset: 1
         font.family: "Space Mono"
         DesignEffect {
@@ -47,12 +48,16 @@ Rectangle {
             DesignEffect {
                 effects: [
                     DesignDropShadow {
+                    },
+                    DesignInnerShadow {
+                        offsetY: 4
+                        offsetX: 1
                     }
                 ]
             }
         ]
         font.kerning: true
-        antialiasing: false
+        antialiasing: true
         focus: false
         focusPolicy: Qt.StrongFocus
 
@@ -80,11 +85,6 @@ Rectangle {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignTop
                 font.family: "Space Mono"
-                DesignEffect {
-                    effects: [
-                        DesignInnerShadow {}
-                    ]
-                }
             }
 
             RoundButton {
@@ -149,11 +149,6 @@ Rectangle {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignTop
                 font.family: "Space Mono"
-                DesignEffect {
-                    effects: [
-                        DesignInnerShadow {}
-                    ]
-                }
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
@@ -176,9 +171,6 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
                     font.family: "Space Mono"
                     DesignEffect {
-                        effects: [
-                            DesignInnerShadow {}
-                        ]
                     }
                 }
 

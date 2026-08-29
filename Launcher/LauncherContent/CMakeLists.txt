@@ -17,6 +17,7 @@ qt6_add_qml_module(LauncherContent
         "fonts/SpaceMono-Italic.ttf"
         "fonts/SpaceMono-Regular.ttf"
         "images/logo_deskktop.png"
+        "images/icon.ico"
 )
 
 
