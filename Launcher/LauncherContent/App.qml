@@ -3,8 +3,12 @@ import Launcher
 Window {
     width: mainScreen.width
     height: mainScreen.height
+    minimumWidth: mainScreen.width
+    maximumWidth: mainScreen.width
+    minimumHeight: mainScreen.height
+    maximumHeight: mainScreen.height
     visible: true
-    title: "Launcher"
+    title: "TiltOSC Launcher"
     Screen01 {
         id: mainScreen
         anchors.centerIn: parent
@@ -27,6 +31,7 @@ Window {
     Connections {
         target: mainScreen.kill_backend
         function onClicked() {
+            console.log("Stop button clicked!")
             backendManager.stopBackend()
         }
     }
