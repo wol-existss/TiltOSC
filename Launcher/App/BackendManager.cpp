@@ -19,31 +19,29 @@ BackendManager::BackendManager(QObject *parent) : QObject(parent) // Constructor
 
 void BackendManager::startBackend()
 {
-    if (m_process != nullptr) {     // Returns if m_process is already pointing at a running process
-        return;
+    QProcess checkProcess;
+    checkProcess.start("tasklist", QStringList() << "/FI" << "IMAGENAME eq tilt_osc.exe");
+    checkProcess.waitForFinished();
+    QString output = checkProcess.readAllStandardOutput();
+
+    if (output.contains("tilt_osc.exe")) {
+        return; // Don't staart another rinstance if TiltOSC is already running
     }
 
-    QString scriptPath = QCoreApplication::applicationDirPath() + "/tilt_osc.exe"; // build text string to main.exe
+    QString scriptPath = QCoreApplication::applicationDirPath() + "/tilt_osc.exe";
 
-    m_process = new QProcess(this);                                     // create QProcess object
-    m_process->start(scriptPath); // Launch main.exe
+    m_process = new QProcess(this);
+    m_process->start(scriptPath);
 }
 
 void BackendManager::stopBackend()
 {
-    if (m_process == nullptr) {     // Returns if m_process isn't pointing at a running process
-        return;
+    QProcess::execute("taskkill", QStringList() << "/IM" << "tilt_osc.exe" << "/F" << "/T");
+
+    if (m_process != nullptr) {
+        delete m_process;
+        m_process = nullptr;
     }
-
-    m_process->terminate();                 // Requests program to shut down
-    m_process->waitForFinished(3000); // Waits 3 seconds for the backend to stop
-
-    if (m_process->state() != QProcess::NotRunning) { // Kill forcefully if it hasn't closed after 3s
-        m_process->kill();
-    }
-
-    delete m_process;   // free QProcess from memory
-    m_process = nullptr;
 }
 
 void BackendManager::restartBackend() { // starts and stops main.py
@@ -70,6 +68,8 @@ void BackendManager::saveSettings(int port, bool useLstick, bool useRstick, bool
         file.write(doc.toJson());   // Convert JSON document to text, wrrite to file
         file.close();
     }
+
+    restartBackend();
 }
 
 void BackendManager::loadSettings()
