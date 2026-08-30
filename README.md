@@ -140,7 +140,7 @@ The following tools were used to build TiltOSC but are not bundled or linked int
 [^2]:`ipconfig`
 [^2]:Try each of the adapters' IPs displayed. 
 
-Please note that, in some rare cases, i.e., on public networks, devices are *not* permitted to communicate with each other. There is a low chance that switching to port 443 or 53 will fix this, but OSC routing over internet will be added in a future release.
+Please note that, in some rare cases, i.e., on public networks, devices are *not* permitted to communicate with each other. In such cases, TiltOSC may not function correctly. There is a low chance that switching to port 443 or 53 will fix this, but OSC routing over internet will be added in a future release.
 
 [^3]: "**VSync won't disable / polling rate seems capped regardless of settings.**" On some devices with certain graphics drivers, VSync cannot be disabled at the system level, and Godot will fall back to your display's refresh rate. This is unfortunately not within my control.
 
