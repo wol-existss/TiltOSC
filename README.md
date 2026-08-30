@@ -129,17 +129,16 @@ The following tools were used to build TiltOSC but are not bundled or linked int
 ## I've encountered an issue, what now?
 
 [^1]: **`TiltOSC.exe` won't open, or nothing happens when you click it.** Navigate into the `_internal` folder and launch `LauncherApp.exe` directly. If this works, the issue is specific to the outer launcher wrapper — please open a GitHub issue with details on your OS version.
-"TiltOSC won't open, or nothing happens when I click it!" Navigate to the `_internal` folder and directly launch LauncherApp. If this fixes the issue, it's an issue specific to the outer launcher wrapper. Kindly open a Github issue with details on your OS and the steps you took.
 
 [^2]:"The mobile client won't connect to the desktop client!"
-Various things can cause this:
-- One or both devices are connected to a VPN
-- A firewall is applied to one or either device
-- The ports on either device don't match
-- The devices aren't connected to the same Wi-Fi network
-The IP displayed is a best-guess based off of its reachability. If you're sure that none of the above caused this, open terminal and run:
-`ipconfig`
-Try each of the adapters' IPs displayed. 
+[^2]:Various things can cause this:
+[^2]:- One or both devices are connected to a VPN
+[^2]:- A firewall is applied to one or either device
+[^2]:- The ports on either device don't match
+[^2]:- The devices aren't connected to the same Wi-Fi network
+[^2]:The IP displayed is a best-guess based off of its reachability. If you're sure that none of the above caused this, open terminal and run:
+[^2]:`ipconfig`
+[^2]:Try each of the adapters' IPs displayed. 
 
 Please note that, in some rare cases, i.e., on public networks, devices are *not* permitted to communicate with each other. There is a low chance that switching to port 443 or 53 will fix this, but OSC routing over internet will be added in a future release.
 
