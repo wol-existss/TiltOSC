@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/github/license/wol-existss/TiltOSC)](https://github.com/wol-existss/TiltOSC) [![GitHub Issues](https://img.shields.io/github/issues/wol-existss/TiltOSC)](https://github.com/wol-existss/TiltOSC/issues) [![Last Commit](https://img.shields.io/github/last-commit/wol-existss/TiltOSC)](https://github.com/wol-existss/TiltOSC/commits/main) [![Stars](https://img.shields.io/github/stars/wol-existss/TiltOSC)](https://github.com/wol-existss/TiltOSC/stargazers) [![Repo Size](https://img.shields.io/github/repo-size/wol-existss/TiltOSC)](https://github.com/wol-existss/TiltOSC)
 
-TiltOSC is an efficient and streamlined OSC pipeline that converts your phone's motion sensor data into usable controller output.
+TiltOSC is an hyper-efficient, low-latency OSC pipeline that converts your phone's motion sensor data into usable controller output.
 
 ## Table of Contents
 
@@ -128,7 +128,7 @@ The following tools were used to build TiltOSC but are not bundled or linked int
 
 ## I've encountered an issue, what now?
 
-[^1]: **`TiltOSC.exe` won't open, or nothing happens when you click it.** Navigate into the `_internal` folder and launch `LauncherApp.exe` directly. If this works, the issue is specific to the outer launcher wrapper — please open a GitHub issue with details on your OS version.
+[^1]: **`TiltOSC.exe` won't open, or nothing happens when you click it.** Ensure the folder is unzipped. Navigate into the `_internal` folder and launch `LauncherApp.exe` directly. If launching LauncherApp.exe directly fixes the issue, the issue is very likely specific to the outer launcher wrapper. Please open a GitHub issue with details on your OS version and the steps you took.
 
 [^2]:"The mobile client won't connect to the desktop client!"
 [^2]:Various things can cause this:
