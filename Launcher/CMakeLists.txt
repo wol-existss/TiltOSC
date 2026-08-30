@@ -24,7 +24,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
         App/main.cpp
         App/BackendManager.cpp
         App/BackendManager.h)
-set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
+# set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
 qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
     PREFIX "/"
     FILES

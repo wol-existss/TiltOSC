@@ -8,6 +8,13 @@ Rectangle {
     id: rectangle
     property alias start_backend: start_backend
     property alias kill_backend: kill_backend
+    property alias save_settings: save_settings
+    property alias textInput: textInput
+    property alias onscreen_lstick: onscreen_lstick
+    property alias onscreen_rstick: onscreen_rstick
+    property alias invert_y_axis: invert_y_axis
+    property alias enable_controller_input: enable_controller_input
+    property alias network_indicator: network_indicator
     width: Constants.width
     height: Constants.height
     color: "#2b3545"
@@ -42,7 +49,7 @@ Rectangle {
         x: 8
         y: 43
         width: 624
-        height: 437
+        height: 429
         data: [
             DesignEffect {
                 effects: [
@@ -196,6 +203,15 @@ Rectangle {
                 }
             }
 
+            Text {
+                id: network_indicator
+                color: "#ffffff"
+                text: qsTr("999.999.9.9:4646")
+                font.pixelSize: 25
+                font.family: "Space Mono"
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
             RoundButton {
                 id: enable_controller_input
                 width: 239
@@ -273,15 +289,6 @@ Rectangle {
                     radius: kill_backend.radius
                 }
                 antialiasing: true
-            }
-
-            Text {
-                id: network_indicator
-                color: "#ffffff"
-                text: qsTr("999.999.9.9:4646")
-                font.pixelSize: 25
-                font.family: "Space Mono"
-                anchors.horizontalCenter: parent.horizontalCenter
             }
         }
     }

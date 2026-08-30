@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     BackendManager backendManager; // Create instance
+    backendManager.loadSettings();
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("backendManager", &backendManager); // Register class within QML engine
