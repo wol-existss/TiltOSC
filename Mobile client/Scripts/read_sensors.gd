@@ -16,9 +16,8 @@ func _process(delta: float) -> void:
 	var g = Input.get_gravity()
 	var gy = Input.get_gyroscope()
 	
-	if not no_sensor_send:
-		gravity.send_message([g.x, g.y, g.z])
-		gyro.send_message([gy.x, gy.y, gy.z])
+	gravity.send_message([g.x, g.y, g.z])
+	gyro.send_message([gy.x, gy.y, gy.z])
 	
 	# Debug output
 	frames = frames + 1
