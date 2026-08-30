@@ -10,6 +10,7 @@ import math
 import time
 import json
 import os
+import sys
 # Debug
 master_debug = False
 debug_gravity = False
@@ -41,7 +42,10 @@ calibrated_angle = 0.0
 gamepad = vg.VX360Gamepad()
 
 # Configuration
-CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, 'frozen', False):
+    CONFIG_DIR = os.path.dirname(sys.executable)
+else:
+    CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(CONFIG_DIR, "config.json")
 
 DEFAULT_CONFIG = {
@@ -204,7 +208,7 @@ def lt_handler(address, *args):
     value = args[0]  # Get float from OSC message
     gamepad.left_trigger_float(value_float=value)  # Set left trigger position on the virtual gamepad
     if controller_enabled:
-        gamepad.update()  # Push the updated trigger state
+        gamepad.update()  #  Push the updated trigger state
 
 def rt_handler(address, *args):
     value = args[0] # Same as last function
