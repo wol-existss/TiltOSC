@@ -4,7 +4,7 @@
 a = Analysis(
     ['main.py'],
     pathex=[],
-    binaries=[('C:/Users/grump/AppData/Local/Programs/Python/Python31X/Lib/site-packages/vgamepad/win/vigem/client/x64/ViGEmClient.dll', 'vgamepad/win/vigem/client/x64')],
+    binaries=[('C:/Users/grump/Documents/Projects/TiltOSC/backend/.venv/Lib/site-packages/vgamepad/win/vigem/client/x64/ViGEmClient.dll', 'vgamepad/win/vigem/client/x64')],
     datas=[],
     hiddenimports=[],
     hookspath=[],

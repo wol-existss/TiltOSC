@@ -6,12 +6,13 @@
 #include <QQmlContext>
 #include "BackendManager.h"
 #include "autogen/environment.h"
+#include <QIcon>
 
 int main(int argc, char *argv[])
 {
     set_qt_environment();
     QApplication app(argc, argv);
-
+    app.setWindowIcon(QIcon(":/icon.ico"));
     BackendManager backendManager; // Create instance
     backendManager.loadSettings();
 

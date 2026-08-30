@@ -23,12 +23,17 @@ qt_standard_project_setup()
 qt_add_executable(${CMAKE_PROJECT_NAME}
         App/main.cpp
         App/BackendManager.cpp
-        App/BackendManager.h)
+        App/BackendManager.h
+        App/app.rc)
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
 qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
     PREFIX "/"
     FILES
         qtquickcontrols2.conf)
+qt_add_resources(${CMAKE_PROJECT_NAME} "icon"
+        PREFIX "/"
+        FILES
+        App/icon.ico)
 
 include(qds)
 

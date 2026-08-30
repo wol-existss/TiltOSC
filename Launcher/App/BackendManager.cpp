@@ -23,10 +23,10 @@ void BackendManager::startBackend()
         return;
     }
 
-    QString scriptPath = QCoreApplication::applicationDirPath() + "/main.py"; // build text string to main.py
+    QString scriptPath = QCoreApplication::applicationDirPath() + "/tilt_osc.exe"; // build text string to main.exe
 
     m_process = new QProcess(this);                                     // create QProcess object
-    m_process->start("pythonw", QStringList() << scriptPath); // Launch main.py
+    m_process->start(scriptPath); // Launch main.exe
 }
 
 void BackendManager::stopBackend()
