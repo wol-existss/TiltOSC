@@ -117,3 +117,5 @@ _deps/
 *.tmp
 scratch/
 backend/.idea/workspace.xml
+backend/.idea/workspace.xml
+backend/dist/tilt_osc.exe
