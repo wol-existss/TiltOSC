@@ -1,4 +1,5 @@
-<img width="3090" height="838" alt="Untitled" src="https://github.com/user-attachments/assets/d6f2648e-76ba-47a7-a06e-5c2c71d43826" />
+<img width="1920" height="1080" alt="Frame 6" src="https://github.com/user-attachments/assets/ff6231be-5797-4b97-8fbd-3a3ff1ccffa9" />
+
 
 # TiltOSC
 
