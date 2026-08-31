@@ -1,0 +1,41 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging and PyInstaller output
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# IDE and editor files
+.idea/
+.vscode/
+*.code-workspace
+*.swp
+*~
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local environment and logs
+.env
+.env.*
+!.env.example
+*.log
