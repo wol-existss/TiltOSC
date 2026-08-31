@@ -33,9 +33,7 @@ latest_gravity = np.zeros(3)
 latest_gyro = np.zeros(3)
 wheel_angle = 0.0
 
-# Wheel calibration
-wheel_angle_offset = 0.0
-wheel_angle_scale = 1.0
+# Calibration
 calibrated_angle = 0.0
 
 # Gamepad
@@ -54,6 +52,8 @@ DEFAULT_CONFIG = {
     "use_digital_rstick": True,
     "invert_y_axis": True,
     "controller_enabled": True,
+    "wheel_angle_offset": 0.0,
+    "wheel_angle_scale": 1.0,
 }
 
 # Miscellaneous
@@ -76,6 +76,13 @@ def load_config():
             json.dump(DEFAULT_CONFIG, file, indent=4)
         return DEFAULT_CONFIG
 
+def save_calibration():
+    config["wheel_angle_offset"] = wheel_angle_offset
+    config["wheel_angle_scale"] = wheel_angle_scale
+
+    with open(CONFIG_PATH, "w") as file:
+        json.dump(config, file, indent=4)
+
 config = load_config()
 
 # Settings loaded from config.json
@@ -84,6 +91,12 @@ use_digital_lstick = config["use_digital_lstick"]
 use_digital_rstick = config["use_digital_rstick"]
 invert_y_axis = config["invert_y_axis"]
 controller_enabled = config["controller_enabled"]
+
+# Wheel calibration
+wheel_angle_offset = config["wheel_angle_offset"]
+wheel_angle_scale = config["wheel_angle_scale"]
+
+
 
 # Button address table for XUSB_BUTTON
 button_map = {
@@ -161,22 +174,32 @@ def landscape_handler(address, *args):
     global wheel_angle_offset
     wheel_angle_offset = wheel_angle
 
+    save_calibration()
+
     if debug_calibration:
         print(f"landscape_handler: {wheel_angle_offset}")
+
 
 def cw_handler(address, *args):
     global wheel_angle_scale
     raw_at_90 = wheel_angle - wheel_angle_offset
+
     if raw_at_90 != 0:
         wheel_angle_scale = 0.5 / raw_at_90
+        save_calibration()
+
         if debug_calibration:
             print(f"cw_handler: {wheel_angle_scale}")
+
 
 def reset_calibration(address, *args):
     global wheel_angle_offset
     global wheel_angle_scale
+
     wheel_angle_offset = 0.0
     wheel_angle_scale = 1.0
+
+    save_calibration()
 
     if debug_calibration:
         print("reset_calibration")
@@ -188,6 +211,7 @@ def kill_desktop_handler(address, *args):
     os._exit(0)
 
 # Controller button handler
+
 # Shared handler for all digital buttons (press/release)
 def controller_button_handler(address, *args):
     value = args[0] # Get float from OSC message, where 1.0 is pressed and 0.0 is released.
