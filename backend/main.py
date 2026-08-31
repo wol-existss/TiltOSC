@@ -40,7 +40,7 @@ calibrated_angle = 0.0
 gamepad = vg.VX360Gamepad()
 
 # Configuration
-if getattr(sys, 'frozen', False):
+if getattr(sys, 'frozen', False):           # Ensure that the configuration file can be found in the compiled executable
     CONFIG_DIR = os.path.dirname(sys.executable)
 else:
     CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
