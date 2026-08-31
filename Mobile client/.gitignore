@@ -1,3 +1,46 @@
-# Godot 4+ specific ignores
+
+## Mobile client — Godot 4 (Android / iOS) ##
+
+
+# Godot 4+ engine cache
+
 .godot/
+.nomedia
+
+# Godot 4.2+ — temporary copies made while hot-reloading native extensions
+~*.dll
+
+
+# Godot legacy / general #
+
+# Godot 3 import cache (harmless to keep for repo history compatibility)
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
+
+# Translations compiled from CSV source files
+*.translation
+
+
+# Android build template
+# It is the copy of the engine's gradle project
+
 /android/
+
+# Export output
+
+*.apk
+*.aab
+*.ipa
+*.exe
+*.pck
+*.zip
+!Addons/**/*.zip
+
+
+# Redundant Mono/C# exclusions. Who knows what the future holds?
+
+.mono/
+data_*/
+mono_crash.*.json

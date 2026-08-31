@@ -1,0 +1,118 @@
+
+# OS rubbish
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.stackdump
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.Trashes
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+
+# JetBrains IDEs (CLion for Launcher/, PyCharm for backend/)
+# User specific files are excluded. There go 50 commits to workspace.xml lol
+# The directory is purposefully not wholly ignored.
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/usage.statistics.xml
+**/.idea/contentModel.xml
+**/.idea/shelf/
+**/.idea/dictionaries/
+**/.idea/httpRequests/
+**/.idea/caches/
+**/.idea/libraries/
+**/.idea/sonarlint/
+**/.idea/sonarlint.xml
+**/.idea/copilot/
+**/.idea/aws.xml
+**/.idea/dataSources/
+**/.idea/dataSources.ids
+**/.idea/dataSources.local.xml
+**/.idea/sqlDataSources.xml
+**/.idea/dynamic.xml
+**/.idea/uiDesigner.xml
+**/.idea/dbnavigator.xml
+**/.idea/$CACHE_FILE$
+**/.idea/http-client.private.env.json
+.idea_modules/
+*.iws
+
+# VSC
+**/.vscode/*
+!**/.vscode/settings.json
+!**/.vscode/tasks.json
+!**/.vscode/launch.json
+!**/.vscode/extensions.json
+!**/.vscode/*.code-snippets
+.history/
+*.vsix
+
+# Other editors
+*.swp
+*.swo
+*.sublime-workspace
+.vs/
+*.code-workspace
+
+
+# Secrets and credentials
+
+.env.*
+!.env.example
+*.pem
+*.key
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
+secrets.json
+credentials.json
+
+
+# Logs and crash dumps
+
+*.log
+logs/
+*.dmp
+core
+core.*
+
+
+# Generic build output
+
+build/
+build-*/
+cmake-build-*/
+dist/
+out/
+_deps/
+
+
+# Local scr*tch and merge leftovers
+
+*.bak
+*.orig
+*.rej
+*.tmp
+scratch/

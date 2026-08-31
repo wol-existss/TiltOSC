@@ -1,41 +1,49 @@
-# Python bytecode and caches
+
 __pycache__/
 *.py[cod]
 *$py.class
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-.coverage.*
-htmlcov/
+*.pyd
+*.so
 
-# Virtual environments
 .venv/
 venv/
 env/
 ENV/
+env.bak/
+venv.bak/
+.python-version
 
-# Packaging and PyInstaller output
 build/
 dist/
-*.egg-info/
+sdist/
+wheels/
+downloads/
+eggs/
 .eggs/
 *.egg
+*.egg-info/
+.installed.cfg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+*.manifest
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+.tox/
+.nox/
+.cache
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+nosetests.xml
+htmlcov/
 
-# IDE and editor files
-.idea/
-.vscode/
-*.code-workspace
-*.swp
-*~
 
-# OS-generated files
-.DS_Store
-Thumbs.db
-Desktop.ini
-
-# Local environment and logs
-.env
-.env.*
-!.env.example
-*.log
+*.sqlite3
+*.db
