@@ -1,4 +1,5 @@
-<img width="3090" height="838" alt="Untitled" src="https://github.com/user-attachments/assets/d6f2648e-76ba-47a7-a06e-5c2c71d43826" />
+<img width="1920" height="1080" alt="Frame 6" src="https://github.com/user-attachments/assets/ff6231be-5797-4b97-8fbd-3a3ff1ccffa9" />
+
 
 # TiltOSC
 
@@ -73,7 +74,7 @@ _**Note: the zip must be extracted for the launcher to work.**_[^1]
 
 ### Desktop client usage
 
-Once you have entered, you may choose your settings and click "Start TiltOSC" to commence the controller emulation process. TiltOSC will stay alive even if the launcher is closed, and can either be quit by pressing "Stop TiltOSC" in the launcher or forcefully stopping the `tilt_osc.exe` process in Task Manager.
+Once you have entered, you may choose your settings and click "Start TiltOSC" to commence the controller emulation background process. TiltOSC will stay alive even if the launcher is closed, and can either be quit by pressing "Stop TiltOSC" in the launcher or forcefully stopping the `tilt_osc.exe` process in Task Manager.
 
 ### Mobile client installation
 
@@ -127,7 +128,7 @@ A copy of the LGPLv3 license text can be found at [gnu.org/licenses/lgpl-3.0.en.
 The following tools were used to build TiltOSC but are not bundled or linked into downloadable builds:
 
 - **Godot Engine** is used under the MIT License (mobile client development)
-- **Qt Design Studio** is used under the GNU Lesser General Public License v3 (LGPLv3) / open-source terms (UI design and C++ project scaffolding for the desktop launcher)
+- **Qt Design Studio** is used under the GNU Lesser General Public License v3 (LGPLv3) / open-source terms (UI design and certain C++ libraries for desktop launcher)
 - **PyInstaller** is used under the GPLv2
 
 ## I've encountered an issue, what now?
