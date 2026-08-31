@@ -1,0 +1,42 @@
+# Qt Design Studio / Qt generated files
+App/autogen/
+
+# JetBrains / IDE user-specific files
+.idea/
+*.user
+*.user.*
+
+# CMake build output
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+CTestTestfile.cmake
+cmake_install.cmake
+install_manifest.txt
+
+# Ninja build output
+.ninja_deps
+.ninja_log
+build.ninja
+rules.ninja
+
+# Compiled binaries / objects
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.obj
+*.o
+
+# Qt generated build artifacts
+moc_*.cpp
+qrc_*.cpp
+*.qmlc
+
+# OS rubbish
+.DS_Store
+Thumbs.db
+Desktop.ini
