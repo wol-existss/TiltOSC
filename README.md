@@ -74,7 +74,7 @@ _**Note: the zip must be extracted for the launcher to work.**_[^1]
 
 ### Desktop client usage
 
-Once you have entered, you may choose your settings and click "Start TiltOSC" to commence the controller emulation process. TiltOSC will stay alive even if the launcher is closed, and can either be quit by pressing "Stop TiltOSC" in the launcher or forcefully stopping the `tilt_osc.exe` process in Task Manager.
+Once you have entered, you may choose your settings and click "Start TiltOSC" to commence the controller emulation background process. TiltOSC will stay alive even if the launcher is closed, and can either be quit by pressing "Stop TiltOSC" in the launcher or forcefully stopping the `tilt_osc.exe` process in Task Manager.
 
 ### Mobile client installation
 
