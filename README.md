@@ -128,7 +128,7 @@ A copy of the LGPLv3 license text can be found at [gnu.org/licenses/lgpl-3.0.en.
 The following tools were used to build TiltOSC but are not bundled or linked into downloadable builds:
 
 - **Godot Engine** is used under the MIT License (mobile client development)
-- **Qt Design Studio** is used under the GNU Lesser General Public License v3 (LGPLv3) / open-source terms (UI design and C++ project scaffolding for the desktop launcher)
+- **Qt Design Studio** is used under the GNU Lesser General Public License v3 (LGPLv3) / open-source terms (UI design and certain C++ libraries for desktop launcher)
 - **PyInstaller** is used under the GPLv2
 
 ## I've encountered an issue, what now?
