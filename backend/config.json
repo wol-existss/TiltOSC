@@ -1,0 +1,9 @@
+{
+    "receive_port": 4646,
+    "use_digital_lstick": false,
+    "use_digital_rstick": true,
+    "invert_y_axis": true,
+    "controller_enabled": true,
+    "wheel_angle_offset": 0.0,
+    "wheel_angle_scale": 1.0
+}
