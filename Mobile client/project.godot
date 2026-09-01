@@ -16,8 +16,6 @@ config/features=PackedStringArray("4.7", "Mobile")
 boot_splash/stretch_mode=5
 boot_splash/image="uid://d3qxmhvfuiglb"
 config/icon="uid://b11p7bk031rbb"
-config/macos_native_icon="uid://gdtutnj2b34t"
-config/windows_native_icon="uid://gdtutnj2b34t"
 
 [autoload]
 
