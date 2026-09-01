@@ -30,8 +30,7 @@ TiltOSC is an hyper-efficient, low-latency OSC pipeline that converts your phone
 TiltOSC uses your phone's accelerometer and gyroscope to determine the orientation of the device. From there, the data is sent via OSC to the desktop server, where it is converted into mouse movements, joystick inputs, wheel rotations, and more! If you don't want to use the phone's motion sensors as controls, you can also use TiltOSC as a dedicated controller app.
 
 ## Why was it created?
-TiltOSC was originally created to be a stand-in for a physical steering wheel. Such apparatus can be expensive and I wasn't sure if I would even stick with such a hobby.
-TiltOSC is a continuation of a lost project called PhoneSteer. That version had memory leaks, was slow and annoying to use, and depended on a paid, proprietary mobile app, whereas TiltOSC is built from the ground up using 100% open source software.
+TiltOSC was originally created to be a stand-in for a physical steering wheel. Such apparatus can be expensive and I wasn't sure if I would even stick with such a hobby.TiltOSC is a continuation of a lost project called PhoneSteer that tried to fill that gap That version had memory leaks, was slow and annoying to use, and depended on a paid, proprietary mobile app, whereas TiltOSC is built from the ground up using 100% open source software.
 
 ## Why OSC? Why not Bluetooth?
 
