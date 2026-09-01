@@ -5,12 +5,17 @@ from pythonosc.osc_server import BlockingOSCUDPServer
 import numpy as np
 # vgamepad
 import vgamepad as vg
+# System Tray (windows only)
+import pystray
+from PIL import Image
+import threading
 # Misc libraries
 import math
 import time
 import json
 import os
 import sys
+import subprocess
 # Debug
 master_debug = False
 debug_gravity = False
@@ -207,11 +212,25 @@ def reset_calibration(address, *args):
 def kill_desktop_handler(address, *args):
     print("killed TiltOSC")
     kill_flag = True
-    import os
+    if kill_flag:
+        import os
+        os._exit(0)
+
+# System tray handler
+def open_launcher(icon, item):
+    launcher_path = os.path.join(CONFIG_DIR, "LauncherApp.exe") # Set launcher directory
+    subprocess.Popen([launcher_path]) # Open the launcher and return control to script immediately.
+
+def quit_app(icon, item):
+    icon.stop()
     os._exit(0)
 
-# Controller button handler
+def restart_backend(icon, item):
+    icon.stop() # Clean tray shutdown
+    python = sys.executable # Current running path
+    os.execl(python, python, *sys.argv) # Ensure compatability regardless of compilation state.
 
+# Controller button handlers
 # Shared handler for all digital buttons (press/release)
 def controller_button_handler(address, *args):
     value = args[0] # Get float from OSC message, where 1.0 is pressed and 0.0 is released.
@@ -298,6 +317,21 @@ dispatcher.map("/back", controller_button_handler)
 dispatcher.map("/guide", controller_button_handler)
 dispatcher.map("/start", controller_button_handler)
 
+# System tray server...?
+tray_image = Image.open(os.path.join(CONFIG_DIR, "icon.ico"))
+
+tray_menu = pystray.Menu(
+    pystray.MenuItem("Open Launcher", open_launcher, default=True),
+    pystray.MenuItem("Restart Backend", restart_backend),
+    pystray.MenuItem("Quit", quit_app)
+)
+
+tray_icon = pystray.Icon("TiltOSC", tray_image, "TiltOSC", tray_menu)
+
 # OSC server
 server = BlockingOSCUDPServer(("0.0.0.0", receive_port), dispatcher)
-server.serve_forever()
+
+server_thread = threading.Thread(target=server.serve_forever, daemon=True) # Create new thread that runs the target command, makes into helper
+server_thread.start() # Launches the newly created thread
+
+tray_icon.run() # run tray icon
