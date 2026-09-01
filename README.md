@@ -113,14 +113,21 @@ The main TiltOSC script consumes around 20 mb of RAM on average. It is extremely
 
 ### Integrated Dependencies
 
-These libraries are directly integrated into or linked by TiltOSC's compiled applications:
-
+These libraries are integrated into TiltOSC or are linked:
+### Mobile
 - **godOSC** is used under the CC0-1.0 License (public domain dedication)
+### Desktop back end
 - **python-osc** is used under the Unlicense
 - **numpy** is used under the BSD 3-Clause License
-- **vgamepad** isused under the MIT License
+- **vgamepad** is used under the MIT License
+- **pystray** is used under the GNU Lesser General Public License v3 (LGPLv3)
+- **Pillow** is used under the MIT-CMU License
+- **six** is used under the MIT License
+- **Qt6** (Core, Gui, Widgets, Qml, Quick, QmlModels, Network, Debug) is used under the GNU Lesser General Public License v3 (LGPLv3), via dynamic linking
+### Drivers required by TiltOSC
 - **ViGEmBus** is used under the MIT License
-- **Qt6** (Core, Gui, Widgets, Qml, Quick, QmlModels, Network) is used under the GNU Lesser General Public License v3 (LGPLv3), via dynamic linking
+
+
 
 A copy of the LGPLv3 license text can be found at [gnu.org/licenses/lgpl-3.0.en.html](https://www.gnu.org/licenses/lgpl-3.0.en.html).
 
