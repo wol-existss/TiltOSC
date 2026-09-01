@@ -58,6 +58,7 @@ func _ready() -> void:
 	# Updates polling rate buttons to reflect config systemically.
 	var polling_buttons = [button_30hz, button_60hz, button_90hz, button_120hz, button_unlimited]
 	current_polling_rate = saved_rate
+	Engine.max_fps = saved_rate
 	for button in polling_buttons:
 		if button.get_meta("polling_rate") == saved_rate:
 			button.set_pressed(true)
@@ -93,6 +94,7 @@ func _save_polling_rate(rate: int) -> void:
 	config.set_value("settings", "polling_rate", rate) 
 	config.save("user://settings.cfg")
 	current_polling_rate = rate
+	Engine.max_fps = rate # Cap maximum frame rate to cap the maximum polling rate.
 
 # Save V-Sync mode
 func _save_vsync_mode(vsync: bool) -> void:
