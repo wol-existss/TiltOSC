@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="2_pbw6q"]
 [ext_resource type="Script" uid="uid://4pxluy461chw" path="res://Scripts/read_sensors.gd" id="3_v1gob"]
 [ext_resource type="Texture2D" uid="uid://b2elgcqcxq33b" path="res://Resources/Icons/apps_24dp.svg" id="5_50glp"]
-[ext_resource type="Script" uid="uid://uokligel1led" path="res://Scenes/widgets.gd" id="5_bmxlf"]
+[ext_resource type="Script" uid="uid://uokligel1led" path="res://Scripts/widgets.gd" id="5_bmxlf"]
 [ext_resource type="Texture2D" uid="uid://bmeycbw8s8aim" path="res://Resources/Icons/select_window_2_24dp.svg" id="6_vy5pj"]
 [ext_resource type="Texture2D" uid="uid://cfa726bnmqwe2" path="res://Resources/Icons/menu_24dp.svg" id="7_bmxlf"]
 [ext_resource type="Texture2D" uid="uid://dfgpgahpdl5ex" path="res://Resources/Icons/settings_24dp.svg" id="8_4kpch"]
