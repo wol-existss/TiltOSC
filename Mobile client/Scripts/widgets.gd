@@ -48,11 +48,9 @@ Controller layout widgets
 func _on_lt_button_down() -> void:
 	trigger.osc_address = "/lt"
 	trigger.send_message(down)
-
 func _on_lt_button_up() -> void:
 	trigger.osc_address = "/lt"
 	trigger.send_message(up)
-
 
 # RT up/down
 func _on_rt_button_down() -> void:

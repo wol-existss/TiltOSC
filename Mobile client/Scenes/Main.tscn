@@ -389,9 +389,9 @@ text = "B"
 
 [node name="DPad" type="Control" parent="Widgets/MarginContainer/RootLayout" unique_id=1502809738]
 layout_mode = 1
-anchor_left = 0.23
+anchor_left = 0.241
 anchor_top = 0.443
-anchor_right = 0.412
+anchor_right = 0.479
 anchor_bottom = 0.819
 
 [node name="up" type="Button" parent="Widgets/MarginContainer/RootLayout/DPad" unique_id=758899442]
@@ -460,7 +460,7 @@ offset_top = 1.0
 offset_right = 40.0
 offset_bottom = 41.0
 joystick_mode = 1
-joystick_size = 161.0
+joystick_size = 202.0
 tip_size = 65.0
 deadzone_ratio = 0.01
 action_left = &"rstick_left"
@@ -471,15 +471,15 @@ action_down = &"rstick_down"
 [node name="LeftStick" type="VirtualJoystick" parent="Widgets/MarginContainer/RootLayout" unique_id=2132833710]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.152
-anchor_right = 0.092
-anchor_bottom = 0.307
+anchor_top = 0.13
+anchor_right = 0.125
+anchor_bottom = 0.363
 offset_left = 36.0
 offset_top = 103.856
 offset_right = 97.175995
 offset_bottom = 166.896
 joystick_mode = 1
-joystick_size = 150.0
+joystick_size = 202.0
 tip_size = 65.0
 deadzone_ratio = 0.01
 action_left = &"lstick_left"
