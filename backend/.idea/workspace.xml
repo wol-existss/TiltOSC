@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="25" />
+    <option name="cachedIndexableFilesCount" value="26" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -169,6 +169,7 @@
       <workItem from="1788213919525" duration="5102000" />
       <workItem from="1788226858944" duration="8295000" />
       <workItem from="1788292803916" duration="2097000" />
+      <workItem from="1788386826957" duration="43000" />
     </task>
     <servers />
   </component>
