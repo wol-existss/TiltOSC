@@ -64,10 +64,12 @@ OSC sends data directly through a dedicated port in raw text. This means that, i
 # Getting Started
 
 # Desktop client installation
+
 First, ensure you have ViGEm BUS installed. If you don't already have it, [you can grab the latest version here](https://github.com/nefarius/ViGEmBus/releases)
 
 To install the desktop client, download the corresponding zip file from the latest release. Once it has been downloaded, you should see the `TiltOSC.exe` file. Opening this will summon the Desktop launcher.
 
+Unfortunately, at this time, there is not a macOS or Linux build. While a Linux build is in the works, macOS wholly lacks the ability to emulate a controller and is unlikely to receive a build of TiltOSC.
 
 _**Note: the zip must be extracted for the launcher to work.**_[^1]
 
@@ -93,7 +95,7 @@ The mobile client ***must*** be configured before it can connect. To begin, clic
 
 Then, you can set your polling rate. Note that the polling rate will be capped at your display's refresh rate unless "Enable VSync" is disabled.[^3]
 
-You'll see a space for calibrating TiltOSC. It's recommended to calibrate at least once each time TiltOSC is opened, either by clicking the calibration buttons in the settings menu or with the quick-calibration button available in the main menu at the top-middle of the screen.
+You'll see a space for calibrating TiltOSC. *It is recommended to calibrate TiltOSC once each time the mobile client is connected to a different PC or after TiltOSC is updated, either by clicking the calibration buttons in the settings menu or with the quick-calibration button available in the main menu at the top-middle of the screen.
 
 ## Other information
 
