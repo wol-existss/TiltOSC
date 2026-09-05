@@ -5,7 +5,7 @@
 
 [![License](https://img.shields.io/github/license/wol-existss/TiltOSC)](https://github.com/wol-existss/TiltOSC) [![GitHub Issues](https://img.shields.io/github/issues/wol-existss/TiltOSC)](https://github.com/wol-existss/TiltOSC/issues) [![Last Commit](https://img.shields.io/github/last-commit/wol-existss/TiltOSC)](https://github.com/wol-existss/TiltOSC/commits/main) [![Stars](https://img.shields.io/github/stars/wol-existss/TiltOSC)](https://github.com/wol-existss/TiltOSC/stargazers) [![Repo Size](https://img.shields.io/github/repo-size/wol-existss/TiltOSC)](https://github.com/wol-existss/TiltOSC)
 
-TiltOSC is an hyper-efficient, low-latency OSC pipeline that converts your phone's motion sensor data into usable controller output.
+TiltOSC is an hyper-efficient, low-latency OSC pipeline that converts your phone's motion sensor data into usable controller output, whether that be for racing games, simulators, and any app or game that supports a gamepad.
 
 ## Table of Contents
 
@@ -27,7 +27,7 @@ TiltOSC is an hyper-efficient, low-latency OSC pipeline that converts your phone
 
 ## How does it work?
 
-TiltOSC uses your phone's accelerometer and gyroscope to determine the orientation of the device. From there, the data is sent via OSC to the desktop server, where it is converted into mouse movements, joystick inputs, wheel rotations, and more! If you don't want to use the phone's motion sensors as controls, you can also use TiltOSC as a dedicated controller app.
+TiltOSC uses your phone's accelerometer and gyroscope to determine the orientation of the device. From there, the data is sent via OSC to the desktop server, where it is converted into mouse movements, joystick inputs, wheel rotations, and more! If you don't want to use the phone's motion sensors as controls, you can also use TiltOSC as a normal controller app without using the tilt functionality for various games.
 
 ## Why was it created?
 TiltOSC was originally created to be a stand-in for a physical steering wheel. Such apparatus can be expensive and I wasn't sure if I would even stick with such a hobby.TiltOSC is a continuation of a lost project called PhoneSteer that tried to fill that gap That version had memory leaks, was slow and annoying to use, and depended on a paid, proprietary mobile app, whereas TiltOSC is built from the ground up using 100% open source software.
