@@ -63,7 +63,7 @@ OSC sends data directly through a dedicated port in raw text. This means that, i
 
 # Getting Started
 
-## Desktop client installation
+# Desktop client installation
 First, ensure you have ViGEm BUS installed. If you don't already have it, [you can grab the latest version here](https://github.com/nefarius/ViGEmBus/releases)
 
 To install the desktop client, download the corresponding zip file from the latest release. Once it has been downloaded, you should see the `TiltOSC.exe` file. Opening this will summon the Desktop launcher.
@@ -78,8 +78,6 @@ Once you have entered, you may choose your settings and click "Start TiltOSC" to
 Advanced users may bind the OSC signals to professional software, but it is *not* the intended use of TiltOSC.
 
 # Mobile client installation
-
-
 
 ## Android installation
 
