@@ -61,9 +61,9 @@ OSC sends data directly through a dedicated port in raw text. This means that, i
 - [x] Start / Stop / Restart backend controls
 - [x] Live network address indicator
 
-## Getting Started
+# Getting Started
 
-### Desktop client installation
+## Desktop client installation
 First, ensure you have ViGEm BUS installed. If you don't already have it, [you can grab the latest version here](https://github.com/nefarius/ViGEmBus/releases)
 
 To install the desktop client, download the corresponding zip file from the latest release. Once it has been downloaded, you should see the `TiltOSC.exe` file. Opening this will summon the Desktop launcher.
@@ -71,21 +71,25 @@ To install the desktop client, download the corresponding zip file from the late
 
 _**Note: the zip must be extracted for the launcher to work.**_[^1]
 
-### Desktop client usage
+## Desktop client usage
 
 Once you have entered, you may choose your settings and click "Start TiltOSC" to commence the controller emulation background process. TiltOSC will stay alive even if the launcher is closed, and can either be quit by pressing "Stop TiltOSC" in the launcher or forcefully stopping the `tilt_osc.exe` process in Task Manager.
 
 Advanced users may bind the OSC signals to professional software, but it is *not* the intended use of TiltOSC.
 
-### Mobile client installation
+# Mobile client installation
 
-**Note for iOS users:** at this time, there is **not** a native iOS build. If you have a machine running a modern version of macOS, you can either download the Xcode project files or clone the repository to perform the build using Xcode or Godot respectively.
 
-### Android installation
+
+## Android installation
 
 To begin, ensure that "Install unknown apps" is enabled. The app installation should be relatively easy. Click or press and hold the APK in your device's file manager until a popup menu appears with an option to install it. This varies from device to device.
 
-### Mobile client usage
+## iOS installation
+Unfortunately, at this time, there is **not** a native iOS build due to the weirdly restrictive developer program. If you have a machine running a modern version of macOS, you can either download the XCode project files or clone the repository to perform the build using XCode or Godot respectively.
+Advanced users may install the compiled app onto a jailbroken device to achieve regular functionality.
+
+## Mobile client usage
 
 The mobile client ***must*** be configured before it can connect. To begin, click the settings button at the bottom right corner of the screen. Where the box states "Destination," enter the IP and port shown on the desktop client and press the save button.[^2]
 
