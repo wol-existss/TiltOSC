@@ -3,8 +3,13 @@ from pythonosc.dispatcher import Dispatcher
 from pythonosc.osc_server import BlockingOSCUDPServer
 # Numpy
 import numpy as np
-# vgamepad
+# gamepad
 import vgamepad as vg
+# Other perhiperals
+import pyvjoystick
+from pyvjoystick import vjoy
+# vjoystick particulates
+vjoy_value = 0.0
 # System Tray (windows only)
 import pystray
 from PIL import Image
@@ -23,12 +28,26 @@ debug_gyro = False
 debug_wheel = False
 debug_calibration = False
 debug_controller = False
+dispatcher_map = True # So that the gigantic field with the dispatcher mappings can be toggled achahch
+debug_perhiperals = True
+ghost_mode = False # This should only really be enabled if you want to spot-debug something that has not a variable yet.
 # Master debug handling statement
+
 if master_debug:
     debug_gravity = True
     debug_gyro = True
     debug_wheel = True
     debug_calibration = True
+    debug_perhiperals = True
+
+# Ghost mode?
+if ghost_mode:
+    debug_gravity = False
+    debug_gyro = False
+    debug_wheel = False
+    debug_calibration = False
+    debug_perhiperals = False
+
 # Debug buffer
 gravity_frames = 0
 gyro_frames = 0
@@ -43,6 +62,14 @@ calibrated_angle = 0.0
 
 # Gamepad
 gamepad = vg.VX360Gamepad()
+
+# Joystick
+joystick = vjoy.VJoyDevice(1)
+
+# Virtual perhiperal debug
+if debug_perhiperals:
+    print(gamepad)
+    print("joystick")
 
 # Miscellaneous
 kill_flag = False
@@ -169,6 +196,8 @@ def gyro_handler(address, *args):
     calibrated_angle = (wheel_angle - wheel_angle_offset) * wheel_angle_scale
     calibrated_angle = max(-1.0, min(1.0, calibrated_angle))  # Clamped due to scale functionality potentially resulting in exceedance of ±1.0
 
+    set_vjoy_wheel(calibrated_angle)
+
     # Gamepad output
     if not use_digital_lstick:
         gamepad.left_joystick_float(x_value_float=calibrated_angle, y_value_float=0.0)
@@ -278,45 +307,22 @@ def restart_backend(icon, item):
     python = sys.executable # Current running path
     os.execl(python, python, *sys.argv) # Ensure compatability regardless of compilation state.
 
-# OSC dispatcher mapping
-dispatcher = Dispatcher()
-dispatcher.map("/gravity", gravity_handler)             # Sensors
-dispatcher.map("/gyro", gyro_handler)
-dispatcher.map("/landscape", landscape_handler)         # Calibration
-dispatcher.map("/cw", cw_handler)
-dispatcher.map("/reset", reset_calibration)
-dispatcher.map("/kill_desktop", kill_desktop_handler)   # Forced termination
+# Actual wheel stuff
+VJOY_AXIS_MIN = 0x0001
+VJOY_AXIS_MAX = 0x8000
+VJOY_AXIS_CENTER = 0x4000
 
-## Dispatcher mapping for controller packets
+def set_vjoy_wheel(value):
+    value = max(-1, min(1.0, value)) # Normalize the wheel value to +-1w
 
-# Handlers for each trigger
-dispatcher.map("/lt", lt_handler)
-dispatcher.map("/rt", rt_handler)
+    # Give vjoy the ability to read the data meaningfully
+    vjoy_value = int(
+        VJOY_AXIS_CENTER +
+        value * (VJOY_AXIS_MAX - VJOY_AXIS_CENTER)
 
-# Shoulder buttons
-dispatcher.map("/lb", controller_button_handler)
-dispatcher.map("/rb", controller_button_handler)
+    )
 
-# Cluster buttons
-dispatcher.map("/y_button", controller_button_handler)
-dispatcher.map("/x_button", controller_button_handler)
-dispatcher.map("/b_button", controller_button_handler)
-dispatcher.map("/a_button", controller_button_handler)
-
-# Directional buttons
-dispatcher.map("/up_button", controller_button_handler)
-dispatcher.map("/down_button", controller_button_handler)
-dispatcher.map("/left_button", controller_button_handler)
-dispatcher.map("/right_button", controller_button_handler)
-
-# Joysticks
-dispatcher.map("/lstick", lstick_handler)
-dispatcher.map("/rstick", rstick_handler)
-
-# Auxiliary buttons
-dispatcher.map("/back", controller_button_handler)
-dispatcher.map("/guide", controller_button_handler)
-dispatcher.map("/start", controller_button_handler)
+    joystick.set_axis(vjoy.HID_USAGE.X, vjoy_value) # 'Save' the current value to the joystic(k) variable
 
 # System tray server...?
 tray_image = Image.open(os.path.join(CONFIG_DIR, "icon.ico"))
@@ -328,6 +334,49 @@ tray_menu = pystray.Menu(
 )
 
 tray_icon = pystray.Icon("TiltOSC", tray_image, "TiltOSC", tray_menu)
+
+# There is an if statement here so that it is collapsable
+if dispatcher_map:
+    # OSC dispatcher mapping
+    dispatcher = Dispatcher()
+    dispatcher.map("/gravity", gravity_handler)             # Sensors
+    dispatcher.map("/gyro", gyro_handler)
+    dispatcher.map("/landscape", landscape_handler)         # Calibration
+    dispatcher.map("/cw", cw_handler)
+    dispatcher.map("/reset", reset_calibration)
+    dispatcher.map("/kill_desktop", kill_desktop_handler)   # Forced termination
+
+    ## Dispatcher mapping for controller packets
+
+    # Handlers for each trigger
+    dispatcher.map("/lt", lt_handler)
+    dispatcher.map("/rt", rt_handler)
+
+    # Shoulder buttons
+    dispatcher.map("/lb", controller_button_handler)
+    dispatcher.map("/rb", controller_button_handler)
+
+# Cluster buttons
+    dispatcher.map("/y_button", controller_button_handler)
+    dispatcher.map("/x_button", controller_button_handler)
+    dispatcher.map("/b_button", controller_button_handler)
+    dispatcher.map("/a_button", controller_button_handler)
+
+    # Directional buttons
+    dispatcher.map("/up_button", controller_button_handler)
+    dispatcher.map("/down_button", controller_button_handler)
+    dispatcher.map("/left_button", controller_button_handler)
+    dispatcher.map("/right_button", controller_button_handler)
+
+    # Joysticks
+    dispatcher.map("/lstick", lstick_handler)
+    dispatcher.map("/rstick", rstick_handler)
+
+    # Auxiliary buttons
+    dispatcher.map("/back", controller_button_handler)
+    dispatcher.map("/guide", controller_button_handler)
+    dispatcher.map("/start", controller_button_handler)  # This is [...]
+
 
 # OSC server
 server = BlockingOSCUDPServer(("0.0.0.0", receive_port), dispatcher)
