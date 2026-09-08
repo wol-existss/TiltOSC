@@ -1,5 +1,7 @@
 import QtQuick
 import Launcher
+
+
 Window {
     width: mainScreen.width
     height: mainScreen.height
