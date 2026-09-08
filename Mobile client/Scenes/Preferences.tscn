@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d26v7fhbbgik2" path="res://Scripts/preferences.gd" id="1_0jjsc"]
 [ext_resource type="Theme" uid="uid://r7uqo0meoh4q" path="res://Resources/Themes/clean_dark.tres" id="2_f4r66"]
+[ext_resource type="Theme" uid="uid://dh8ob5jbkgqnt" path="res://Resources/Themes/soft_light.tres" id="4_txiu7"]
 [ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="5_1s6nn"]
 [ext_resource type="Texture2D" uid="uid://fnijn3p5875x" path="res://Resources/Icons/save_24dp.svg" id="5_tbbex"]
 [ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="6_iw1ap"]
@@ -35,7 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 0.66700006
 offset_left = -1.0
 offset_right = -1.0
-offset_bottom = 218.78397
+offset_bottom = 215.78397
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
@@ -177,37 +178,63 @@ theme_override_font_sizes/font_size = 52
 text = "Calibration"
 horizontal_alignment = 1
 
-[node name="Calib note" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1017220538]
+[node name="CalibNote" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1017220538]
 layout_mode = 2
 theme_override_font_sizes/font_size = 29
 text = "Position your phone and click the 
 corresponding button."
 horizontal_alignment = 1
 
-[node name="calib buttons" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=372061268]
+[node name="CalibButtons" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=372061268]
 layout_mode = 2
 alignment = 1
 
-[node name="landscape" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/calib buttons" unique_id=926481223]
+[node name="landscape" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/CalibButtons" unique_id=926481223]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 50
 text = "Landscape"
 metadata/polling_rate = 0
 
-[node name="cw" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/calib buttons" unique_id=1049175542]
+[node name="cw" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/CalibButtons" unique_id=1049175542]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 50
 text = "90° Clockwise"
 metadata/polling_rate = 0
 
-[node name="cw2" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1173540256]
+[node name="ResetCalib" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1173540256]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"PrimaryButton"
 theme_override_font_sizes/font_size = 50
 text = "⚠Reset Calibration"
+metadata/polling_rate = 0
+
+[node name="Theme" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=243150093]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Theme"
+horizontal_alignment = 1
+
+[node name="ThemeButtons" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1069705137]
+layout_mode = 2
+alignment = 1
+
+[node name="DarkMode" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/ThemeButtons" unique_id=2002936518]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_f4r66")
+theme_override_font_sizes/font_size = 50
+text = "Dark Mode"
+metadata/polling_rate = 0
+
+[node name="LightMode" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/ThemeButtons" unique_id=993742774]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_txiu7")
+theme_override_font_sizes/font_size = 50
+text = "Light Mode"
 metadata/polling_rate = 0
 
 [node name="force quit" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1063841553]
@@ -283,8 +310,10 @@ metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 [connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/Unlimited" to="." method="_on_unlimited_hz"]
 [connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/SaveAddress" to="." method="_on_save_address_pressed"]
-[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/landscape" to="." method="_on_landscape_pressed"]
-[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/calib buttons/cw" to="." method="_on_clockwise_pressed"]
-[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/cw2" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/CalibButtons/landscape" to="." method="_on_landscape_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/CalibButtons/cw" to="." method="_on_clockwise_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/ResetCalib" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/ThemeButtons/DarkMode" to="." method="_on_dark_mode_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/ThemeButtons/LightMode" to="." method="_on_light_mode_pressed"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Force quit/kill" to="." method="_on_kill"]
 [connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Force quit/kill desktop" to="." method="_on_kill_desktop_pressed"]
