@@ -196,10 +196,18 @@ osc_address = "/rstick"
 message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
-[node name="ReadSensors" type="Node" parent="." unique_id=961260413 node_paths=PackedStringArray("gravity", "gyro")]
+[node name="init" type="Node" parent="OSC/Widgets/Central" unique_id=1305364177 node_paths=PackedStringArray("target_client")]
+script = ExtResource("2_pbw6q")
+target_client = NodePath("../../../OSCClient")
+osc_address = "/null"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="ReadSensors" type="Node" parent="." unique_id=961260413 node_paths=PackedStringArray("gravity", "gyro", "init")]
 script = ExtResource("3_v1gob")
 gravity = NodePath("../OSC/gravity")
 gyro = NodePath("../OSC/gyro")
+init = NodePath("../OSC/Widgets/Central/init")
 
 [node name="Widgets" type="Control" parent="." unique_id=918875026 node_paths=PackedStringArray("trigger", "cluster", "auxiliary", "leftstick", "rightstick")]
 layout_mode = 1
