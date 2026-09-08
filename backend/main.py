@@ -28,9 +28,9 @@ debug_gyro = False
 debug_wheel = False
 debug_calibration = False
 debug_controller = False
-dispatcher_map = True # So that the gigantic field with the dispatcher mappings can be toggled achahch
+dispatcher_map = True # So that the gigantic field with the dispatcher mappings can be toggled
 debug_perhiperals = True
-ghost_mode = False # This should only really be enabled if you want to spot-debug something that has not a variable yet.
+ghost_mode = False # For outputs without a debug variable
 # Master debug handling statement
 
 if master_debug:
@@ -119,7 +119,7 @@ def save_calibration():
 config = load_config()
 
 # Settings loaded from config.json
-receive_port = config.get("receive_port", 4646)
+receive_port = config.get("receive_port", 4646) # .get to avoid weird errors where a perfectly good configuration would render itself unreadable.
 use_digital_lstick = config.get("use_digital_lstick", False)
 use_digital_rstick = config.get("use_digital_rstick", True)
 invert_y_axis = config.get("invert_y_axis", True)
