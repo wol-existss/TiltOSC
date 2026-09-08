@@ -157,6 +157,13 @@ func _on_reset_pressed() -> void:
 	osc_send.osc_address = "/reset"
 	osc_send.send_message([])
 
+# Save the current theme
+func _save_dark_theme() -> void:
+	pass
+
+func _save_light_theme() -> void:
+	pass
+
 # Kill desktop client
 func _on_kill_desktop_pressed() -> void:
 	osc_send.osc_address = "/kill_desktop"
@@ -171,3 +178,14 @@ func _on_main_menu_pressed() -> void:
 
 func _on_save_address_pressed() -> void:
 	_save_network_address(ip_field.text, port_field.text)
+	
+# Scratchpad
+# In this session, I wish to create a system that works as following: When the button for the light or dark theme is pressed, it will trigger a function that A), changes the theme in the project, and B, updates the configuration to reflect. I can recreate the system seen within the polling rate system. First, I will add a signal for each of the two buttons. Then, I will ensure that the buttons that require a particular theme have been recorded. This segment has been completed. I will now have it change the theme. The theme did not reflect. adding a segment for printing the current theme. I first tried to implement the root node as an onread, but that did not work because no such thing is supported within godot. Update: The theme applies, but *other* colours within the scene remain the same. I.e., the background colour, the font colours...
+
+func _on_dark_mode_pressed() -> void:
+	var theme = load("res://Resources/Themes/clean_dark.tres")
+	$".".theme = theme
+
+func _on_light_mode_pressed() -> void:
+	var theme = load("res://Resources/Themes/soft_light.tres")
+	$".".theme = theme
