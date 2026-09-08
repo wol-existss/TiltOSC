@@ -8,6 +8,7 @@
 #include <QGuiApplication>
 #include "qqmlextensionplugin.h"
 
+Q_IMPORT_QML_PLUGIN(LauncherContentPlugin)
 Q_IMPORT_QML_PLUGIN(LauncherPlugin)
 Q_IMPORT_QML_PLUGIN(LauncherContentPlugin)
 
