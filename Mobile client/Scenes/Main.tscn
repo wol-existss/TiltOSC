@@ -1,30 +1,28 @@
 [gd_scene format=3 uid="uid://bj0w58qnvrmt"]
 
 [ext_resource type="Script" uid="uid://xi7uy8bnjk3a" path="res://Addons/godOSC/scripts/OSCClient.gd" id="1_rgh2o"]
+[ext_resource type="Script" uid="uid://d26v7fhbbgik2" path="res://Scripts/preferences.gd" id="1_v1gob"]
+[ext_resource type="Theme" uid="uid://r7uqo0meoh4q" path="res://Resources/Themes/clean_dark.tres" id="2_jw32o"]
 [ext_resource type="Script" uid="uid://b0pkndrhr65ph" path="res://Addons/godOSC/scripts/OSCMessage.gd" id="2_pbw6q"]
-[ext_resource type="Script" uid="uid://4pxluy461chw" path="res://Scripts/read_sensors.gd" id="3_v1gob"]
-[ext_resource type="Texture2D" uid="uid://b2elgcqcxq33b" path="res://Resources/Icons/apps_24dp.svg" id="5_50glp"]
-[ext_resource type="Script" uid="uid://uokligel1led" path="res://Scripts/widgets.gd" id="5_bmxlf"]
-[ext_resource type="Texture2D" uid="uid://bmeycbw8s8aim" path="res://Resources/Icons/select_window_2_24dp.svg" id="6_vy5pj"]
-[ext_resource type="Texture2D" uid="uid://cfa726bnmqwe2" path="res://Resources/Icons/menu_24dp.svg" id="7_bmxlf"]
-[ext_resource type="Texture2D" uid="uid://dfgpgahpdl5ex" path="res://Resources/Icons/settings_24dp.svg" id="8_4kpch"]
-[ext_resource type="Texture2D" uid="uid://pqgcu2e4hls6" path="res://Resources/Icons/filter_center_focus_24dp.svg" id="8_vy5pj"]
+[ext_resource type="Texture2D" uid="uid://fnijn3p5875x" path="res://Resources/Icons/save_24dp.svg" id="3_50glp"]
+[ext_resource type="Theme" uid="uid://dh8ob5jbkgqnt" path="res://Resources/Themes/soft_light.tres" id="4_vy5pj"]
 
-[node name="Main" type="Control" unique_id=861260589]
+[sub_resource type="ButtonGroup" id="ButtonGroup_qyfth"]
+
+[node name="Preferences" type="Control" unique_id=875751159 node_paths=PackedStringArray("gravity", "gyro")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_v1gob")
+debug = null
+output_buffer_max = null
+gravity = NodePath("OSC/gravity")
+gyro = NodePath("OSC/gyro")
 
-[node name="hi santi and notaroomba" type="Control" parent="." unique_id=1889921100]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=148375688]
-z_index = -1
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1903861548]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,26 +31,280 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.16862746, 0.20784314, 0.27058825, 1)
 
-[node name="OSC" type="Node" parent="." unique_id=1138681744]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=279366487]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.66700006
+offset_left = -1.0
+offset_right = -1.0
+offset_bottom = 215.78397
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
 
-[node name="OSCClient" type="Node" parent="OSC" unique_id=2058731799]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=711304213]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" unique_id=571598352]
+layout_mode = 2
+
+[node name="Settings" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=528295935]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_jw32o")
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 86
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main Menu" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Settings" unique_id=1055759863]
+custom_maximum_size = Vector2(-1, 46.935)
+layout_mode = 0
+offset_left = -345.0
+offset_right = -298.0
+offset_bottom = 46.935
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "←"
+metadata/polling_rate = 0
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1099617294]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Polling rate"
+horizontal_alignment = 1
+
+[node name="pollling rate" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1479487771]
+layout_mode = 2
+alignment = 1
+
+[node name="30 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=1703215717]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qyfth")
+text = "30Hz"
+metadata/polling_rate = 30
+
+[node name="60 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=1233873317]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qyfth")
+text = "60Hz"
+metadata/polling_rate = 60
+
+[node name="90 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=363367331]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qyfth")
+text = "90Hz"
+metadata/polling_rate = 90
+
+[node name="120 Hz" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=1301153331]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qyfth")
+text = "120Hz"
+metadata/polling_rate = 120
+
+[node name="Unlimited" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/pollling rate" unique_id=1851772544]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qyfth")
+text = "Unlimited"
+metadata/polling_rate = 0
+
+[node name="VSync" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1426954480]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+toggle_mode = true
+text = "Enable VSync"
+metadata/polling_rate = 0
+
+[node name="Destination" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=2145216820]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Destination"
+horizontal_alignment = 1
+
+[node name="BoxContainer" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=131606613]
+layout_mode = 2
+alignment = 1
+
+[node name="IP" type="TextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=472250906]
+custom_minimum_size = Vector2(450, 100)
+custom_maximum_size = Vector2(900, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 53
+placeholder_text = "18.15.15.16"
+
+[node name="colon" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=191304151]
+custom_maximum_size = Vector2(8.065, -1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = ":"
+horizontal_alignment = 1
+
+[node name="Port" type="TextEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1699495097]
+custom_minimum_size = Vector2(200, 100)
+custom_maximum_size = Vector2(900, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 53
+placeholder_text = "4646"
+
+[node name="SaveAddress" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1793058159]
+custom_minimum_size = Vector2(75, 75)
+custom_maximum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 15
+icon = ExtResource("3_50glp")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Calibration" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=572886054]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Calibration"
+horizontal_alignment = 1
+
+[node name="CalibNote" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1017220538]
+layout_mode = 2
+theme_override_font_sizes/font_size = 29
+text = "Position your phone and click the 
+corresponding button."
+horizontal_alignment = 1
+
+[node name="CalibButtons" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=372061268]
+layout_mode = 2
+alignment = 1
+
+[node name="landscape" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/CalibButtons" unique_id=926481223]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Landscape"
+metadata/polling_rate = 0
+
+[node name="cw" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/CalibButtons" unique_id=1049175542]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "90° Clockwise"
+metadata/polling_rate = 0
+
+[node name="ResetCalib" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1173540256]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"PrimaryButton"
+theme_override_font_sizes/font_size = 50
+text = "⚠Reset Calibration"
+metadata/polling_rate = 0
+
+[node name="Theme" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=243150093]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Theme"
+horizontal_alignment = 1
+
+[node name="ThemeButtons" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1069705137]
+layout_mode = 2
+alignment = 1
+
+[node name="DarkMode" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/ThemeButtons" unique_id=2002936518]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_jw32o")
+theme_override_font_sizes/font_size = 50
+text = "Dark Mode"
+metadata/polling_rate = 0
+
+[node name="LightMode" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/ThemeButtons" unique_id=993742774]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_vy5pj")
+theme_override_font_sizes/font_size = 50
+text = "Light Mode"
+metadata/polling_rate = 0
+
+[node name="force quit" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1063841553]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Force TiltOSC to stop"
+horizontal_alignment = 1
+
+[node name="Force quit" type="BoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1901936859]
+layout_mode = 2
+alignment = 1
+
+[node name="kill" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Force quit" unique_id=152403775]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"DangerButton"
+theme_override_font_sizes/font_size = 50
+text = "Kill TiltOSC"
+metadata/polling_rate = 0
+
+[node name="kill desktop" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/Force quit" unique_id=2066068336]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"DangerButton"
+theme_override_font_sizes/font_size = 50
+text = "Kill Desktop Server"
+metadata/polling_rate = 0
+
+[node name="OSC" type="Node" parent="." unique_id=31411186]
+
+[node name="OSCClient" type="Node" parent="OSC" unique_id=1575887564]
 script = ExtResource("1_rgh2o")
 metadata/_custom_type_script = "uid://xi7uy8bnjk3a"
 
-[node name="gravity" type="Node" parent="OSC" unique_id=188858764 node_paths=PackedStringArray("target_client")]
+[node name="landscape" type="Node" parent="OSC" unique_id=1902480672 node_paths=PackedStringArray("target_client")]
+script = ExtResource("2_pbw6q")
+target_client = NodePath("../OSCClient")
+osc_address = "/landscape"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="cw" type="Node" parent="OSC" unique_id=1513034022 node_paths=PackedStringArray("target_client")]
+script = ExtResource("2_pbw6q")
+target_client = NodePath("../OSCClient")
+osc_address = "/cw"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="osc_send" type="Node" parent="OSC" unique_id=2129207223 node_paths=PackedStringArray("target_client")]
+script = ExtResource("2_pbw6q")
+target_client = NodePath("../OSCClient")
+osc_address = "/osc_send"
+message_contents = 3
+metadata/_custom_type_script = "uid://b0pkndrhr65ph"
+
+[node name="gravity" type="Node" parent="OSC" unique_id=302288263 node_paths=PackedStringArray("target_client")]
 script = ExtResource("2_pbw6q")
 target_client = NodePath("../OSCClient")
 osc_address = "/gravity"
-message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
-[node name="gyro" type="Node" parent="OSC" unique_id=724185352 node_paths=PackedStringArray("target_client")]
+[node name="gyro" type="Node" parent="OSC" unique_id=280098400 node_paths=PackedStringArray("target_client")]
 script = ExtResource("2_pbw6q")
 target_client = NodePath("../OSCClient")
 osc_address = "/gyro"
-message_contents = 3
 metadata/_custom_type_script = "uid://b0pkndrhr65ph"
 
+<<<<<<< Updated upstream
 [node name="calib" type="Node" parent="OSC" unique_id=1025889283 node_paths=PackedStringArray("target_client")]
 script = ExtResource("2_pbw6q")
 target_client = NodePath("../OSCClient")
@@ -527,3 +779,20 @@ action_down = &"lstick_down"
 [connection signal="button_down" from="Widgets/MarginContainer/RootLayout/DPad/right" to="Widgets" method="_on_right_button_down"]
 [connection signal="button_up" from="Widgets/MarginContainer/RootLayout/DPad/right" to="Widgets" method="_on_right_button_up"]
 [connection signal="pressed" from="Widgets/MarginContainer/RootLayout/Settings/Settings" to="Widgets" method="_on_settings_pressed"]
+=======
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Settings/Main Menu" to="." method="_on_main_menu_pressed"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/30 Hz" to="." method="_on_30Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/60 Hz" to="." method="_on_60Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/90 Hz" to="." method="_on_90Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/120 Hz" to="." method="_on_120Hz"]
+[connection signal="button_down" from="ScrollContainer/MarginContainer/VBoxContainer/pollling rate/Unlimited" to="." method="_on_unlimited_hz"]
+[connection signal="toggled" from="ScrollContainer/MarginContainer/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/BoxContainer/SaveAddress" to="." method="_on_save_address_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/CalibButtons/landscape" to="." method="_on_landscape_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/CalibButtons/cw" to="." method="_on_clockwise_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/ResetCalib" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/ThemeButtons/DarkMode" to="." method="_on_dark_mode_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/ThemeButtons/LightMode" to="." method="_on_light_mode_pressed"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Force quit/kill" to="." method="_on_kill"]
+[connection signal="pressed" from="ScrollContainer/MarginContainer/VBoxContainer/Force quit/kill desktop" to="." method="_on_kill_desktop_pressed"]
+>>>>>>> Stashed changes
