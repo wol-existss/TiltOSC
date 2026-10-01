@@ -67,9 +67,12 @@ OSC sends data directly through a dedicated port in raw text. This means that, i
 
 First, ensure you have ViGEm BUS installed. If you don't already have it, [you can grab the latest version here](https://github.com/nefarius/ViGEmBus/releases)
 
-To install the desktop client, it is advised to use the .msi installer provided. Otherwise, download the corresponding zip file from the latest release. Once it has been downloaded, you should see the `TiltOSC.exe` file. Opening this will summon the Desktop launcher.
+To install the desktop client, it is advised to use the .msi installer provided. Otherwise, download the corresponding zip file from the latest release. Once it has been downloaded, you should see the `TiltOSC.exe` file. Opening this will summon the Desktop launcher
 
-Unfortunately, at this time, there is not a macOS or Linux build. While a Linux build is in the works, macOS wholly lacks the ability to emulate a controller and is unlikely to receive a build of TiltOSC.
+There is also a known issue with the installer that causes it to sometimes refuse to function when operated on an ARM machine. TiltOSC's desktop client is compatible with ARM, but you will have to manually download and extract the ZIP file.
+
+Unfortunately, at this time, there is not a macOS or Linux build. While a Linux build is in the works, macOS is wholly incapable of emulating a controller and is unlikely to receive a build of TiltOSC until Apple implements such a feature.
+
 
 _**Note: the zip must be extracted for the launcher to work.**_[^1]
 
