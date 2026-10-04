@@ -117,7 +117,7 @@ The mobile client uses Godot to write and send OSC packets, while the desktop ba
 The mobile client uses Godot because it features everything needed; it can send OSC packets, and it has an expansive library of buttons, sliders, checkboxes, and more. Godot also facilitates easy porting to desktop, Android, iOS, and alternative Linux-based mobile operating systems.
 
 ### Does this affect performance?
-The main TiltOSC script consumes around 20 mb of RAM on average. It is extremely lightweight and consumes a negligible amount of CPU resources. The launcher can also be closed and TiltOSC's backend can remain open.
+The main TiltOSC script consumes around 20 mb of RAM on average. It is extremely lightweight and consumes a negligible amount of CPU resources. The launcher can also be closed and TiltOSC's back-end will continue to function.
 
 ## Third-Party Software & Licenses
 
