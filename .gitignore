@@ -75,7 +75,7 @@ $RECYCLE.BIN/
 *.sublime-workspace
 .vs/
 *.code-workspace
-
+*/godot_super-wakatime
 
 # Secrets and credentials
 
