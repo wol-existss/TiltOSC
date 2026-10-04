@@ -1,21 +1,40 @@
-MIT License
+GNU AFFERO GENERAL PUBLIC LICENSE
+                       Version 3, 19 November 2007
 
-Copyright (c) 2026 wol-existss
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+                            Preamble
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+  The GNU Affero General Public License is a free, copyleft license for
+software and other kinds of works, specifically designed to ensure
+cooperation with theTo license your repository under **AGPLv3**, you have two clean ways to set up your project files.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+### 1. The `LICENSE` or `LICENSE.md` File
+Copy and paste the standard, unmodified text of the **GNU Affero General Public License v3.0** into your `LICENSE` or `LICENSE.md` file in the root of your repository. 
+
+You can grab the full official plain text directly from GNU:
+* [https://www.gnu.org/licenses/agpl-3.0.txt](https://www.gnu.org/licenses/agpl-3.0.txt)
+
+---
+
+### 2. Add Header Notices to Key Files (Recommended)
+GNU recommends adding a short copyright and license header at the top of your main source files (or at the bottom of your `README.md`) so anyone viewing individual files knows the license rules immediately:
+
+```text
+TiltOSC
+Copyright (C) 2026 wol-existss
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).
